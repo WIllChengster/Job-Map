@@ -1,7 +1,5 @@
 function attachEventHandlers(){
-    $('#jSearch').click(function(){
-        $('.landing').css('display', 'none');
-    })
+    $('#jSearch').click(landingHide)
     $('.inner').click(makeMenuSpin)
     $('.item1').click(jobListMenuToggle)
     $('.item4').click(jobStatsMenuToggle)
@@ -18,9 +16,18 @@ function makeMenuSpin(){
 function jobListMenuToggle(){
     $('.sidebar').toggleClass('sidebarHide')
     $('.item1').toggleClass('select')
+    $('.map').toggleClass('mapWithList')
 }
 
 function jobStatsMenuToggle(){
     $('.jobStats').toggleClass('jobStatsHide')
     $('.item4').toggleClass('select')
+    if($('.map').hasClass('mapWithList') && $('.map').hasClass('mapWithInfo') ){
+        $('.map').toggleClass('')
+    }
+    $('.map').toggleClass('mapWithInfo')
+}
+
+function landingHide(){
+    $('.landing').toggleClass('hideLanding')
 }

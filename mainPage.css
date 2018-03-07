@@ -44,10 +44,21 @@ html, body{
     grid-column: 1/11;
     grid-row: 2/11;
     z-index:10;
+    transition:ease-in-out 1s;
+    justify-self:center;
+    width:60vw;
 }
 .sidebarHide{
     transform:translateX(-100%);
 }
 .jobStatsHide{
     transform:translateX(100%);
+}
+.mapWithList{
+    transform:translateX(-12.5%);
+    width:80vw;
+}
+.mapWithInfo{
+    transform:translateX(12.5%);
+    width:80vw;
 }
