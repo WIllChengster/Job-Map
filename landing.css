@@ -1,0 +1,9 @@
+.landing{
+    grid-column:1/11;
+    grid-row: 1/11;
+    z-index:12;
+    background-color:grey;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+}
