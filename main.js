@@ -9,12 +9,15 @@ function initializeApp(){
 }
 
 function newSearch(){
-    
+    let title = $('#jTitle').val();
+    let location = $('#jLocal').val();
+    var findJobs = new startSearch(title, location);
+    console.log(findJobs);
 }
 
 class startSearch{
-    constructor(){
-        this.title = "Title";
-        this.location = "Location";
+    constructor(title, location){
+        this.title = title;
+        this.location = location;
     }
 }
