@@ -5,7 +5,7 @@ function initializeApp(){
 }
 
 function newSearch(){
-
+    
 }
 
 class startSearch{
