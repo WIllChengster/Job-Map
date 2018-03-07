@@ -1,12 +1,13 @@
 .landing{
     grid-column:1/11;
     grid-row: 1/11;
-    z-index:12;
+    z-index:19;
     background-color:orange;
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     /* 10x10 */
+    transition: ease 5s;
 }
 
 .hero{
@@ -18,7 +19,7 @@
 }
 .heroText{
     margin: auto;
-    font-size: 10vh;
+    font-size: 10vh; 
 }
 
 .forms{
@@ -56,4 +57,8 @@
 .submitSearch{
     grid-column: 4/5;
     grid-row: 3/4;
+}
+
+#map {
+    height: 100%;
 }
