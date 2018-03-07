@@ -2,7 +2,6 @@ $(document).ready(initializeApp);
 function initializeApp(){
     $('#jSearch').click(newSearch);
     attachEventHandlers();
-    getJobData();
 }
 
 function newSearch(){
