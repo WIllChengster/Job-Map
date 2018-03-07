@@ -6,7 +6,10 @@ function initializeApp(){
 }
 
 function newSearch(){
-    
+    var findJobs = new startSearch();
+    findJobs.title = $('#jTitle').text();
+    $('#jTitle').text('');
+    console.log(findJobs);
 }
 
 class startSearch{
