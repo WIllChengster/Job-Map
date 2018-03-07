@@ -4,7 +4,7 @@ function attachEventHandlers(){
     })
     $('.inner').click(makeMenuSpin)
     $('.item1').click(jobListMenuToggle)
-    $('.item4').click(jobListMenuToggle)
+    $('.item4').click(jobStatsMenuToggle)
 }
 
 function makeMenuSpin(){
@@ -20,7 +20,7 @@ function jobListMenuToggle(){
     $('.item1').toggleClass('select')
 }
 
-function jobListMenuToggle(){
+function jobStatsMenuToggle(){
     $('.jobStats').toggleClass('jobStatsHide')
     $('.item4').toggleClass('select')
 }

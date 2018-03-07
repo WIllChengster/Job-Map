@@ -19,13 +19,13 @@ function populateJobDisplay(){
             }
         });
         var jobTitle = $('<h4>', {
-            html: (i + 1) + '. ' + jobData.results[i].title,
+            html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
             css:{
                 'margin-bottom': 0
             }
         });
         var jobCompany = $('<h7>', {
-            text: 'company: ' + jobData.results[i].company.display_name,
+            text: 'company: ' + findJobs.jobData.results[i].company.display_name,
             css:{
                 'margin': 0
             }
