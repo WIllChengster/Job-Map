@@ -54,11 +54,15 @@ html, body{
 .jobStatsHide{
     transform:translateX(100%);
 }
-.mapWithList{
+.mapWithoutList{
     transform:translateX(-12.5%);
     width:80vw;
 }
-.mapWithInfo{
+.mapWithoutInfo{
     transform:translateX(12.5%);
     width:80vw;
+}
+.mapWithoutAnything{
+    transform:translateX(0);
+    width:100%;
 }
