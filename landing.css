@@ -47,3 +47,13 @@
     grid-row: 2/3;
     border: 2px solid black;
 }
+.jLocationInput{
+    width:80%;
+    height: 100%;
+    box-sizing:border-box;
+}
+
+.submitSearch{
+    grid-column: 4/5;
+    grid-row: 3/4;
+}
