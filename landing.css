@@ -7,7 +7,11 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     /* 10x10 */
-    transition: ease 5s;
+    transition: ease-in-out 2s;
+}
+
+.hideLanding{
+    transform:translateY(-100%);
 }
 
 .hero{
@@ -19,7 +23,7 @@
 }
 .heroText{
     margin: auto;
-    font-size: 10vh; 
+    font-size: 10vh;
 }
 
 .forms{
