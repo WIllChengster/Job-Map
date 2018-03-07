@@ -2,10 +2,9 @@
     position:absolute;
     margin:auto;
     /* top:0; */
-    bottom:-10.5vh;
+    bottom:-15vh;
     left:0;
     right: 0;
-    background-color:white;
     border-radius:50%;
     height: 30vh;
     width: 30vh;
@@ -18,9 +17,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 15vh;
-    width: 15vh;
-    background-color: yellow;
+    height: 10vh;
+    width: 10vh;
+    background-color: white;;
     z-index:5;
     border-radius:50%;
 }
@@ -32,13 +31,16 @@
     bottom: 0;
     left: 0;
     right: 0;
-    border:2px solid black;
-    background-color: blue;
+    border:.5px solid black;
     height: 30vh;
     width: 30vh;
     border-radius:50%;
     z-index:4;
     overflow:hidden;
+    transition: ease-in-out 2s;
+}
+.hideBorder{
+    border:none;
 }
 
 .item{
@@ -46,24 +48,40 @@
     margin:auto;
     top:50%;
     left:50%;
-    border:2px solid black;
+    border:.25px solid black;
     height: 100%;
     width: 100%;
     transform-origin:top left;
+    background-color:blue;
+    transition: ease-in-out .5s;
+
 }
 .item1{
     transform:rotate(180deg)skew(45deg);
+    transition: ease-in-out .5s;
 }
 .item2{
     transform:rotate(225deg)skew(45deg);
+    transition: ease-in-out .5s;
 }
 .item3{
     transform:rotate(270deg)skew(45deg);
+    transition: ease-in-out .5s;
 }
 .item4{
     transform:rotate(315deg)skew(45deg);
+    transition: ease-in-out .5s;
 }
 
-spinHide{
-    transform:rotate(180deg)scale(0);
+.spinItem1{
+    transform:rotate(0deg)skew(45deg);
+}
+.spinItem2{
+    transform:rotate(45deg)skew(45deg);
+}
+.spinItem3{
+    transform:rotate(450deg)skew(45deg);
+}
+.spinItem4{
+    transform:rotate(495deg)skew(45deg);
 }
