@@ -1,7 +1,8 @@
 $(document).ready(initializeApp);
-
+var jobData = [];
 function initializeApp(){
     $('#jSearch').click(newSearch);
+    getJobData();
 }
 
 function newSearch(){
