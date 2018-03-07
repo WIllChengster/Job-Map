@@ -73,6 +73,16 @@
     transition: ease-in-out .5s;
 }
 
+.item1>p{
+    margin-left:2vh;
+    display: inline-block;
+    transform: rotate(180deg)skew(-45deg);
+}
+.item4>p{
+    display: inline-block;
+    transform:rotate(0deg)skew(-45deg);
+    margin-left:2vh;
+}
 .spinItem1{
     transform:rotate(0deg)skew(45deg);
 }
@@ -84,4 +94,8 @@
 }
 .spinItem4{
     transform:rotate(495deg)skew(45deg);
+}
+
+.select{
+    background-color:goldenrod; 
 }
