@@ -1,5 +1,5 @@
 $(document).ready(initializeApp);
-
+var findJobs = null;
 function initializeApp(){
     $('#jSearch').click(newSearch);
     $('#jSearch').click(function(){
@@ -12,21 +12,20 @@ function initializeApp(){
         $('.item4').toggleClass('spinItem4');
         $('.outer').toggleClass('hideBorder')
     })
-    getJobData();
 }
 
 function newSearch(){
     let title = $('#jTitle').val();
     let location = $('#jLocal').val();
-    var findJobs = new startSearch(title, location);
+    findJobs = new startSearch(title, location);
 }
 
 class startSearch{
     constructor(title, location){
         this.title = title;
         this.location = location;
-        this.jobData = [];
-        getJobData();
+        this.jobData = hardCodeResults;
+        //this.getJobData();
     }
     getJobData(){
         var where = 'irvine'; //Placeholders, Will be changed later.
@@ -61,7 +60,7 @@ class startSearch{
     
             }
         }
-        console.log(hardCoderesults);
+        console.log(hardCodeResults);
     
     }
 }
