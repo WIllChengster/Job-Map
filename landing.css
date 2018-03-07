@@ -2,8 +2,48 @@
     grid-column:1/11;
     grid-row: 1/11;
     z-index:12;
-    background-color:grey;
+    background-color:orange;
+    display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* 10x10 */
+}
 
+.hero{
+    /* 5x4 */
+    grid-column: 3/9;
+    grid-row: 3/7;
+    border: 2px solid black;
+    display:grid;
+}
+.heroText{
+    margin: auto;
+    font-size: 10vh;
+}
+
+.forms{
+    grid-column: 2/10;
+    grid-row: 7/9;
+    border:2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    /* 7x3 */
+}
+.jobTitle{
+    grid-column: 1/4;
+    grid-row: 2/3;
+    border: 2px solid black;
+}
+
+.jobTitleInput{
+    width:80%;
+    height: 100%;
+    box-sizing:border-box;
+}
+
+.jobLocation{
+    grid-column: 5/8;
+    grid-row: 2/3;
+    border: 2px solid black;
 }

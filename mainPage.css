@@ -19,6 +19,8 @@ html, body{
     grid-column: 1/11;
     grid-row: 1/2;
     border: 2px solid black;
+    z-index:20;
+    background-color:white;
 }
 
 .sidebar{
