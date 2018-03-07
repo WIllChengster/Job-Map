@@ -1,0 +1,15 @@
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    height: 100vh;
+    width: 100vh;
+    display:  grid;
+    position:relative;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* 6x6 grid */
+}
+
