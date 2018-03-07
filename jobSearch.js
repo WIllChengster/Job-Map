@@ -20,24 +20,50 @@ function getJobData(){
         method:'GET',
         success: function(result) {
             jobData = result;
+            populateJobDisplay();
             console.log(jobData);
-            if(result.success){
-
-                console.log('getting data', result);
-                //Feature set 3
-                // updateLists();
+            if(result.count === 0){
+                console.log('NO RESULTS RETURNED', result.count);
             }
             else{
-
             }
         },
         error: function(result){
             console.log('Error: had trouble getting data from server', result);
-
         }
     }
     $.ajax(ajaxConfig);
-
 }
 
+function populateJobDisplay(){
+// <div class="jobSidebar">
+//         1.
+//         <h3> Job Title</h3>
+//     <h5> Job company</h5>
+//     </div>
+    for(let i = 0; i < 5; i++) {
+        var jobSideBar = $('<div>', {
+            'class': 'jobSideBar',
+            on:{
+                click: function(){
+                    console.log('clicked job' + i);
+                }
+            }
+        });
+        var jobTitle = $('<h4>', {
+            html: (i + 1) + '. ' + jobData.results[i].title,
+            css:{
+                'margin-bottom': 0
+            }
+        });
+        var jobCompany = $('<h7>', {
+            text: 'company: ' + jobData.results[i].company.display_name,
+            css:{
+                'margin': 0
+            }
+        });
+        jobSideBar.append(jobTitle, jobCompany);
+        $('.sidebar').append(jobSideBar);
+    }
+}
 
