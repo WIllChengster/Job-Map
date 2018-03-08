@@ -97,6 +97,14 @@ input{
     font-family: 'Libre Baskerville', serif;
     box-shadow:gitinset 0px 0px 15px 2px #0267c1;
 }
+
+.userDirection{
+    grid-column: 4/8;
+    grid-row: 10/11;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
 .jobLocation, .jobTitle{
     display:flex;
     position:relative;
@@ -117,7 +125,7 @@ input{
     position:absolute;
     z-index:99;
     padding: 1vh;
-    margin:auto;
+    margin: auto;
     bottom: 130%;
     left: 50%;
     border-radius:12%;
