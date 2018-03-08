@@ -18,7 +18,8 @@ var dummyCoords = [
     }
     ];
 
-  function createNewMarker(){
+  function createNewMarker(results){
+      console.log('createMarker results: ', results);
     for(i = 0; i < dummyCoords.length; i++){
       var marker = new google.maps.Marker({
         position: {
@@ -26,19 +27,19 @@ var dummyCoords = [
           lng: dummyCoords[i].lng
         },
         map: map
-      })
+      });
     }
   }
 
 
   var map;
+  var center = new google.maps.LatLng(33.634919, -117.739538);
   function initialize() {
-    var mapOptions = {
-      zoom: 12,
-      center: {lat: 33.634919, lng: -117.739538}
-    };
-    map = new google.maps.Map(document.getElementById('map'),
-        mapOptions);
+
+      map = new google.maps.Map(document.getElementById('map'), {
+          center: center,
+          zoom: 12
+      });
 
 
     //Add this to start working on marker information
@@ -52,3 +53,30 @@ var dummyCoords = [
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
+
+  function searchCompany() {
+      var service;
+      var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
+      var companyName = 'CyberCoders';
+      var request = {
+          location: center,
+          radius: '30000',
+          name: companyName
+      };
+
+
+      service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, logIt);
+  }
+
+function logIt(results, status) {
+    console.log('this should be our results: ', results);
+    createNewMarker(results[0]);
+    //google's code
+    // if (status == google.maps.places.PlacesServiceStatus.OK) {
+    //     for (var i = 0; i < results.length; i++) {
+    //         var place = results[i];
+    //         createMarker(results[i]);
+    //     }
+    // }
+}
