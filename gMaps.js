@@ -45,7 +45,7 @@
 
 
 function mapPlacesToJobData(){
-    for(var i = 0; i < placesData.length; i++){
+    for(let i = 0; i < placesData.length; i++){
         // if(placesData[i] !== undefined){
             findJobs.jobData.results[i].geometry = placesData[i].geometry;
             findJobs.jobData.results[i].address = placesData[i].vicinity;
@@ -79,12 +79,12 @@ function renderAllMarkers(){
 }
 
 function populateMarkers(){
-      for(var i = 0; i < 9; i++) {
+      for(let i = 0; i < 9; i++) {
           searchCompany(findJobs.jobData.results[i].company.display_name, i);
       }
 }
 function spliceOutNoResults(){
-      for(var i = 0; i < indexesToBeSpliced.length; i++){
+      for(let i = 0; i < indexesToBeSpliced.length; i++){
           findJobs.jobData.results.splice(indexesToBeSpliced[i], 1);
           placesData.splice(indexesToBeSpliced[i], 1);
       }
