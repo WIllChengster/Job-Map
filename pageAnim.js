@@ -4,7 +4,7 @@ function makeMenuSpin(){
     $('.item3').toggleClass('spinItem3');
     $('.item4').toggleClass('spinItem4');
     $('.outer').toggleClass('hideBorder')
-    $('svg').toggleClass('toggleDisplay');
+    $('.inner svg').toggleClass('toggleDisplay');
 }
 
 function jobListMenuToggle(){
@@ -33,4 +33,10 @@ function jobStatsMenuToggle(){
 
 function landingHide(){
     $('.landing').toggleClass('hideLanding')
+}
+
+function tooltipShow(element){
+    $(element).toggleClass('noOpacity');
+    var self=element
+    setTimeout(()=> $(self).toggleClass('noOpacity'), 4000)
 }

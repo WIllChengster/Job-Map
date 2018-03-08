@@ -5,8 +5,17 @@ function initializeApp(){
 
 function attachEventHandlers(){
     $('#jSearch').click( () => {
-        newSearch($('#jTitle').val(), $('#jLocal').val());
-        landingHide();
+        if( $('#jTitle').val()===''){
+            tooltipShow('.jobTitleTooltip');
+        }
+        if( $('#jLocal').val()==''){
+            tooltipShow('.jobLocationTooltip');
+        }
+        if ($('#jLocal').val()!=='' &&  $('#jTitle').val()!=='' ){
+            newSearch($('#jTitle').val(), $('#jLocal').val());
+            landingHide();
+        }
+
     });
     $('#headerSearch').click( () => {
         newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
@@ -15,7 +24,7 @@ function attachEventHandlers(){
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
 }
-
+var placesData = [];
 var findJobs = null;
 
 function newSearch(title, location){
@@ -27,13 +36,17 @@ class startSearch{
         this.title = title;
         this.location = location;
         this.jobData = hardCodeResults;
-        console.log('trying to resolve our promise');
         // this.getJobData().then(result => console.log('promise resolved', result));
         //make sure that we are stripping the timeout and calling this after promise resolves when we move away from hard coded data
         setTimeout(function(){
             populateJobDisplay();
-            searchCompany();
+            populateMarkers();
+            setTimeout(function(){
+                mapPlacesToJobData();
+                renderAllMarkers();
+            }, 500);
         }, 300);
+
     }
     getJobData(){
         return new Promise(function(resolve, reject){
