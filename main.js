@@ -30,6 +30,7 @@ function landingSearch() {
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
         landingHide();
+        createInitialMapCenter();
     }
 }
 
@@ -43,6 +44,7 @@ function headerSearch() {
     if (title !== '' && location !== ''){
         console.log("We are doing a search, this should only happen if there is no title and location");
         newSearch(title, location);
+        createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
     }    
 }
