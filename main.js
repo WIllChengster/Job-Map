@@ -45,7 +45,8 @@ function headerSearch() {
     if (location === '')
         tooltipShow('.headerLocationTooltip')
     if (title !== '' && location !== ''){
-        console.log("We are doing a search, this should only happen if there is no title and location");
+        console.log("We are doing a search, this should only happen if there is a title and location");
+        removeMarkers();
         newSearch(title, location);
         createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');

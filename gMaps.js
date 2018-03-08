@@ -33,7 +33,7 @@ function createNewMarker(results){
 function createInitialMapCenter(){
     
     var geocoder = new google.maps.Geocoder();
-        var address = $('#jLocal').val();
+        var address = findJobs.location;
 
         geocoder.geocode({ 'address': address }, function (results, status) {
 
@@ -178,4 +178,5 @@ function removeMarkers(){
       for(var i = 0; i < markers.length; i++){
           markers[i].setMap(null);
       }
+      markers = [];
 }
