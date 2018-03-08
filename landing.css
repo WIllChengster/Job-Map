@@ -100,10 +100,15 @@ input{
     grid-column: 4/5;
     grid-row: 4/6;
     border-style: none;
-    background-color:#231651;
-    color:white;
+    background-color:white;
+    color:black;
     font-family: 'Libre Baskerville', serif;
-    box-shadow:gitinset 0px 0px 15px 2px #0267c1;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.submitSearch:hover {
+    background-color: lightsteelblue;
 }
 
 .userDirection{
