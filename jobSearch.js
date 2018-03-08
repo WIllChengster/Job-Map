@@ -10,7 +10,7 @@ let listingClicked;
 
 function populateJobDisplay(){
     $('#leftSideBar').empty();
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < placesData.length; i++) {
         var jobSideBar = $('<div>', {
             'class': 'jobSideBar',
             on:{
