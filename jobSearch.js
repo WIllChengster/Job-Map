@@ -14,6 +14,8 @@ function populateJobDisplay(){
             'class': 'jobSideBar',
             on:{
                 click: function(){
+                    $('.jobStats').empty();
+                    expandJobDescription();
                     console.log('clicked job' + i);
                 }
             }
@@ -34,6 +36,45 @@ function populateJobDisplay(){
         $('.sidebar').append(jobSideBar);
     }
 }
+
+function expandJobDescription(){
+    var expandedInfo = $('<div>', {
+        'class': 'expandedInfo',
+    });
+    var eInfoJobTitle = $('<h4>', {
+        html: findJobs.jobData.results[0].title
+    });
+    var jobCompany = $('<h7>', {
+        text: findJobs.jobData.results[0].company.display_name
+    });
+    var jobDescription = $('<p>', {
+        html: findJobs.jobData.results[0].description
+    });
+
+    let dateUglyFormat = findJobs.jobData.results[0].created;
+    console.log(dateUglyFormat);
+//    var listDate = $('<p>', {
+//        let dateUglyFormat = findJobs.jobData.results[0].created
+//    });
+
+    var jobLink = $('<a>', {
+        href: findJobs.jobData.results[0].redirect_url,
+        target: "_blank",
+        text: "Link to Application"
+    });
+    if( findJobs.jobData.results[0].salary_min != undefined && findJobs.jobData.results[0].salary_max != undefined){
+        var minMaxSalary = $('<p>', {
+            text: "Salary Range: $" + findJobs.jobData.results[0].salary_min + "-" + findJobs.jobData.results[0].salary_max
+        });
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, minMaxSalary, jobLink);
+    } else {
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, jobLink);
+    }
+    $('.jobStats').append(expandedInfo);
+}
+
+
+
 
 var hardCodeResults = {
     "count": 22,
