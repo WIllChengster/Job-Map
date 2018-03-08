@@ -121,11 +121,13 @@ h4:hover{
     display:flex;
     border:2px solid black;
 }
+
 .headerJobLocationInput{
     height: 100%;
     width: 100%;
     box-sizing:border-box;
 }
+
 .header svg {
     margin: 0 .25vw;
     height: 100%;
@@ -218,14 +220,12 @@ a{
     margin-left: 1.5vh;
 }
 
-
-
 .map{
-    background-color: limegreen;
+    background: rgba(0, 0, 0, 0.9);
     grid-column: 1/11;
     grid-row: 2/11;
     z-index:10;
-    transition:ease-in-out 1s;
+    transition:ease-in-out .2s;
     justify-self:center;
     width:60vw;
 }
