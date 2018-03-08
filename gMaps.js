@@ -69,8 +69,11 @@ function renderAllMarkers(){
           });
           //EVAN ADD CUSTOM MARKER NEAR HERE WITH VALUE OF I
           google.maps.event.addListener(marker, 'click', function() {
-              console.log('marker click, ', i);
-              expandJobDescription(i);
+                expandJobDescription(i);
+                if ($('#map').hasClass('mapWithoutInfo') === true){
+                    jobStatsMenuToggle();
+                }    
+                console.log('marker click, ', i);
           });
       }
 }

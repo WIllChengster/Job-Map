@@ -15,10 +15,9 @@ function populateJobDisplay(){
             'class': 'jobSideBar',
             on:{
                 click: function(){
-                    $('.jobStats').empty();
                     expandJobDescription(i);
-                    if(listingClicked === this){
-                        jobStatsMenuToggle();
+                    if(listingClicked === this){ // Do we really want this? Creates a bad experience if user clicks map marker and then clicks
+                        jobStatsMenuToggle();    // the same job on the left. Closes side bar, opposite of what you would expect.
                     } else if ($('#map').hasClass('mapWithoutInfo') === true){
                         jobStatsMenuToggle();
                     }
@@ -47,6 +46,7 @@ function populateJobDisplay(){
 }
 
 function expandJobDescription(indexOfSelection){
+    $('.jobStats').empty();
     var expandedInfo = $('<div>', {
         'class': 'expandedInfo',
     });
