@@ -42,9 +42,10 @@ class startSearch{
             populateJobDisplay();
             populateMarkers();
             setTimeout(function(){
+                spliceOutNoResults();
                 mapPlacesToJobData();
                 renderAllMarkers();
-            }, 500);
+            }, 1000);
         }, 300);
 
     }
