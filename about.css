@@ -5,8 +5,12 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     /* 10x10 */
-    z-index: 0;
-    background-color: #0075c4
+    z-index: 20;
+    background-color: #0075c4;
+    transition: 1s;
+}
+.hideAbout{
+    transform:translateY(100%)
 }
 
 .aboutBox{
@@ -57,33 +61,57 @@
     grid-column: 2/3;
     grid-row: 1/5;
     background-color:greenyellow;
-    transition: ease-in-out 1s;
+    transition: ease-in-out .7s;
     z-index:6;
 }
 .aboutWill{
     grid-column: 2/3;
     grid-row: 1/5;
     background-color:white;
-    transition: ease-in-out 1s;
+    transition: ease-in-out .7s;
     z-index:6;
 }
 .aboutEvan{
     grid-column: 2/3;
     grid-row: 1/5;
     background-color:grey;
-    transition: ease-in-out 1s;
+    transition: ease-in-out .7s;
     z-index:6;
 }
 .aboutMatt{
     grid-column: 2/3;
     grid-row: 1/5;
     background-color:black;
-    transition: ease-in-out 1s;
+    transition: ease-in-out .7s;
     z-index:6;
 }
 .hidePeople{
     grid-column: 2/3;
     grid-row: 1/5;
     opacity:0;
-    transform: translateX(70%)
+    transform: translateX(-70%)
+}
+
+.escape{
+    grid-column: 9/10;
+    background-color: darkgrey;
+    grid-row: 2/3;
+    height: 6vh;
+    width: 1vh;
+    transform: rotate(45deg);
+    opacity: 0.75;
+    cursor:pointer;
+}
+.escape::after{
+    content:'';
+    position:absolute;
+    margin: auto;
+    top:0;
+    left: 0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width:100%;
+    background-color: inherit;
+    transform: rotate(-90deg);
 }

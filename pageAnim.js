@@ -40,3 +40,16 @@ function tooltipShow(element){
     var self=element
     setTimeout(()=> $(self).toggleClass('noOpacity'), 4000)
 }
+
+function aboutBrian(){
+    $('.aboutBrian').toggleClass('hidePeople')
+}
+function aboutWill(){
+    $('.aboutWill').toggleClass('hidePeople');
+}
+function aboutEvan(){
+    $('.aboutEvan').toggleClass('hidePeople');
+}
+function aboutMatt(){
+    $('.aboutMatt').toggleClass('hidePeople');
+}
