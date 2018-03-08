@@ -70,13 +70,18 @@ class startSearch{
     initializeSearch(){
         this.getJobData().then(resultData => {
             this.jobData = resultData;
+            if(findJobs.jobData.results.length === 0){
+                $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
+            } else {
             console.log('jobData is: ', this.jobData)
             return cleanAndPopulateMarkers();
+            }
         }).then(resultOfMarkers =>{
             mapPlacesToJobData();
             renderAllMarkers();
             populateJobDisplay();
             console.log('After populateMarkers: no problems with markers', resultOfMarkers);
+            $('#headerSearch').removeClass('noTouch');
         })
             .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
     }
