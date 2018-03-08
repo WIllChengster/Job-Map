@@ -73,7 +73,7 @@ function expandJobDescription(indexOfSelection){
     var jobLink = $('<a>', {
         href: findJobs.jobData.results[indexOfSelection].redirect_url,
         target: "_blank",
-        text: "Link to Application"
+        text: "Link to Listing"
     });
     if( findJobs.jobData.results[indexOfSelection].salary_min != undefined && findJobs.jobData.results[indexOfSelection].salary_max != undefined){
         var minMaxSalary = $('<p>', {

@@ -2,16 +2,26 @@
     grid-column:1/11;
     grid-row: 1/11;
     z-index:19;
-    background-color:#0075c4;
+    /* background-color:#0075c4; */
+
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     /* 10x10 */
     transition: ease-in-out 2s;
 }
-
+div.bg{
+    grid-column: 1/11;
+    grid-row: 1/11;
+    background-image: url(blueBG.jpg);
+    -webkit-filter: blur(5px);
+    filter:blur(5px);
+    z-index:-1;
+    height:110%;
+    width: 110%;
+}
 .hideLanding{
-    transform:translateY(-100%);
+    transform:translateY(-150%);
 }
 
 .hero{
@@ -31,7 +41,6 @@
     .heroText {
         font-size:7vw
     }
-
 }
 @media only screen and (max-width:500px){
     div.tooSmall{
@@ -92,10 +101,15 @@ input{
     grid-column: 4/5;
     grid-row: 4/6;
     border-style: none;
-    background-color:#231651;
-    color:white;
+    background-color:white;
+    color:black;
     font-family: 'Libre Baskerville', serif;
-    box-shadow:gitinset 0px 0px 15px 2px #0267c1;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.submitSearch:hover {
+    background-color: lightsteelblue;
 }
 
 .userDirection{
@@ -103,6 +117,8 @@ input{
     grid-row: 10/11;
     text-align: center;
     transform: translateY(-50%);
+    color: white;
+    font-size: 4vmin;
 }
 
 .jobLocation, .jobTitle{
