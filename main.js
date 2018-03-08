@@ -14,6 +14,7 @@ function attachEventHandlers(){
         if ($('#jLocal').val()!=='' &&  $('#jTitle').val()!=='' ){
             newSearch($('#jTitle').val(), $('#jLocal').val());
             landingHide();
+            createInitialMapCenter();
         }
 
     });
