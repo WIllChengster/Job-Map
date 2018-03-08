@@ -12,7 +12,14 @@ function populateJobDisplay(){
     $('#leftSideBar').empty();
     for(let i = 0; i < placesData.length; i++) {
         var jobSideBar = $('<div>', {
-            'class': 'jobSideBar',
+            'class': 'jobSideBar'
+        });
+        var jobTitle = $('<h4>', {
+            html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
+            'class': 'jobName',
+            css:{
+                'margin-bottom': 0
+            },
             on:{
                 click: () => {
                     expandJobDescription(i);
@@ -22,13 +29,6 @@ function populateJobDisplay(){
                     console.log('clicked job' + i);
                     listingClicked=this
                 }
-            }
-        });
-        var jobTitle = $('<h4>', {
-            html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
-            'class': 'jobName',
-            css:{
-                'margin-bottom': 0
             }
         });
         var jobCompany = $('<h7>', {
