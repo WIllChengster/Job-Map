@@ -18,7 +18,10 @@ class startSearch{
         console.log('trying to resolve our promise');
         // this.getJobData().then(result => console.log('promise resolved', result));
         //make sure that we are stripping the timeout and calling this after promise resolves when we move away from hard coded data
-        setTimeout(populateJobDisplay, 300);
+        setTimeout(function(){
+            populateJobDisplay();
+            searchCompany();
+        }, 300);
     }
     getJobData(){
         return new Promise(function(resolve, reject){

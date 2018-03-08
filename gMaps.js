@@ -19,12 +19,11 @@ var dummyCoords = [
     ];
 
   function createNewMarker(results){
-      console.log('createMarker results: ', results);
     for(i = 0; i < dummyCoords.length; i++){
       var marker = new google.maps.Marker({
         position: {
-          lat: dummyCoords[i].lat, 
-          lng: dummyCoords[i].lng
+          lat: results.geometry.location.lat(),
+          lng: results.geometry.location.lng()
         },
         map: map
       });
@@ -56,12 +55,11 @@ var dummyCoords = [
 
   function searchCompany() {
       var service;
-      var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
-      var companyName = 'CyberCoders';
+      var placeholderName = 'Cybercoders'
       var request = {
           location: center,
-          radius: '30000',
-          name: companyName
+          radius: '50000',
+          name: placeholderName
       };
 
 
@@ -79,4 +77,9 @@ function logIt(results, status) {
     //         createMarker(results[i]);
     //     }
     // }
+}
+function renderAllJobMarkers(){
+      for(var i = 0; i < findJobs.jobData.length; i++){
+          searchCompany(findJobs.jobData.results[i].company.display_name);
+      }
 }
