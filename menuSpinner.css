@@ -58,7 +58,7 @@
     height: 100%;
     width: 100%;
     transform-origin:top left;
-    background-color:grey;
+    background-color:darkslategrey;
 
 }
 .item1{
@@ -106,7 +106,7 @@
 }
 
 .select{
-    background-color:#0075c4; 
+    background-color: #944743;
 }
 .inner>svg{
     position: absolute;
