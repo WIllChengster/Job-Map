@@ -17,6 +17,7 @@ function createNewMarker(results){
   var map;
   var center = new google.maps.LatLng(33.634919, -117.739538);
   var indexesToBeSpliced = [];
+  var markers = [];
   function initialize() {
 
       map = new google.maps.Map(document.getElementById('map'), {
@@ -76,17 +77,30 @@ function mapPlacesToJobData(){
 function renderAllMarkers(){
       var results = findJobs.jobData.results;
       var markerCounter = 1;
+      var previousName = '';
       for(let i = 0; i < placesData.length; i++){
-          var marker = new google.maps.Marker({
-              position: {
-                  lat: results[i].geometry.location.lat(),
-                  lng: results[i].geometry.location.lng()
-              },
-              map: map,
-              icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
-            });
-            markerCounter++;
-          //EVAN ADD CUSTOM MARKER NEAR HERE WITH VALUE OF I
+          if(placesData[i].name === previousName){
+              var marker = new google.maps.Marker({
+                  position: {
+                      lat: results[i].geometry.location.lat() + 0.00002,
+                      lng: results[i].geometry.location.lng() + 0.0006
+                  },
+                  animation: google.maps.Animation.DROP,
+                  map: map,
+                  icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
+              });
+          }
+          else{
+              var marker = new google.maps.Marker({
+                  position: {
+                      lat: results[i].geometry.location.lat(),
+                      lng: results[i].geometry.location.lng()
+                  },
+                  animation: google.maps.Animation.DROP,
+                  map: map,
+                  icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
+              });
+          }
           google.maps.event.addListener(marker, 'click', function() {
                 expandJobDescription(i);
                 if ($('#map').hasClass('mapWithoutInfo') === true){
@@ -94,6 +108,9 @@ function renderAllMarkers(){
                 }    
                 console.log('marker click, ', i);
           });
+          markerCounter++;
+          markers.push(marker);
+          previousName = placesData[i].name;
     }
 }
 
@@ -119,5 +136,10 @@ function spliceOutNoResults(){
       for(let i = 0; i < indexesToBeSpliced.length; i++){
           findJobs.jobData.results.splice(indexesToBeSpliced[i], 1);
           placesData.splice(indexesToBeSpliced[i], 1);
+      }
+}
+function removeMarkers(){
+      for(var i = 0; i < markers.length; i++){
+          markers[i].setMap(null);
       }
 }
