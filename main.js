@@ -5,9 +5,7 @@ function initializeApp(){
 
 function attachEventHandlers(){
     $('#jSearch').click(landingSearch);
-    $('#headerSearch').click( () => {
-        newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
-    });
+    $('#headerSearch').click(headerSearch);
     $('.inner').click(makeMenuSpin);
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
@@ -30,6 +28,9 @@ function landingSearch() {
 
 function headerSearch() {
     console.log("Header Search is being called");
+    let title = $('#jTitleHeader').val();
+    let location = $('#jLocalHeader').val();
+    newSearch(title, location);
 }
 
 var placesData = [];
