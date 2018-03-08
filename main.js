@@ -27,10 +27,17 @@ function landingSearch() {
 }
 
 function headerSearch() {
-    console.log("Header Search is being called");
     let title = $('#jTitleHeader').val();
     let location = $('#jLocalHeader').val();
-    newSearch(title, location);
+    if (title === '')
+        tooltipShow('.headerTitleTooltip')
+    if (location === '')
+        tooltipShow('.headerLocationTooltip')
+    if (title !== '' && location !== ''){
+        console.log("We are doing a search, this should only happen if there is no title and location");
+        newSearch(title, location);
+        $('#headerSearch').addClass('noTouch');
+    }    
 }
 
 var placesData = [];
@@ -53,6 +60,7 @@ class startSearch{
                 mapPlacesToJobData();
                 renderAllMarkers();
                 populateJobDisplay();
+                $('#headerSearch').removeClass('noTouch');
                 console.log('After populateMarkers: no problems with markers', resultOfMarkers);
             }).catch(error => console.log('PROMISE CHAIN ERROR: ', error));
         }, 300);
