@@ -29,8 +29,8 @@ function landingSearch() {
     if (title !== '' && location !== ''){
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
-        landingHide();
         createInitialMapCenter();
+        setTimeout(landingHide, 500);
     }
 }
 
