@@ -121,3 +121,7 @@ input{
 .noOpacity{
     opacity:0;
 }
+
+.noTouch {
+    pointer-events: none;
+}

@@ -4,19 +4,7 @@ function initializeApp(){
 }
 
 function attachEventHandlers(){
-    $('#jSearch').click( () => {
-        if( $('#jTitle').val()===''){
-            tooltipShow('.jobTitleTooltip');
-        }
-        if( $('#jLocal').val()==''){
-            tooltipShow('.jobLocationTooltip');
-        }
-        if ($('#jLocal').val()!=='' &&  $('#jTitle').val()!=='' ){
-            newSearch($('#jTitle').val(), $('#jLocal').val());
-            landingHide();
-        }
-
-    });
+    $('#jSearch').click(landingSearch);
     $('#headerSearch').click( () => {
         newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
     });
@@ -24,6 +12,26 @@ function attachEventHandlers(){
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
 }
+
+function landingSearch() {
+    console.log("This function is working");
+    let title = $('#jTitle').val();
+    let location = $('#jLocal').val();
+    if (title === '')
+        tooltipShow('.jobTitleTooltip');
+    if (location === '')
+        tooltipShow('.jobLocationTooltip');
+    if (title !== '' && location !== ''){
+        newSearch(title, location);
+        $('#jSearch').addClass('noTouch');
+        landingHide();
+    }
+}
+
+function headerSearch() {
+    console.log("Header Search is being called");
+}
+
 var placesData = [];
 var findJobs = null;
 
@@ -32,23 +40,38 @@ function newSearch(title, location){
 }
 
 class startSearch{
-    constructor(title, location){
+    constructor(title, location) {
         this.title = title;
         this.location = location;
+        //Start the api promise chain
+
+        //HARD CODE SECTION FROM HERE TO ************ REMOVE AFTER WE GO LIVE
         this.jobData = hardCodeResults;
-        // this.getJobData().then(result => console.log('promise resolved', result));
-        //make sure that we are stripping the timeout and calling this after promise resolves when we move away from hard coded data
         setTimeout(function(){
-            populateJobDisplay();
-            populateMarkers();
-            setTimeout(function(){
-                spliceOutNoResults();
+            (cleanAndPopulateMarkers()).then(resultOfMarkers => {
                 mapPlacesToJobData();
                 renderAllMarkers();
-            }, 1000);
+                populateJobDisplay();
+                console.log('After populateMarkers: no problems with markers', resultOfMarkers);
+            }).catch(error => console.log('PROMISE CHAIN ERROR: ', error));
         }, 300);
-
     }
+        //****************************************************************
+        //FROM here to ##### IS OUR API ADZUNA CODE TO IMPLEMENT FOR LIVE
+        //     this.jobData = {};
+        //    this.getJobData().then(resultData => {
+        //        this.jobData = resultData;
+        //         console.log('jobData is: ', this.jobData)
+        //     return cleanAndPopulateMarkers();
+        //    }).then(resultOfMarkers =>{
+        //        mapPlacesToJobData();
+        //        renderAllMarkers();
+        //        populateJobDisplay();
+        //        console.log('After populateMarkers: no problems with markers', resultOfMarkers);
+        //    })
+        // .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
+    // }
+        //##############################################################
     getJobData(){
         return new Promise(function(resolve, reject){
             var where = 'irvine'; //Placeholders, Will be changed later.
@@ -66,7 +89,6 @@ class startSearch{
                 },
                 method: 'GET',
                 success: function (result) {
-                    this.jobData = result;
                     resolve(result);
                 },
                 error: function (result) {
@@ -78,4 +100,9 @@ class startSearch{
             $.ajax(ajaxConfig);
         });
     }
+}
+
+
+function mainSearch (){
+
 }
