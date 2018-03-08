@@ -5,12 +5,17 @@ function initializeApp(){
 
 function attachEventHandlers(){
     $('#jSearch').click(landingSearch);
-    $('#headerSearch').click( () => {
-        newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
-    });
+    $('#headerSearch').click(headerSearch);
     $('.inner').click(makeMenuSpin);
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
+    $('.aboutUs, .escape').click( ()=>{
+        $('.aboutContainer').toggleClass('hideAbout');
+    } )
+    $('.brian').on('mouseenter mouseleave', aboutBrian);
+    $('.will').on('mouseenter mouseleave', aboutWill);
+    $('.evan').on('mouseenter mouseleave', aboutEvan);
+    $('.matt').on('mouseenter mouseleave', aboutMatt);
 }
 
 function landingSearch() {
@@ -25,11 +30,23 @@ function landingSearch() {
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
         landingHide();
+        createInitialMapCenter();
     }
 }
 
 function headerSearch() {
-    console.log("Header Search is being called");
+    let title = $('#jTitleHeader').val();
+    let location = $('#jLocalHeader').val();
+    if (title === '')
+        tooltipShow('.headerTitleTooltip')
+    if (location === '')
+        tooltipShow('.headerLocationTooltip')
+    if (title !== '' && location !== ''){
+        console.log("We are doing a search, this should only happen if there is no title and location");
+        newSearch(title, location);
+        createInitialMapCenter();
+        $('#headerSearch').addClass('noTouch');
+    }    
 }
 
 var placesData = [];
@@ -52,6 +69,7 @@ class startSearch{
                 mapPlacesToJobData();
                 renderAllMarkers();
                 populateJobDisplay();
+                $('#headerSearch').removeClass('noTouch');
                 console.log('After populateMarkers: no problems with markers', resultOfMarkers);
             }).catch(error => console.log('PROMISE CHAIN ERROR: ', error));
         }, 300);

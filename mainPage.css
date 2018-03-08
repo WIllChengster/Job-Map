@@ -2,6 +2,9 @@ html, body{
     padding: 0;
     margin: 0;
 }
+.tooSmall{
+    display:none;
+}
 h4{
     cursor:pointer;
     font-family: 'Libre Baskerville', serif;
@@ -22,7 +25,7 @@ h4:hover{
     /* 10x10 grid */
     overflow:hidden;
 }
-/* ---V-------V--Header Styling--V---------V--- */
+/* ---V-------V----Header Styling----V---------V--- */
 
 .header{
     grid-column: 1/11;
@@ -52,9 +55,54 @@ h4:hover{
 
 .headerJobTitle{
     display:flex;
-
+    position:relative;
     border: 2px solid black;
 }
+.headerJobTitleTooltip{
+    position:absolute;
+    margin:auto;
+    top: 6vh;
+    left:0;
+    background-color: black;
+    color:white;
+    padding: 1vh;
+    border-radius:10%;
+    transition:1s;
+}
+.headerJobTitleTooltip::after, .headerJobLocationTooltip::after{
+    content: '';
+    position: absolute;
+    margin: auto;
+    top: -.5vh;
+    left: 27%;
+    height: 1vh;
+    width: 1vh;
+    background-color: inherit;
+    transform: rotate(45deg);
+}
+.headerJobLocationTooltip{
+    position:absolute;
+    margin:auto;
+    top: 6vh;
+    left:0;
+    background-color: black;
+    color:white;
+    padding: 1vh;
+    border-radius:10%;
+    transition:1s;
+}
+/* .headerJobLocationTooltip::after{
+    content: '';
+    position: absolute;
+    margin: auto;
+    top: -.5vh;
+    left: 27%;
+    height: 1vh;
+    width: 1vh;
+    background-color: inherit;
+    transform: rotate(45deg);
+} */
+
 .headerSubmitSearch{
     cursor:pointer;
     border-style:none;
@@ -69,6 +117,7 @@ h4:hover{
     box-sizing:border-box;
 }
 .headerJobLocation{
+    position:relative;
     display:flex;
     border:2px solid black;
 }
@@ -110,7 +159,6 @@ a{
 }
 
 /* ---------------------everything below the header---------------- */
-
 
 
 .jobSideBar{
