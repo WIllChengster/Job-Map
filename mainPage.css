@@ -25,9 +25,9 @@ h4{
     background-color: white;
     display:grid;
     box-shadow: 0 1px 5px 0 black;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    /* 10x4 */
+    /* 12x4 */
 }
 .brand{
     text-align:center;
@@ -37,7 +37,7 @@ h4{
 
 .headerJobTitle{
     display:flex;
-    grid-column: 5/7;
+    grid-column: 6/8;
     grid-row: 2/4;
     border: 2px solid black;
 }
@@ -57,7 +57,7 @@ h4{
 }
 .headerJobLocation{
     display:flex;
-    grid-column: 8/10;
+    grid-column: 9/11;
     grid-row: 2/4;
     border:2px solid black;
 }
@@ -66,7 +66,16 @@ h4{
     width: 100%;
     box-sizing:border-box;
 }
+.header svg {
+    margin: 0 .25vw;
+    height: 100%;
+}
 
+.header span {
+    background-color:lightgrey;
+    border-right: 2px solid black;
+    box-sizing: content-box;
+}
 .jobSideBar{
     margin-top: 1.5vh;
     margin-left:1.5vh;
@@ -85,6 +94,7 @@ h4{
     transition:ease-in-out 1s;
 }
 .jobStats{
+    display:flex;
     grid-column:9/11;
     grid-row:2/11;
     z-index:11;
@@ -93,6 +103,13 @@ h4{
     box-shadow:-1px 0px 5px 0px black ;
     transition:ease-in-out 1s;
 }
+.expandedInfo{
+    margin-left: 1.5vh;
+
+}
+
+
+
 .map{
     background-color: limegreen;
     grid-column: 1/11;
