@@ -1,34 +1,16 @@
 //This is the JS file for Google Maps
 
-var dummyCoords = [
-    {
-        name: 'Lake Forest',
-        lat: 33.644375,
-        lng: -117.686030
-    },
-    {
-        name: 'Irvine',
-        lat: 33.681415,
-        lng: -117.826887
-    },
-    {
-        name: 'Aliso Viejo',
-        lat: 33.563809,
-        lng: -117.727568
-    }
-    ];
-
   function createNewMarker(results){
-    for(i = 0; i < dummyCoords.length; i++){
-      var marker = new google.maps.Marker({
+    
+        var marker = new google.maps.Marker({
         position: {
-          lat: results.geometry.location.lat(),
-          lng: results.geometry.location.lng()
+            lat: results.geometry.location.lat(),
+            lng: results.geometry.location.lng()
         },
         map: map
-      });
+        });
     }
-  }
+
 
 
   var map;
@@ -62,7 +44,6 @@ var dummyCoords = [
           name: placeholderName
       };
 
-
       service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, logIt);
   }
@@ -78,6 +59,7 @@ function logIt(results, status) {
     //     }
     // }
 }
+
 function renderAllJobMarkers(){
       for(var i = 0; i < findJobs.jobData.length; i++){
           searchCompany(findJobs.jobData.results[i].company.display_name);
