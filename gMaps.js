@@ -21,16 +21,6 @@
           center: center,
           zoom: 12
       });
-
-
-    //Add this to start working on marker information
-    // var infowindow = new google.maps.InfoWindow({
-    //   content: '<p>Marker Location:' + marker.getPosition() + '</p>'
-    // });
-    //
-    // google.maps.event.addListener(marker, 'click', function() {
-    //   infowindow.open(map, marker);
-    // });
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
@@ -84,7 +74,7 @@ function renderAllMarkers(){
               map: map,
           });
           google.maps.event.addListener(marker, 'click', function() {
-              //console.log('marker click, ', i);
+              console.log('marker click, ', i);
           });
       }
 }

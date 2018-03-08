@@ -44,7 +44,7 @@ class startSearch{
             setTimeout(function(){
                 mapPlacesToJobData();
                 renderAllMarkers();
-            }, 300);
+            }, 500);
         }, 300);
 
     }
