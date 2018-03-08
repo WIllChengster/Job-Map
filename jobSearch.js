@@ -14,12 +14,9 @@ function populateJobDisplay(){
         var jobSideBar = $('<div>', {
             'class': 'jobSideBar',
             on:{
-                click: function(){
-                    $('.jobStats').empty();
+                click: () => {
                     expandJobDescription(i);
-                    if(listingClicked === this){
-                        jobStatsMenuToggle();
-                    } else if ($('#map').hasClass('mapWithoutInfo') === true){
+                    if ($('#map').hasClass('mapWithoutInfo') === true){
                         jobStatsMenuToggle();
                     }
                     console.log('clicked job' + i);
@@ -47,6 +44,7 @@ function populateJobDisplay(){
 }
 
 function expandJobDescription(indexOfSelection){
+    $('.jobStats').empty();
     var expandedInfo = $('<div>', {
         'class': 'expandedInfo',
     });

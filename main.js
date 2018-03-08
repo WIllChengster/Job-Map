@@ -4,19 +4,7 @@ function initializeApp(){
 }
 
 function attachEventHandlers(){
-    $('#jSearch').click( () => {
-        if( $('#jTitle').val()===''){
-            tooltipShow('.jobTitleTooltip');
-        }
-        if( $('#jLocal').val()==''){
-            tooltipShow('.jobLocationTooltip');
-        }
-        if ($('#jLocal').val()!=='' &&  $('#jTitle').val()!=='' ){
-            newSearch($('#jTitle').val(), $('#jLocal').val());
-            landingHide();
-        }
-
-    });
+    $('#jSearch').click(landingSearch);
     $('#headerSearch').click( () => {
         newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
     });
@@ -24,6 +12,26 @@ function attachEventHandlers(){
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
 }
+
+function landingSearch() {
+    console.log("This function is working");
+    let title = $('#jTitle').val();
+    let location = $('#jLocal').val();
+    if (title === '')
+        tooltipShow('.jobTitleTooltip');
+    if (location === '')
+        tooltipShow('.jobLocationTooltip');
+    if (title !== '' && location !== ''){
+        newSearch(title, location);
+        $('#jSearch').addClass('noTouch');
+        landingHide();
+    }
+}
+
+function headerSearch() {
+    console.log("Header Search is being called");
+}
+
 var placesData = [];
 var findJobs = null;
 
@@ -92,4 +100,9 @@ class startSearch{
             $.ajax(ajaxConfig);
         });
     }
+}
+
+
+function mainSearch (){
+
 }
