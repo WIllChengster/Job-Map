@@ -1,19 +1,24 @@
 $(document).ready(initializeApp);
 function initializeApp(){
-    $('#jSearch').click(newSearch);
     attachEventHandlers();
+}
 
 function attachEventHandlers(){
-    $('#jSearch').click(landingHide)
-    $('.inner').click(makeMenuSpin)
-    $('.item1').click(jobListMenuToggle)
-    $('.item4').click(jobStatsMenuToggle)
-    }
+    $('#jSearch').click( () => {
+        newSearch($('#jTitle').val(), $('#jLocal').val());
+        landingHide();
+    });
+    $('#headerSearch').click( () => {
+        newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
+    });
+    $('.inner').click(makeMenuSpin);
+    $('.item1').click(jobListMenuToggle);
+    $('.item4').click(jobStatsMenuToggle);
 }
+
 var findJobs = null;
-function newSearch(){
-    let title = $('#jTitle').val();
-    let location = $('#jLocal').val();
+
+function newSearch(title, location){
     findJobs = new startSearch(title, location);
 }
 

@@ -8,7 +8,7 @@ var what = 'javascript developer';
 
 
 function populateJobDisplay(){
-
+    $('#leftSideBar').empty();
     for(let i = 0; i < 5; i++) {
         var jobSideBar = $('<div>', {
             'class': 'jobSideBar',
