@@ -6,6 +6,7 @@
     <link rel='stylesheet' href="mainPage.css">
     <link rel="stylesheet" href="menuSpinner.css">
     <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="noResultModal.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lobster" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -18,6 +19,10 @@
 
 <body>
     <div class="container">
+        <div class="fadeOverlay"></div>
+        <div class="noResultModal">
+            <div class="modalBox"></div>
+        </div>
         <div class="tooSmall">
             <h4>Sorry, this page is best experienced in a width above 500px</h4>
         </div>
@@ -94,8 +99,7 @@
             <!--<button id="showMoreResults">Show Next 5 Results</button>-->
         </div>
         <div class="jobStats jobStatsHide"></div>
-        <div class="map mapWithoutInfo" id="map">
-        </div>
+        <div class="map mapWithoutInfo" id="map"></div>
         <div class="menuSpinner">
             <div class="inner">
                 <i class="fas fa-angle-down toggleDisplay"></i>
