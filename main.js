@@ -41,9 +41,9 @@ function headerSearch() {
     let title = $('#jTitleHeader').val();
     let location = $('#jLocalHeader').val();
     if (title === '')
-        tooltipShow('.headerTitleTooltip')
+        tooltipShow('.headerJobTitleTooltip')
     if (location === '')
-        tooltipShow('.headerLocationTooltip')
+        tooltipShow('.headerJobLocationTooltip')
     if (title !== '' && location !== ''){
         console.log("We are doing a search, this should only happen if there is a title and location");
         removeMarkers();
