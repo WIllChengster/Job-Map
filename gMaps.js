@@ -75,6 +75,7 @@ function renderAllMarkers(){
           });
           google.maps.event.addListener(marker, 'click', function() {
               console.log('marker click, ', i);
+              expandJobDescription(i);
           });
       }
 }
