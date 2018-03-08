@@ -39,7 +39,6 @@ div.bg{
     .heroText {
         font-size:7vw
     }
-
 }
 @media only screen and (max-width:500px){
     div.tooSmall{
