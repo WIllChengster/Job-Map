@@ -103,10 +103,14 @@ h4:hover{
     background-color: inherit;
     transform: rotate(45deg);
 } */
+.gm-style-mtc {
+    display: none;
+  }
 
 .headerSubmitSearch{
     cursor:pointer;
     border-style:none;
+    border: .02px solid black;
     background-color: lightcoral;
     color:white;
     font-family: 'Libre Baskerville', serif;

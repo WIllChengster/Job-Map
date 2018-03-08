@@ -40,7 +40,6 @@ function tooltipShow(element){
     $(element).toggleClass('toggleDisplay');
     setTimeout(()=>$(self).toggleClass('noOpacity'),1)
     // $(element).toggleClass('noOpacity');
-
     setTimeout(()=> $(self).toggleClass('noOpacity'), 4000)
     setTimeout( ()=>$(self).toggleClass('toggleDisplay'),4200)
 }
