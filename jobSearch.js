@@ -6,6 +6,7 @@ var what = 'javascript developer';
 // original url i'm breaking down:
 // https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=087b8936&app_key=aa9f2f16c163aba979e6fb42412f734a&what=javascript%20developer&results_per_page=20&where=irvine&content-type=application/json
 
+let listingClicked;
 
 function populateJobDisplay(){
     $('#leftSideBar').empty();
@@ -16,10 +17,13 @@ function populateJobDisplay(){
                 click: function(){
                     $('.jobStats').empty();
                     expandJobDescription(i);
-                    if($('#map').hasClass('mapWithoutInfo') === true){
+                    if(listingClicked === this){
+                        jobStatsMenuToggle();
+                    } else if ($('#map').hasClass('mapWithoutInfo') === true){
                         jobStatsMenuToggle();
                     }
                     console.log('clicked job' + i);
+                    listingClicked=this
                 }
             }
         });
