@@ -67,8 +67,9 @@ h4:hover{
     color:white;
     padding: 1vh;
     border-radius:10%;
+    transition:1s;
 }
-.headerJobTitleTooltip::after{
+.headerJobTitleTooltip::after, .headerJobLocationTooltip::after{
     content: '';
     position: absolute;
     margin: auto;
@@ -88,8 +89,9 @@ h4:hover{
     color:white;
     padding: 1vh;
     border-radius:10%;
+    transition:1s;
 }
-.headerJobLocationTooltip::after{
+/* .headerJobLocationTooltip::after{
     content: '';
     position: absolute;
     margin: auto;
@@ -99,7 +101,7 @@ h4:hover{
     width: 1vh;
     background-color: inherit;
     transform: rotate(45deg);
-}
+} */
 
 .headerSubmitSearch{
     cursor:pointer;
