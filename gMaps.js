@@ -28,32 +28,35 @@ function createNewMarker(results){
   google.maps.event.addDomListener(window, 'load', initialize);
 
   function searchCompany(companyName, i) {
-      // return new Promise(function(resolve, reject) {
-          var service;
-          var request = {
-              location: center,
-              radius: '50000',
-              name: companyName
-          };
+       return new Promise(function(resolve, reject) {
+           var service;
+           var request = {
+               location: center,
+               radius: '50000',
+               name: companyName
+           };
 
-          service = new google.maps.places.PlacesService(map);
-          service.nearbySearch(request, addToPlacesData);
+           service = new google.maps.places.PlacesService(map);
+           service.nearbySearch(request, addToPlacesData);
 
-          function addToPlacesData(results, status) {
-              if(status !== undefined && status !== 'ZERO_RESULTS') {
-                  if (status == google.maps.places.PlacesServiceStatus.OK) {
-                      placesData[i] = results[0];
-                  }
-                  else {
-                      console.log('search did not have data on results at i', i);
-                      console.log('sample results ', results, status)
-                  }
-              }
-              else{
-                  console.log('zero results for', i);
-                  indexesToBeSpliced.push(i);
-              }
-          }
+           function addToPlacesData(results, status) {
+               if (status !== undefined && status !== 'ZERO_RESULTS') {
+                   if (status == google.maps.places.PlacesServiceStatus.OK) {
+                       placesData[i] = results[0];
+                       resolve('successfully added place data')
+                   }
+                   else {
+                       console.log('search did not have data on results at i', i);
+                       console.log('sample results ', results, status)
+                       resolve(status);
+                   }
+               }
+               else {
+                   indexesToBeSpliced.push(i);
+                   resolve('no results for ' + i);
+               }
+           }
+       });
   }
 
 
@@ -94,23 +97,23 @@ function renderAllMarkers(){
     }
 }
 
-// function createNewMarker(results){
-    
-//     var marker = new google.maps.Marker({
-//     position: {
-//         lat: results.geometry.location.lat(),
-//         lng: results.geometry.location.lng()
-//     },
-//     map: map,
-//     icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FF0000|000000',
-//     scaledSize: new google.maps.Size(90, 90)
-//     });
-// }
-
-function populateMarkers(){
-      for(let i = 0; i < 9; i++) {
-          searchCompany(findJobs.jobData.results[i].company.display_name, i);
-      }
+function cleanAndPopulateMarkers(){
+    return new Promise(function(resolve, reject) {
+        var promiseArr = [];
+        for (var i = 0; i < 9; i++) {
+            promiseArr.push(searchCompany(findJobs.jobData.results[i].company.display_name, i));
+        }
+        console.log('promises array is: ', promiseArr);
+        Promise.all(promiseArr)
+    .then(values => {
+        console.log('splicing out bad data', placesData);
+        spliceOutNoResults();
+        console.log('after splicing out bad data', placesData);
+        resolve('successfully spliced data');
+    }).catch(reason => {
+            reject('uncaught promise' + reason);
+    });
+    });
 }
 function spliceOutNoResults(){
       for(let i = 0; i < indexesToBeSpliced.length; i++){
