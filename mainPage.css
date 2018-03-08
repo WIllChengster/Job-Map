@@ -7,7 +7,9 @@ h4{
     font-family: 'Libre Baskerville', serif;
 }
 h4:hover{
-    color:#231651
+    color:white;
+    text-shadow: 0px 0px 1vh black;
+    text-decoration-style: double
 }
 
 .container{
@@ -20,6 +22,7 @@ h4:hover{
     /* 10x10 grid */
     overflow:hidden;
 }
+/* ---V-------V--Header Styling--V---------V--- */
 
 .header{
     grid-column: 1/11;
@@ -40,7 +43,7 @@ h4:hover{
 }
 .headerForms{
     display:flex;
-    grid-column: 7/11;
+    grid-column: 7/10;
     grid-row: 2/4;
 }
 .headerForms> *{
@@ -67,8 +70,6 @@ h4:hover{
 }
 .headerJobLocation{
     display:flex;
-    /* grid-column: 9/11;
-    grid-row: 2/4; */
     border:2px solid black;
 }
 .headerJobLocationInput{
@@ -86,6 +87,32 @@ h4:hover{
     border-right: 2px solid black;
     box-sizing: content-box;
 }
+.info{
+    display:flex;
+    grid-column:9/11;
+    grid-row: 1/2;
+    align-items: center;
+    justify-content:space-between;
+    align-content:center;
+    
+}
+.aboutUsContainer{
+    z-index:11;
+    /* margin-left:3vh; */
+}
+.helpContainer{
+    z-index:11;
+    margin-right: 10vh;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* ---------------------everything below the header---------------- */
+
+
+
 .jobSideBar{
     margin-top: 1.5vh;
     margin-left:1.5vh;
