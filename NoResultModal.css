@@ -6,7 +6,6 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     /* 10x10 */
-    display:none;
 }
 
 .fadeOverlay{
@@ -15,7 +14,6 @@
     background-color:black;
     opacity:.5;
     z-index:13;
-    display:none;
 }
 .modalBox{
     grid-column: 4/8;
@@ -27,3 +25,31 @@
     grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     display:grid;
 }
+ div.text{
+    text-align: center;
+    grid-column: 2/10;
+    grid-row: 5/6;
+ }
+ .modalEscape{
+    grid-column: 8/9;
+    background-color: darkgrey;
+    grid-row: 2/3;
+    height: 6vh;
+    width: 1vh;
+    transform: rotate(45deg);
+    cursor:pointer;
+}
+.modalEscape::after{
+    content:'';
+    position:absolute;
+    margin: auto;
+    top:0;
+    left: 0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width:100%;
+    background-color: inherit;
+    transform: rotate(-90deg);
+}
+
