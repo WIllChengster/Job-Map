@@ -5,20 +5,6 @@ var center = null;
 var indexesToBeSpliced = [];
 var markers = [];
 
-// function createNewMarker(results){
-//
-//     var marker = new google.maps.Marker({
-//     position: {
-//         lat: results.geometry.location.lat(),
-//         lng: results.geometry.location.lng()
-//     },
-//     map: map,
-//     icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FF0000|000000',
-//     scaledSize: new google.maps.Size(90, 90)
-//     });
-// }
-
-
 function createInitialMapCenter(){
     
     var geocoder = new google.maps.Geocoder();
