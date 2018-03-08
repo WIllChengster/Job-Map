@@ -11,6 +11,7 @@ function makeMenuSpin(){
     $('.item3').toggleClass('spinItem3');
     $('.item4').toggleClass('spinItem4');
     $('.outer').toggleClass('hideBorder')
+    $('svg').toggleClass('toggleDisplay');
 }
 
 function jobListMenuToggle(){

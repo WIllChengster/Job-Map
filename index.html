@@ -5,7 +5,8 @@
         <link rel='stylesheet' href="landing.css">
         <link rel='stylesheet' href="mainPage.css">
         <link rel="stylesheet" href="menuSpinner.css">
-        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lobster" rel="stylesheet">     
         <script src="pageAnim.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe-JAsXTAykET74snBv3pnqgoka7Kqm3k&libraries=places"></script>
@@ -30,7 +31,7 @@
                 </div>
                 <div class="forms">
                     <div class="jobTitle" >
-                        <input type="text" id="jTitle" class="jobTitleInput" placeholder="JobTitle">
+                        <input type="text" id="jTitle" class="jobTitleInput" placeholder="Job Title">
                     </div>
                     <div class="jobLocation">
                         <input type="text" id="jLocal" class="jLocationInput" placeholder="Job Location">
@@ -43,7 +44,10 @@
             <div class="map" id="map">
             </div>
             <div class="menuSpinner">
-                <div class="inner"></div>
+                <div class="inner">
+                    <i class="fas fa-angle-down toggleDisplay"></i>
+                    <i class="fas fa-angle-up"></i>
+                </div>
                 <div class="outer hideBorder">
                         <div class="item item1 spinItem1 select">
                             <p>Job List</p>
