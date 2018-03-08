@@ -174,3 +174,6 @@ a{
     transform:translateX(0);
     width:100%;
 }
+#showMoreResults{
+    position:absolute;
+}

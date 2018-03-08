@@ -9,8 +9,12 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lobster" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<<<<<<< HEAD
     <script src="pageAnim.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe-JAsXTAykET74snBv3pnqgoka7Kqm3k&libraries=places"></script>
+=======
+    <script class='googleApi' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe-JAsXTAykET74snBv3pnqgoka7Kqm3k&libraries=places"></script>
+>>>>>>> 32c46a76150ea50c5b32af7406df4e755933530b
     <script src="main.js"></script>
     <script src="jobSearch.js"></script>
     <script src="gMaps.js"></script>
@@ -81,7 +85,10 @@
                 <!-- headerSearch -->
             </div>
         </div>
-        <div class="sidebar"></div>
+        <div class="sidebar" id="leftSideBar">
+            Top Results:
+            <button id="showMoreResults">Show Next 5 Results</button>
+        </div>
         <div class="jobStats jobStatsHide"></div>
         <div class="map mapWithoutInfo" id="map">
         </div>
