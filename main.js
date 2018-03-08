@@ -11,7 +11,10 @@ function attachEventHandlers(){
     $('.item4').click(jobStatsMenuToggle);
     $('.aboutUs, .escape').click( ()=>{
         $('.aboutContainer').toggleClass('hideAbout');
-    } )
+    });
+    $('.modalEscape').click( () => {
+        $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
+    });
     $('.brian').on('mouseenter mouseleave', aboutBrian);
     $('.will').on('mouseenter mouseleave', aboutWill);
     $('.evan').on('mouseenter mouseleave', aboutEvan);
@@ -78,6 +81,7 @@ class startSearch{
         //FROM here to ##### IS OUR API ADZUNA CODE TO IMPLEMENT FOR LIVE
         //     this.jobData = {};
         //    this.getJobData().then(resultData => {
+        //
         //        this.jobData = resultData;
         //         console.log('jobData is: ', this.jobData)
         //     return cleanAndPopulateMarkers();
