@@ -29,12 +29,14 @@ function populateJobDisplay(){
         });
         var jobTitle = $('<h4>', {
             html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
+            'class': 'jobName',
             css:{
                 'margin-bottom': 0
             }
         });
         var jobCompany = $('<h7>', {
             text: 'company: ' + findJobs.jobData.results[i].company.display_name,
+            'class': 'companyName',
             css:{
                 'margin': 0
             }
