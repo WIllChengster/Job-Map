@@ -5,6 +5,22 @@ var center = null;
 var indexesToBeSpliced = [];
 var markers = [];
 
+
+function createNewMarker(results){
+    
+    var marker = new google.maps.Marker({
+    position: {
+        lat: results.geometry.location.lat(),
+        lng: results.geometry.location.lng()
+    },
+    
+    map: map,
+    title:'LOL',
+    icon: {url: "Infos_5.png",
+    scaledSize: new google.maps.Size(64, 64)
+    }})
+}
+
 function createInitialMapCenter(){
     
     var geocoder = new google.maps.Geocoder();
