@@ -93,7 +93,7 @@ input{
     box-sizing: content-box;
 }
 
-.jobTitleTooltip{
+.jobTitleTooltip, .jobLocationTooltip{
     background-color:#a5fff7;
     position:absolute;
     z-index:99;
@@ -101,9 +101,11 @@ input{
     margin:auto;
     bottom: 130%;
     left: 50%;
-    border-radius:20%;
+    border-radius:12%;
+    transition:.5s;
+    
 }
-.jobTitleTooltip::after{
+.jobTitleTooltip::after, .jobLocationTooltip::after {
     content: '';
     position: absolute;
     margin: auto;
@@ -113,4 +115,7 @@ input{
     width: 1vh;
     background-color: inherit;
     transform: rotate(45deg);
+}
+.noOpacity{
+    opacity:0;
 }

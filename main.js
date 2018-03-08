@@ -5,8 +5,17 @@ function initializeApp(){
 
 function attachEventHandlers(){
     $('#jSearch').click( () => {
-        newSearch($('#jTitle').val(), $('#jLocal').val());
-        landingHide();
+        if( $('#jTitle').val()===''){
+            tooltipShow('.jobTitleTooltip');
+        }
+        if( $('#jLocal').val()==''){
+            tooltipShow('.jobLocationTooltip');
+        }
+        if ($('#jLocal').val()!=='' &&  $('#jTitle').val()!=='' ){
+            newSearch($('#jTitle').val(), $('#jLocal').val());
+            landingHide();
+        }
+
     });
     $('#headerSearch').click( () => {
         newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
