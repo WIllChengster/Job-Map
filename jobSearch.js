@@ -66,9 +66,9 @@ function expandJobDescription(){
         var minMaxSalary = $('<p>', {
             text: "Salary Range: $" + findJobs.jobData.results[0].salary_min + "-" + findJobs.jobData.results[0].salary_max
         });
-        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, minMaxSalary, jobLink);
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, minMaxSalary, jobLink);
     } else {
-        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, jobLink);
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, jobLink);
     }
     $('.jobStats').append(expandedInfo);
 }
