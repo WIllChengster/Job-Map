@@ -18,17 +18,45 @@ var dummyCoords = [
     }
     ];
 
-  function createNewMarker(){
-    for(i = 0; i < dummyCoords.length; i++){
-      var marker = new google.maps.Marker({
-        position: {
-          lat: dummyCoords[i].lat, 
-          lng: dummyCoords[i].lng
-        },
-        map: map
-      })
+var dummyCompanyNames = [
+    {
+        name: 'CyberCoders'
+    },
+    {
+        name: 'ETAP'
+    },
+    {
+        name: 'Pacific Technology Solutions'
+    },
+    {
+        name: 'Glidewell Laboratories'
     }
-  }
+];
+
+
+//     geocoder = new google.maps.Geocoder();
+
+// function getCoordinates(address, callback){
+//     var coordinates;
+//     geocoder.geocode({ address: address}, function (results, status) {
+//         coords_obj = results[0].geometry.location;
+//         coordinates = [coords_obj.nb, coords_obj.ob];
+//         callback(coordinates);
+//     })
+// } console.log(coordinates);
+
+
+function createNewMarker(){
+for(i = 0; i < dummyCoords.length; i++){
+    var marker = new google.maps.Marker({
+    position: {
+        lat: dummyCoords[i].lat, 
+        lng: dummyCoords[i].lng
+    },
+    map: map
+    })
+}
+}
 
 
   var map;
