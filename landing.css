@@ -74,7 +74,7 @@ input{
     background-color:#231651;
     color:white;
     font-family: 'Libre Baskerville', serif;
-    box-shadow:inset 0px 0px 15px 2px #0267c1;
+    box-shadow:gitinset 0px 0px 15px 2px #0267c1;
 }
 .jobLocation, .jobTitle{
     display:flex;
