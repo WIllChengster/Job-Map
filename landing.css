@@ -17,9 +17,11 @@ div.bg{
     -webkit-filter: blur(5px);
     filter:blur(5px);
     z-index:-1;
+    height:110%;
+    width: 110%;
 }
 .hideLanding{
-    transform:translateY(-100%);
+    transform:translateY(-150%);
 }
 
 .hero{
