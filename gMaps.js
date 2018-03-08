@@ -29,7 +29,6 @@ function createNewMarker(results){
 }
 
 
-
 function createInitialMapCenter(){
     
     var geocoder = new google.maps.Geocoder();
@@ -125,8 +124,8 @@ function renderAllMarkers(){
                   map: map,
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
-          }
-          else{
+              
+          }else{
               var marker = new google.maps.Marker({
                   position: {
                       lat: results[i].geometry.location.lat(),
@@ -137,6 +136,7 @@ function renderAllMarkers(){
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
           }
+          
           google.maps.event.addListener(marker, 'click', function() {
                 expandJobDescription(i);
                 if ($('#map').hasClass('mapWithoutInfo') === true){
