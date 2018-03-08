@@ -8,14 +8,14 @@ var what = 'javascript developer';
 
 
 function populateJobDisplay(){
-
+    $('#leftSideBar').empty();
     for(let i = 0; i < 5; i++) {
         var jobSideBar = $('<div>', {
             'class': 'jobSideBar',
             on:{
                 click: function(){
                     $('.jobStats').empty();
-                    expandJobDescription();
+                    expandJobDescription(i);
                     console.log('clicked job' + i);
                 }
             }
@@ -37,44 +37,43 @@ function populateJobDisplay(){
     }
 }
 
-function expandJobDescription(){
+function expandJobDescription(indexOfSelection){
     var expandedInfo = $('<div>', {
         'class': 'expandedInfo',
     });
     var eInfoJobTitle = $('<h4>', {
-        html: findJobs.jobData.results[0].title
+        html: findJobs.jobData.results[indexOfSelection].title
     });
     var jobCompany = $('<h7>', {
-        text: findJobs.jobData.results[0].company.display_name
+        text: findJobs.jobData.results[indexOfSelection].company.display_name
     });
     var jobDescription = $('<p>', {
-        html: findJobs.jobData.results[0].description
+        html: findJobs.jobData.results[indexOfSelection].description
     });
 
-    let dateUglyFormat = findJobs.jobData.results[0].created;
-    console.log(dateUglyFormat);
-//    var listDate = $('<p>', {
-//        let dateUglyFormat = findJobs.jobData.results[0].created
-//    });
+    let dateUglyFormat = findJobs.jobData.results[indexOfSelection].created;
+    let year = dateUglyFormat.slice(0,4);
+    let month = dateUglyFormat.slice(5,7);
+    let day = dateUglyFormat.slice(8,10);
+    var listDate = $('<p>', {
+        text: "Date Listed: " + month + '-' + day + '-' + year
+    });
 
     var jobLink = $('<a>', {
-        href: findJobs.jobData.results[0].redirect_url,
+        href: findJobs.jobData.results[indexOfSelection].redirect_url,
         target: "_blank",
         text: "Link to Application"
     });
-    if( findJobs.jobData.results[0].salary_min != undefined && findJobs.jobData.results[0].salary_max != undefined){
+    if( findJobs.jobData.results[indexOfSelection].salary_min != undefined && findJobs.jobData.results[indexOfSelection].salary_max != undefined){
         var minMaxSalary = $('<p>', {
-            text: "Salary Range: $" + findJobs.jobData.results[0].salary_min + "-" + findJobs.jobData.results[0].salary_max
+            text: "Salary Range: $" + findJobs.jobData.results[indexOfSelection].salary_min + "-" + findJobs.jobData.results[indexOfSelection].salary_max
         });
-        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, minMaxSalary, jobLink);
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, minMaxSalary, jobLink);
     } else {
-        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, jobLink);
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, jobLink);
     }
     $('.jobStats').append(expandedInfo);
 }
-
-
-
 
 var hardCodeResults = {
     "count": 22,

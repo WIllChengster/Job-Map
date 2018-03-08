@@ -1,12 +1,24 @@
 $(document).ready(initializeApp);
 function initializeApp(){
-    $('#jSearch').click(newSearch);
     attachEventHandlers();
 }
+
+function attachEventHandlers(){
+    $('#jSearch').click( () => {
+        newSearch($('#jTitle').val(), $('#jLocal').val());
+        landingHide();
+    });
+    $('#headerSearch').click( () => {
+        newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
+    });
+    $('.inner').click(makeMenuSpin);
+    $('.item1').click(jobListMenuToggle);
+    $('.item4').click(jobStatsMenuToggle);
+}
+
 var findJobs = null;
-function newSearch(){
-    let title = $('#jTitle').val();
-    let location = $('#jLocal').val();
+
+function newSearch(title, location){
     findJobs = new startSearch(title, location);
 }
 
@@ -18,7 +30,10 @@ class startSearch{
         console.log('trying to resolve our promise');
         // this.getJobData().then(result => console.log('promise resolved', result));
         //make sure that we are stripping the timeout and calling this after promise resolves when we move away from hard coded data
-        setTimeout(populateJobDisplay, 300);
+        setTimeout(function(){
+            populateJobDisplay();
+            searchCompany();
+        }, 300);
     }
     getJobData(){
         return new Promise(function(resolve, reject){

@@ -1,17 +1,16 @@
 //This is the JS file for Google Maps
 
+  function createNewMarker(results){
+    
+        var marker = new google.maps.Marker({
+        position: {
+            lat: results.geometry.location.lat(),
+            lng: results.geometry.location.lng()
+        },
+        map: map
+        });
+    }
 
-
-//     geocoder = new google.maps.Geocoder();
-
-// function getCoordinates(address, callback){
-//     var coordinates;
-//     geocoder.geocode({ address: address}, function (results, status) {
-//         coords_obj = results[0].geometry.location;
-//         coordinates = [coords_obj.nb, coords_obj.ob];
-//         callback(coordinates);
-//     })
-// } console.log(coordinates);
 
 
   var map;
@@ -38,12 +37,11 @@
 
   function searchCompany() {
       var service;
-      var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
-      var companyName = 'Pacific Technology Solutions';
+      var placeholderName = 'Cybercoders'
       var request = {
           location: center,
-          radius: '30000',
-          name: companyName
+          radius: '50000',
+          name: placeholderName
       };
 
       service = new google.maps.places.PlacesService(map);
@@ -52,33 +50,18 @@
 
 function logIt(results, status) {
     console.log('this should be our results: ', results);
-    getLatLong(results);
+    createNewMarker(results[0]);
+    //google's code
+    // if (status == google.maps.places.PlacesServiceStatus.OK) {
+    //     for (var i = 0; i < results.length; i++) {
+    //         var place = results[i];
+    //         createMarker(results[i]);
+    //     }
+    // }
 }
 
-function getLatLong(results){
-    var geocoder = new google.maps.Geocoder();
-    var address = results[0].vicinity;
-
-    geocoder.geocode({ 'address': address }, function (results, status) {
-
-        if (status == google.maps.GeocoderStatus.OK) {
-            var latitude = results[0].geometry.location.lat();
-            var longitude = results[0].geometry.location.lng();
-
-            createNewMarker(latitude, longitude);
-        }
-    });
-}
-
-
-function createNewMarker(latitude, longitude){
-    
-    var marker = new google.maps.Marker({
-    position: {
-        lat: latitude,
-        lng: longitude
-    },
-    map: map
-    });
-
+function renderAllJobMarkers(){
+      for(var i = 0; i < findJobs.jobData.length; i++){
+          searchCompany(findJobs.jobData.results[i].company.display_name);
+      }
 }
