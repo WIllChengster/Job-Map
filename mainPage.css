@@ -262,3 +262,27 @@ a{
 #showMoreResults{
     position:absolute;
 }
+
+
+
+.spinner{
+    grid-column:1/11;
+    grid-row: 1/11;
+    position:relative;
+    z-index:14;
+}
+.spinner>svg{
+    position:absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    animation: spinningAnimation 2s infinite;
+
+}
+
+@keyframes spinningAnimation{
+    0% {transform:rotate(0deg)}
+    100% {transform:rotate(360deg)}
+}
