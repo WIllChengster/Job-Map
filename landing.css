@@ -55,7 +55,7 @@ input{
 :-ms-input-placeholder {  
     text-align: center;
 }
-.jobTitleInput, .jLocationInput{
+.jobTitleInput, .jobLocationInput{
     width:100%;
     box-shadow:inset 0px 0px 15px 0px black;
 }

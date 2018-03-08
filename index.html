@@ -21,12 +21,12 @@
         <div class="header">
             <div class="brand">Generic Job Search</div>
             <div class="headerJobTitle">
-                <input type="text" id="jTitleHeader" class="jobTitleInput" placeholder="JobTitle">
+                <input type="text" id="jTitleHeader" class="headerJobTitleInput" placeholder="JobTitle">
             </div>
             <div class="headerJobLocation">
-                <input type="text" id="jLocalHeader" class="jLocationInput" placeholder="Job Location">
+                <input type="text" id="jLocalHeader" class="headerJobLocationInput" placeholder="Job Location">
             </div>
-            <button id="headerSearch" class="submitSearch">Search</button>
+            <button id="headerSearch" class="headerSubmitSearch">Search</button>
         </div>
         <div class="landing">
             <div class="hero">
@@ -43,16 +43,16 @@
                     <span>
                         <i class="far fa-building fa-2x"></i>
                     </span>
-                    <input type="text" id="jLocal" class="jLocationInput" placeholder="Job Location">
+                    <input type="text" id="jLocal" class="jobLocationInput" placeholder="Job Location">
                 </div>
                 <button id="jSearch" class="submitSearch">Search</button>
                 <!-- headerSearch -->
             </div>
-            <button id="jSearch" class="submitSearch">Search</button>
         </div>
-        <div class="sidebar" id="leftSideBar"></div>
+        <div class="sidebar"></div>
         <div class="jobStats"></div>
-        <div class="map" id="map"></div>
+        <div class="map" id="map">
+        </div>
         <div class="menuSpinner">
             <div class="inner">
                 <i class="fas fa-angle-down toggleDisplay"></i>
@@ -68,6 +68,7 @@
                     <p>Info</p>
                 </div>
             </div>
+
         </div>
     </div>
 </body>
