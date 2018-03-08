@@ -55,46 +55,32 @@ var findJobs = null;
 
 function newSearch(title, location){
     findJobs = new startSearch(title, location);
+    findJobs.initializeSearch();
 }
 
 class startSearch{
     constructor(title, location) {
         this.title = title;
         this.location = location;
-        //Start the api promise chain
-
-        //HARD CODE SECTION FROM HERE TO ************ REMOVE AFTER WE GO LIVE
-        this.jobData = hardCodeResults;
-        setTimeout(function(){
-            (cleanAndPopulateMarkers()).then(resultOfMarkers => {
-                mapPlacesToJobData();
-                renderAllMarkers();
-                populateJobDisplay();
-                $('#headerSearch').removeClass('noTouch');
-                console.log('After populateMarkers: no problems with markers', resultOfMarkers);
-            }).catch(error => console.log('PROMISE CHAIN ERROR: ', error));
-        }, 1500);
+        this.jobData = {};
     }
-        //****************************************************************
-        //FROM here to ##### IS OUR API ADZUNA CODE TO IMPLEMENT FOR LIVE
-        //     this.jobData = {};
-        //    this.getJobData().then(resultData => {
-        //        this.jobData = resultData;
-        //         console.log('jobData is: ', this.jobData)
-        //     return cleanAndPopulateMarkers();
-        //    }).then(resultOfMarkers =>{
-        //        mapPlacesToJobData();
-        //        renderAllMarkers();
-        //        populateJobDisplay();
-        //        console.log('After populateMarkers: no problems with markers', resultOfMarkers);
-        //    })
-        // .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
-    // }
-        //##############################################################
+    initializeSearch(){
+        this.getJobData().then(resultData => {
+            this.jobData = resultData;
+            console.log('jobData is: ', this.jobData)
+            return cleanAndPopulateMarkers();
+        }).then(resultOfMarkers =>{
+            mapPlacesToJobData();
+            renderAllMarkers();
+            populateJobDisplay();
+            console.log('After populateMarkers: no problems with markers', resultOfMarkers);
+        })
+            .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
+    }
     getJobData(){
-        return new Promise(function(resolve, reject){
-            var where = 'irvine'; //Placeholders, Will be changed later.
-            var what = 'javascript developer'; //Placeholders, Will be changed later.
+        return new Promise( function(resolve, reject){
+            var where = findJobs.location; //Placeholders, Will be changed later.
+            var what = findJobs.title; //Placeholders, Will be changed later.
             var ajaxConfig = {
                 dataType: 'json',
                 url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
@@ -104,7 +90,7 @@ class startSearch{
                     what: what, //Placeholders, Will be changed later.
                     where: where, //Placeholders, Will be changed later.
                     'content-type': 'application/json',
-                    results_per_page: 20
+                    results_per_page: 10
                 },
                 method: 'GET',
                 success: function (result) {
@@ -119,9 +105,4 @@ class startSearch{
             $.ajax(ajaxConfig);
         });
     }
-}
-
-
-function mainSearch (){
-
 }
