@@ -203,6 +203,7 @@ a{
     transition:ease-in-out 1s;
 }
 .jobStats{
+    overflow:auto;
     display:flex;
     grid-column:9/11;
     grid-row:2/11;
