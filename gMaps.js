@@ -1,27 +1,30 @@
 //This is the JS file for Google Maps
 
-  function createNewMarker(results){
+function createNewMarker(results){
     
-        var marker = new google.maps.Marker({
-        position: {
-            lat: results.geometry.location.lat(),
-            lng: results.geometry.location.lng()
-        },
-        map: map
-        });
-    }
+    var marker = new google.maps.Marker({
+    position: {
+        lat: results.geometry.location.lat(),
+        lng: results.geometry.location.lng()
+    },
+    map: map,
+    icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FF0000|000000',
+    scaledSize: new google.maps.Size(90, 90)
+    });
+}
 
 
 
   var map;
   var center = new google.maps.LatLng(33.634919, -117.739538);
-  function initialize() {
+  
+function initialize() {
 
-      map = new google.maps.Map(document.getElementById('map'), {
-          center: center,
-          zoom: 12
-      });
-
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: center,
+        zoom: 12
+    });
+}
 
     //Add this to start working on marker information
     // var infowindow = new google.maps.InfoWindow({
@@ -31,7 +34,7 @@
     // google.maps.event.addListener(marker, 'click', function() {
     //   infowindow.open(map, marker);
     // });
-  }
+
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
