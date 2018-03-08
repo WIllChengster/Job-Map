@@ -4,23 +4,6 @@ function initializeApp(){
 }
 
 function attachEventHandlers(){
-    $('#jSearch').click( () => {
-        if( $('#jTitle').val()===''){
-            tooltipShow('.jobTitleTooltip');
-        }
-        if( $('#jLocal').val()==''){
-            tooltipShow('.jobLocationTooltip');
-        }
-        if ($('#jLocal').val()!=='' &&  $('#jTitle').val()!=='' ){
-            newSearch($('#jTitle').val(), $('#jLocal').val());
-            landingHide();
-            createInitialMapCenter();
-        }
-
-    });
-    $('#headerSearch').click( () => {
-        newSearch($('#jTitleHeader').val(), $('#jLocalHeader').val());
-    });
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
     $('.inner').click(makeMenuSpin);
@@ -47,6 +30,7 @@ function landingSearch() {
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
         landingHide();
+        createInitialMapCenter();
     }
 }
 
@@ -54,12 +38,13 @@ function headerSearch() {
     let title = $('#jTitleHeader').val();
     let location = $('#jLocalHeader').val();
     if (title === '')
-        tooltipShow('.headerJobTitleTooltip')
+        tooltipShow('.headerTitleTooltip')
     if (location === '')
-        tooltipShow('.headerJobLocationTooltip')
+        tooltipShow('.headerLocationTooltip')
     if (title !== '' && location !== ''){
         console.log("We are doing a search, this should only happen if there is no title and location");
         newSearch(title, location);
+        createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
     }    
 }

@@ -137,12 +137,6 @@ function renderAllMarkers(){
     }
 }
 
-<<<<<<< HEAD
-function populateMarkers(){
-      for(var i = 0; i < 9; i++) {
-          searchCompany(findJobs.jobData.results[i].company.display_name, i);
-      }
-=======
 function cleanAndPopulateMarkers(){
     return new Promise(function(resolve, reject) {
         var promiseArr = [];
@@ -160,7 +154,6 @@ function cleanAndPopulateMarkers(){
             reject('uncaught promise' + reason);
     });
     });
->>>>>>> 14e9f77db6ca5280960a7b54654c311a637aa9bc
 }
 function spliceOutNoResults(){
       for(let i = 0; i < indexesToBeSpliced.length; i++){
