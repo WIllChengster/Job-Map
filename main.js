@@ -9,6 +9,13 @@ function attachEventHandlers(){
     $('.inner').click(makeMenuSpin);
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
+    $('.aboutUs, .escape').click( ()=>{
+        $('.aboutContainer').toggleClass('hideAbout');
+    } )
+    $('.brian').on('mouseenter mouseleave', aboutBrian);
+    $('.will').on('mouseenter mouseleave', aboutWill);
+    $('.evan').on('mouseenter mouseleave', aboutEvan);
+    $('.matt').on('mouseenter mouseleave', aboutMatt);
 }
 
 function landingSearch() {

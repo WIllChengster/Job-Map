@@ -2,6 +2,9 @@ html, body{
     padding: 0;
     margin: 0;
 }
+.tooSmall{
+    display:none;
+}
 h4{
     cursor:pointer;
     font-family: 'Libre Baskerville', serif;
