@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lobster" rel="stylesheet">
     <script src="pageAnim.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe-JAsXTAykET74snBv3pnqgoka7Kqm3k&libraries=places"></script>
+    <script class='googleApi' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe-JAsXTAykET74snBv3pnqgoka7Kqm3k&libraries=places"></script>
     <script src="main.js"></script>
     <script src="jobSearch.js"></script>
     <script src="gMaps.js"></script>
@@ -20,44 +20,73 @@
     <div class="container">
         <div class="header">
             <div class="brand">Generic Job Search</div>
-            <div class="headerJobTitle">
-                <span>
+            <div class="headerForms">
+                <div class="headerJobTitle">
+                        <span class='icon'>
+                            <i class="fas fa-user-circle"></i>
+                        </span>
+                        <input type="text" id="jTitleHeader" class="headerJobTitleInput " placeholder="JobTitle">
+                    </div>
+                    <div class="headerJobLocation">
+                            <span class='icon'>
+                                    <i class="far fa-building"></i>
+                                </span>
+                        <input type="text" id="jLocalHeader" class="headerJobLocationInput" placeholder="Job Location">
+                    </div>
+                    <button id="headerSearch" class="headerSubmitSearch">Search</button>
+            </div>
+            
+            <!-- <div class="headerJobTitle">
+                <span class='icon'>
                     <i class="fas fa-user-circle"></i>
                 </span>
-                <input type="text" id="jTitleHeader" class="headerJobTitleInput" placeholder="JobTitle">
+                <input type="text" id="jTitleHeader" class="headerJobTitleInput " placeholder="JobTitle">
             </div>
             <div class="headerJobLocation">
-                    <span>
+                    <span class='icon'>
                             <i class="far fa-building"></i>
                         </span>
                 <input type="text" id="jLocalHeader" class="headerJobLocationInput" placeholder="Job Location">
             </div>
-            <button id="headerSearch" class="headerSubmitSearch">Search</button>
+            <button id="headerSearch" class="headerSubmitSearch">Search</button> -->
         </div>
-        <div class="landing">
+        <div class="info">
+            <div class="aboutUsContainer">
+                <a href="#" class="aboutUs">About Us</a>
+            </div>
+            <div class="helpContainer">
+                <a href="#" class="help">Help</a>
+            </div>
+        </div>
+        <div class="landing ">
             <div class="hero">
                 <h1 class="heroText">Find a Job Near You</h1>
             </div>
             <div class="forms">
                 <div class="jobTitle">
-                    <span>
+                    <span class="jobTitleTooltip noOpacity">Please enter a Job Title</span>
+                    <span class="icon">
                         <i class="fas fa-user-circle fa-2x"></i>
                     </span>
                     <input type="text" id="jTitle" class="jobTitleInput" placeholder="Job Title">
                 </div>
                 <div class="jobLocation">
-                    <span>
+                        <span class="jobLocationTooltip noOpacity">Please Enter a Location</span>
+                    <span class="icon">
                         <i class="far fa-building fa-2x"></i>
                     </span>
-                    <input type="text" id="jLocal" class="jobLocationInput" placeholder="Job Location">
+                    <input type="text" id="jLocal" class="jobLocationInput" placeholder="city, state">
                 </div>
                 <button id="jSearch" class="submitSearch">Search</button>
                 <!-- headerSearch -->
             </div>
         </div>
-        <div class="sidebar"></div>
-        <div class="jobStats"></div>
-        <div class="map" id="map">
+        <div class="sidebar" id="leftSideBar">
+            Top Results:
+            <button id="showMoreResults">Show Next 5 Results</button>
+        </div>
+        <div class="jobStats jobStatsHide"></div>
+        <div class="map mapWithoutInfo" id="map">
         </div>
         <div class="menuSpinner">
             <div class="inner">
@@ -70,7 +99,7 @@
                 </div>
                 <div class="item item2 spinItem2"></div>
                 <div class="item item3 spinItem3"></div>
-                <div class="item item4 spinItem4 select">
+                <div class="item item4 spinItem4">
                     <p>Info</p>
                 </div>
             </div>

@@ -6,6 +6,7 @@ var what = 'javascript developer';
 // original url i'm breaking down:
 // https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=087b8936&app_key=aa9f2f16c163aba979e6fb42412f734a&what=javascript%20developer&results_per_page=20&where=irvine&content-type=application/json
 
+let listingClicked;
 
 function populateJobDisplay(){
     $('#leftSideBar').empty();
@@ -14,23 +15,27 @@ function populateJobDisplay(){
             'class': 'jobSideBar',
             on:{
                 click: function(){
-                    $('.jobStats').empty();
                     expandJobDescription(i);
-                    if($('#map').hasClass('mapWithoutInfo') === true){
+                    if(listingClicked === this){ // Do we really want this? Creates a bad experience if user clicks map marker and then clicks
+                        jobStatsMenuToggle();    // the same job on the left. Closes side bar, opposite of what you would expect.
+                    } else if ($('#map').hasClass('mapWithoutInfo') === true){
                         jobStatsMenuToggle();
                     }
                     console.log('clicked job' + i);
+                    listingClicked=this
                 }
             }
         });
         var jobTitle = $('<h4>', {
             html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
+            'class': 'jobName',
             css:{
                 'margin-bottom': 0
             }
         });
         var jobCompany = $('<h7>', {
             text: 'company: ' + findJobs.jobData.results[i].company.display_name,
+            'class': 'companyName',
             css:{
                 'margin': 0
             }
@@ -41,6 +46,7 @@ function populateJobDisplay(){
 }
 
 function expandJobDescription(indexOfSelection){
+    $('.jobStats').empty();
     var expandedInfo = $('<div>', {
         'class': 'expandedInfo',
     });
