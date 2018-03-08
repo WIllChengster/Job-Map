@@ -1,5 +1,20 @@
 //This is the JS file for Google Maps
 
+// var placesTotalLat = null;
+// var placesTotalLong = null;
+
+// function setMapCenter(){
+    
+//     for(i = 0; i < placesData.length; i++){
+//         placesTotalLat += placesData[i].geometry.location.lat();
+//         placesTotalLong += placesData[i].geometry.location.lng();
+//     }
+//     placesTotalLat = placesTotalLat/placesData.length;
+//     placesTotalLong = placesTotalLong/placesData.length;
+// }
+
+// setMapCenter();
+
 function createNewMarker(results){
     
     var marker = new google.maps.Marker({
@@ -14,18 +29,43 @@ function createNewMarker(results){
 }
 
 
+
+function createInitialMapCenter(){
+    
+    var geocoder = new google.maps.Geocoder();
+        var address = $('#jLocal').val();
+
+        geocoder.geocode({ 'address': address }, function (results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+                var initLatitude = results[0].geometry.location.lat();
+                var initLongitude = results[0].geometry.location.lng();
+
+                console.log('inside function: ' , initLatitude, initLongitude);
+                center = new google.maps.LatLng(initLatitude, initLongitude);
+                initialize();
+            }
+        });
+}
+
+
   var map;
-  var center = new google.maps.LatLng(33.634919, -117.739538);
+  //change center to geolocation of city
+  
+  var initLatitude = null;
+  var initLongitude = null;
+
+  var center = null;
   var indexesToBeSpliced = [];
   function initialize() {
 
       map = new google.maps.Map(document.getElementById('map'), {
           center: center,
-          zoom: 11
+          zoom: 12
       });
   }
 
-  google.maps.event.addDomListener(window, 'load', initialize);
+//   google.maps.event.addDomListener(window, 'load', initialize);
 
   function searchCompany(companyName, i) {
        return new Promise(function(resolve, reject) {

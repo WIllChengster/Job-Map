@@ -30,6 +30,7 @@ function landingSearch() {
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
         landingHide();
+        createInitialMapCenter();
     }
 }
 
@@ -37,12 +38,13 @@ function headerSearch() {
     let title = $('#jTitleHeader').val();
     let location = $('#jLocalHeader').val();
     if (title === '')
-        tooltipShow('.headerJobTitleTooltip')
+        tooltipShow('.headerTitleTooltip')
     if (location === '')
-        tooltipShow('.headerJobLocationTooltip')
+        tooltipShow('.headerLocationTooltip')
     if (title !== '' && location !== ''){
         console.log("We are doing a search, this should only happen if there is no title and location");
         newSearch(title, location);
+        createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
     }    
 }

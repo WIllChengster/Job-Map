@@ -66,6 +66,10 @@ function expandJobDescription(indexOfSelection){
         text: "Date Listed: " + month + '-' + day + '-' + year
     });
 
+    var jobAddress = $('<p>', {
+        text: findJobs.jobData.results[indexOfSelection].address
+    });
+
     var jobLink = $('<a>', {
         href: findJobs.jobData.results[indexOfSelection].redirect_url,
         target: "_blank",
@@ -75,9 +79,9 @@ function expandJobDescription(indexOfSelection){
         var minMaxSalary = $('<p>', {
             text: "Salary Range: $" + findJobs.jobData.results[indexOfSelection].salary_min + "-" + findJobs.jobData.results[indexOfSelection].salary_max
         });
-        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, minMaxSalary, jobLink);
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobAddress, jobDescription, listDate,  minMaxSalary, jobLink);
     } else {
-        expandedInfo.append(eInfoJobTitle, jobCompany, jobDescription, listDate, jobLink);
+        expandedInfo.append(eInfoJobTitle, jobCompany, jobAddress, jobDescription, listDate,  jobLink);
     }
     $('.jobStats').append(expandedInfo);
 }
