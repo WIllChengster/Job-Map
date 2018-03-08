@@ -116,6 +116,8 @@ input{
     grid-row: 10/11;
     text-align: center;
     transform: translateY(-50%);
+    color: white;
+    font-size: 4vmin;
 }
 
 .jobLocation, .jobTitle{
