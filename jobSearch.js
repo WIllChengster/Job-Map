@@ -16,6 +16,9 @@ function populateJobDisplay(){
                 click: function(){
                     $('.jobStats').empty();
                     expandJobDescription(i);
+                    if($('#map').hasClass('mapWithoutInfo') === true){
+                        jobStatsMenuToggle();
+                    }
                     console.log('clicked job' + i);
                 }
             }
