@@ -3,10 +3,12 @@
 <head>
     <title>Hackathon 2: Team 3</title>
     <link rel='stylesheet' href="landing.css">
-    <link rel='stylesheet' href="mainPage.css">
-    <link rel="stylesheet" href="menuSpinner.css">
     <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="noResultModal.css">
+    <link rel='stylesheet' href="mainPage.css">
+    <link rel="stylesheet" href="menuSpinner.css">
+
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lobster" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -19,9 +21,15 @@
 
 <body>
     <div class="container">
-        <div class="fadeOverlay"></div>
-        <div class="noResultModal">
-            <div class="modalBox"></div>
+        <!-- to toggle Modal, do $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay') -->
+        <div class="fadeOverlay toggleDisplay"></div>
+        <div class="noResultModal toggleDisplay">
+            <div class="modalBox">
+                <div class="modalEscape"></div>
+                <div class="text">
+                    <h3>Sorry! We couldn't find what you're looing for.</h3>
+                </div>
+            </div>
         </div>
         <div class="tooSmall">
             <h4>Sorry, this page is best experienced in a width above 500px</h4>
