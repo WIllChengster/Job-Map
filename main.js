@@ -72,7 +72,7 @@ class startSearch{
                 $('#headerSearch').removeClass('noTouch');
                 console.log('After populateMarkers: no problems with markers', resultOfMarkers);
             }).catch(error => console.log('PROMISE CHAIN ERROR: ', error));
-        }, 300);
+        }, 1000);
     }
         //****************************************************************
         //FROM here to ##### IS OUR API ADZUNA CODE TO IMPLEMENT FOR LIVE

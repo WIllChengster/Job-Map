@@ -40,8 +40,6 @@ function createInitialMapCenter(){
             if (status == google.maps.GeocoderStatus.OK) {
                 var initLatitude = results[0].geometry.location.lat();
                 var initLongitude = results[0].geometry.location.lng();
-
-                console.log('inside function: ' , initLatitude, initLongitude);
                 center = new google.maps.LatLng(initLatitude, initLongitude);
                 initialize();
             }
@@ -50,8 +48,6 @@ function createInitialMapCenter(){
 
 
   var map;
-  //change center to geolocation of city
-  
   var initLatitude = null;
   var initLongitude = null;
 
