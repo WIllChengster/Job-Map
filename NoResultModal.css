@@ -31,9 +31,9 @@
     grid-row: 5/6;
  }
  .modalEscape{
-    grid-column: 8/9;
+    grid-column: 10/11;
     background-color: darkgrey;
-    grid-row: 2/3;
+    grid-row: 1/2;
     height: 6vh;
     width: 1vh;
     transform: rotate(45deg);
