@@ -17,12 +17,17 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 10vh;
-    width: 10vh;
+    height: 5vh;
+    width: 5vh;
     background-color: white;;
     z-index:5;
     border-radius:50%;
     border:.5px solid black;
+    cursor: pointer;
+    transition: .5s;
+}
+.inner:hover{
+    transform:scale(1.5);
 }
 
 .outer{
