@@ -1,10 +1,3 @@
-function attachEventHandlers(){
-    $('#jSearch').click(landingHide)
-    $('.inner').click(makeMenuSpin)
-    $('.item1').click(jobListMenuToggle)
-    $('.item4').click(jobStatsMenuToggle)
-}
-
 function makeMenuSpin(){
     $('.item1').toggleClass('spinItem1');
     $('.item2').toggleClass('spinItem2');

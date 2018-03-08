@@ -2,6 +2,13 @@ $(document).ready(initializeApp);
 function initializeApp(){
     $('#jSearch').click(newSearch);
     attachEventHandlers();
+
+function attachEventHandlers(){
+    $('#jSearch').click(landingHide)
+    $('.inner').click(makeMenuSpin)
+    $('.item1').click(jobListMenuToggle)
+    $('.item4').click(jobStatsMenuToggle)
+    }
 }
 var findJobs = null;
 function newSearch(){
