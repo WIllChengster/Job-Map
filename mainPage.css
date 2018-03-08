@@ -3,7 +3,11 @@ html, body{
     margin: 0;
 }
 h4{
+    cursor:pointer;
     font-family: 'Libre Baskerville', serif;
+}
+h4:hover{
+    color:#231651
 }
 
 .container{
@@ -71,7 +75,7 @@ h4{
     height: 100%;
 }
 
-.header span {
+.header .icon {
     background-color:lightgrey;
     border-right: 2px solid black;
     box-sizing: content-box;
