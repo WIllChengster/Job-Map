@@ -20,19 +20,35 @@
     <div class="container">
         <div class="header">
             <div class="brand">Generic Job Search</div>
-            <div class="headerJobTitle">
-                <span>
+            <div class="headerForms">
+                <div class="headerJobTitle">
+                        <span class='icon'>
+                            <i class="fas fa-user-circle"></i>
+                        </span>
+                        <input type="text" id="jTitleHeader" class="headerJobTitleInput " placeholder="JobTitle">
+                    </div>
+                    <div class="headerJobLocation">
+                            <span class='icon'>
+                                    <i class="far fa-building"></i>
+                                </span>
+                        <input type="text" id="jLocalHeader" class="headerJobLocationInput" placeholder="Job Location">
+                    </div>
+                    <button id="headerSearch" class="headerSubmitSearch">Search</button>
+            </div>
+            
+            <!-- <div class="headerJobTitle">
+                <span class='icon'>
                     <i class="fas fa-user-circle"></i>
                 </span>
-                <input type="text" id="jTitleHeader" class="headerJobTitleInput" placeholder="JobTitle">
+                <input type="text" id="jTitleHeader" class="headerJobTitleInput " placeholder="JobTitle">
             </div>
             <div class="headerJobLocation">
-                    <span>
+                    <span class='icon'>
                             <i class="far fa-building"></i>
                         </span>
                 <input type="text" id="jLocalHeader" class="headerJobLocationInput" placeholder="Job Location">
             </div>
-            <button id="headerSearch" class="headerSubmitSearch">Search</button>
+            <button id="headerSearch" class="headerSubmitSearch">Search</button> -->
         </div>
         <div class="landing">
             <div class="hero">
@@ -40,24 +56,26 @@
             </div>
             <div class="forms">
                 <div class="jobTitle">
-                    <span>
+                    <span class="jobTitleTooltip noOpacity">Please enter a Job Title</span>
+                    <span class="icon">
                         <i class="fas fa-user-circle fa-2x"></i>
                     </span>
                     <input type="text" id="jTitle" class="jobTitleInput" placeholder="Job Title">
                 </div>
                 <div class="jobLocation">
-                    <span>
+                        <span class="jobLocationTooltip noOpacity">Please Enter a Location</span>
+                    <span class="icon">
                         <i class="far fa-building fa-2x"></i>
                     </span>
-                    <input type="text" id="jLocal" class="jobLocationInput" placeholder="Job Location">
+                    <input type="text" id="jLocal" class="jobLocationInput" placeholder="Job Location: city, state">
                 </div>
                 <button id="jSearch" class="submitSearch">Search</button>
                 <!-- headerSearch -->
             </div>
         </div>
         <div class="sidebar"></div>
-        <div class="jobStats"></div>
-        <div class="map" id="map">
+        <div class="jobStats jobStatsHide"></div>
+        <div class="map mapWithoutInfo" id="map">
         </div>
         <div class="menuSpinner">
             <div class="inner">
@@ -70,7 +88,7 @@
                 </div>
                 <div class="item item2 spinItem2"></div>
                 <div class="item item3 spinItem3"></div>
-                <div class="item item4 spinItem4 select">
+                <div class="item item4 spinItem4">
                     <p>Info</p>
                 </div>
             </div>
