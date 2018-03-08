@@ -17,12 +17,17 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 10vh;
-    width: 10vh;
+    height: 5vh;
+    width: 5vh;
     background-color: white;;
     z-index:5;
     border-radius:50%;
     border:.5px solid black;
+    cursor: pointer;
+    transition: .5s;
+}
+.inner:hover{
+    transform:scale(1.5);
 }
 
 .outer{
@@ -38,7 +43,7 @@
     border-radius:50%;
     z-index:4;
     overflow:hidden;
-    transition: ease-in-out 2s;
+    transition: ease-in-out border 2s;
 }
 .hideBorder{
     border:none;
@@ -53,8 +58,7 @@
     height: 100%;
     width: 100%;
     transform-origin:top left;
-    background-color:blue;
-    transition: ease-in-out .5s;
+    background-color:grey;
 
 }
 .item1{
@@ -72,6 +76,10 @@
 .item4{
     transform:rotate(315deg)skew(45deg);
     transition: ease-in-out .5s;
+}
+
+.item>p{
+    font-size: 2.2vh
 }
 
 .item1>p{

@@ -5,19 +5,28 @@
         <link rel='stylesheet' href="landing.css">
         <link rel='stylesheet' href="mainPage.css">
         <link rel="stylesheet" href="menuSpinner.css">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
         <script src="pageAnim.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe-JAsXTAykET74snBv3pnqgoka7Kqm3k"></script>
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe-JAsXTAykET74snBv3pnqgoka7Kqm3k&libraries=places"></script>
         <script src="main.js"></script>
         <script src="jobSearch.js"></script>
         <script src="gMaps.js"></script>
     </head>
     <body>
         <div class="container">
-            <div class="header"></div>
+            <div class="header">
+                <div class="brand">Generic Job Search</div>
+                <div class="headerJobTitle">
+                        <input type="text" id="jTitle" class="jobTitleInput" placeholder="JobTitle">
+                </div>
+                <div class="headerJobLocation">
+                        <input type="text" id="jLocal" class="jLocationInput" placeholder="Job Location">
+                </div>
+            </div>
             <div class="landing">
                 <div class="hero">
-                    <h1 class="heroText">Generic job search</h1>
+                    <h1 class="heroText">Find a Job Near You</h1>
                 </div>
                 <div class="forms">
                     <div class="jobTitle" >
@@ -33,7 +42,6 @@
             <div class="jobStats"></div>
             <div class="map" id="map">
             </div>
-
             <div class="menuSpinner">
                 <div class="inner"></div>
                 <div class="outer hideBorder">
