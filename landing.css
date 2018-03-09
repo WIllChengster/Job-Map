@@ -2,12 +2,9 @@
     grid-column:1/11;
     grid-row: 1/11;
     z-index:19;
-    /* background-color:#0075c4; */
-
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    /* 10x10 */
     transition: ease-in-out 2s;
 }
 div.bg{
@@ -25,7 +22,6 @@ div.bg{
 }
 
 .hero{
-    /* 5x4 */
     grid-column: 3/9;
     grid-row: 3/7;
     display:grid;
@@ -60,7 +56,6 @@ div.bg{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    /* 7x5 */
 }
 .jobTitle{
     grid-column: 1/4;

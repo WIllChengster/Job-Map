@@ -1,4 +1,4 @@
-//This is the JS file for Google Maps
+
 
 /***************************************************************************************************
 * createInitialMapCenter - finds the geolocation of the city searched and make it the center of the map that is shown initially
@@ -208,8 +208,6 @@ function createInitialMapCenter(){
                        resolve('successfully added place data')
                    }
                    else {
-                       console.log('search did not have data on results at i', i);
-                       console.log('sample results ', results, status)
                        resolve(status);
                    }
                }
@@ -272,7 +270,6 @@ function renderAllMarkers(){
                 if ($('#map').hasClass('mapWithoutInfo') === true){
                     jobStatsMenuToggle();
                 }    
-                console.log('marker click, ', i);
           });
           markerCounter++;
           markers.push(marker);
@@ -292,12 +289,9 @@ function cleanAndPopulateMarkers(){
         for (var i = 0; i < 9; i++) {
             promiseArr.push(searchCompany(findJobs.jobData.results[i].company.display_name, i));
         }
-        console.log('promises array is: ', promiseArr);
         Promise.all(promiseArr)
     .then(values => {
-        console.log('splicing out bad data', placesData);
         spliceOutNoResults();
-        console.log('after splicing out bad data', placesData);
         resolve('successfully spliced data');
     }).catch(reason => {
             reject('uncaught promise' + reason);
