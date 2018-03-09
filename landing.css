@@ -40,7 +40,7 @@ div.bg{
 }
 @media only screen and (max-width:500px){
     div.tooSmall{
-        z-index:18;
+        z-index:999;
         grid-column:1/11;
         grid-row:1/11;
         display:block;
