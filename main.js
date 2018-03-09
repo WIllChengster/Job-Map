@@ -45,7 +45,6 @@ function headerSearch() {
     if (location === '')
         tooltipShow('.headerJobLocationTooltip')
     if (title !== '' && location !== ''){
-        console.log("We are doing a search, this should only happen if there is a title and location");
         removeMarkers();
         newSearch(title, location);
         createInitialMapCenter();
@@ -71,6 +70,7 @@ class startSearch{
         this.getJobData().then(resultData => {
             this.jobData = resultData;
             if(findJobs.jobData.results.length === 0){
+                console.log('lenght is 0, is it really? ', findJobs);
                 $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
             } else {
             console.log('jobData is: ', this.jobData)

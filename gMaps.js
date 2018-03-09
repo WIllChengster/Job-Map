@@ -223,9 +223,6 @@ function mapPlacesToJobData(){
         if(placesData[i] !== undefined) {
             findJobs.jobData.results[i].geometry = placesData[i].geometry;
             findJobs.jobData.results[i].address = placesData[i].vicinity;
-            if (placesData[i].photos !== undefined) {
-                findJobs.jobData.results[i].photo = placesData[i].photos[0];
-            }
         }
     }
 }
