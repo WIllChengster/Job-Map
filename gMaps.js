@@ -5,15 +5,14 @@ var center = null;
 var indexesToBeSpliced = [];
 var markers = [];
 
-
 function createNewMarker(results){
-    
+
     var marker = new google.maps.Marker({
     position: {
         lat: results.geometry.location.lat(),
         lng: results.geometry.location.lng()
     },
-    
+
     map: map,
     title:'LOL',
     icon: {url: "Infos_5.png",
@@ -22,7 +21,7 @@ function createNewMarker(results){
 }
 
 function createInitialMapCenter(){
-    
+
     var geocoder = new google.maps.Geocoder();
         var address = findJobs.location;
 
@@ -246,7 +245,7 @@ function renderAllMarkers(){
                   map: map,
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
-              
+
           }else{
               var marker = new google.maps.Marker({
                   position: {
@@ -258,12 +257,12 @@ function renderAllMarkers(){
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
           }
-          
+
           google.maps.event.addListener(marker, 'click', function() {
                 expandJobDescription(i);
                 if ($('#map').hasClass('mapWithoutInfo') === true){
                     jobStatsMenuToggle();
-                }    
+                }
                 console.log('marker click, ', i);
           });
           markerCounter++;
