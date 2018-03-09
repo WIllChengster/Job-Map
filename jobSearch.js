@@ -1,13 +1,11 @@
-// This is the javascript file for our jobSearch API data
-
-
-var where = 'irvine';
-var what = 'javascript developer';
-// original url i'm breaking down:
-// https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=087b8936&app_key=aa9f2f16c163aba979e6fb42412f734a&what=javascript%20developer&results_per_page=20&where=irvine&content-type=application/json
 
 let listingClicked;
 
+// *************************************************************************************************
+// *populateJobDisplay - function populates the the foudn jobs that display on the right side bar of the main page
+// *@parms none
+// *@returns none
+// *@calls expandJobDescription, jobStatsMenuToggle
 function populateJobDisplay(){
     $('#leftSideBar').empty();
     for(let i = 0; i < placesData.length; i++) {
@@ -41,7 +39,11 @@ function populateJobDisplay(){
         $('.sidebar').append(jobSideBar);
     }
 }
-
+// *************************************************************************************************
+// *expandJobDescription - This function populates the sidebar with the appropriate selected job.
+// *@parms It takes an index of the item that it is being referred to.
+// *@returns none
+// *@calls none
 function expandJobDescription(indexOfSelection){
     $('.jobStats').empty();
     var expandedInfo = $('<div>', {
