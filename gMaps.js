@@ -1,19 +1,5 @@
 //This is the JS file for Google Maps
 
-var placesTotalLat = null;
-var placesTotalLong = null;
-
-function setMapCenter(){
-    
-    for(i = 0; i < placesData.length; i++){
-        placesTotalLat += placesData[i].geometry.location.lat();
-        placesTotalLong += placesData[i].geometry.location.lng();
-    }
-    placesTotalLat = placesTotalLat/placesData.length;
-    placesTotalLong = placesTotalLong/placesData.length;
-}
-
-setMapCenter();
 
 function createNewMarker(results){
     
@@ -200,8 +186,6 @@ function createInitialMapCenter(){
       });
   }
 
-//   google.maps.event.addDomListener(window, 'load', initialize);
-
   function searchCompany(companyName, i) {
        return new Promise(function(resolve, reject) {
            var service;
@@ -237,15 +221,12 @@ function createInitialMapCenter(){
 
 function mapPlacesToJobData(){
     for(let i = 0; i < placesData.length; i++){
-        // if(placesData[i] !== undefined){
+         if(placesData[i] !== undefined){
             findJobs.jobData.results[i].geometry = placesData[i].geometry;
             findJobs.jobData.results[i].address = placesData[i].vicinity;
-            if(placesData[i].photos !== undefined){
-                findJobs.jobData.results[i].photo = placesData[i].photos[0];
-
             }
-        // }
-    }
+     }
+
 }
 
 function renderAllMarkers(){

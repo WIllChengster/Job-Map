@@ -33,7 +33,6 @@ function landingSearch() {
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
         createInitialMapCenter();
-        $('.fadeOverlay, .spinner').toggleClass('toggleDisplay')
         setTimeout(landingHide, 500);
     }
 }
@@ -46,13 +45,11 @@ function headerSearch() {
     if (location === '')
         tooltipShow('.headerJobLocationTooltip')
     if (title !== '' && location !== ''){
-        console.log("We are doing a search, this should only happen if there is a title and location");
         removeMarkers();
         newSearch(title, location);
         createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
-        $('.fadeOverlay, .spinner').toggleClass('toggleDisplay');
-    }    
+    }
 }
 
 var placesData = [];
@@ -60,6 +57,7 @@ var findJobs = null;
 
 function newSearch(title, location){
     findJobs = new startSearch(title, location);
+    $('.spinner').toggleClass('toggleDisplay');
     findJobs.initializeSearch();
 }
 
@@ -73,6 +71,7 @@ class startSearch{
         this.getJobData().then(resultData => {
             this.jobData = resultData;
             if(findJobs.jobData.results.length === 0){
+                console.log('lenght is 0, is it really? ', findJobs);
                 $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
             } else {
             console.log('jobData is: ', this.jobData)
@@ -84,11 +83,15 @@ class startSearch{
             populateJobDisplay();
             console.log('After populateMarkers: no problems with markers', resultOfMarkers);
             $('#headerSearch').removeClass('noTouch');
-            $('.fadeOverlay, .spinner').toggleClass('toggleDisplay')
+            $('.spinner').toggleClass('toggleDisplay');
         })
-            .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
-            $('.fadeOverlay, .spinner').toggleClass('toggleDisplay')
-    }
+        .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
+            // $('.spinner').toggleClass('toggleDisplay');
+        if($('.spinner').hasClass('toggleDisplay')){
+            $('.spinner').toggleClass('toggleDisplay');
+        }
+
+         }
     getJobData(){
         return new Promise( function(resolve, reject){
             var where = findJobs.location; //Placeholders, Will be changed later.
