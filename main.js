@@ -33,6 +33,7 @@ function landingSearch() {
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
         createInitialMapCenter();
+        $('.fadeOverlay, .spinner').toggleClass('toggleDisplay')
         setTimeout(landingHide, 500);
     }
 }
@@ -49,6 +50,7 @@ function headerSearch() {
         newSearch(title, location);
         createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
+        $('.fadeOverlay, .spinner').toggleClass('toggleDisplay');
     }    
 }
 
@@ -82,8 +84,10 @@ class startSearch{
             populateJobDisplay();
             console.log('After populateMarkers: no problems with markers', resultOfMarkers);
             $('#headerSearch').removeClass('noTouch');
+            $('.fadeOverlay, .spinner').toggleClass('toggleDisplay')
         })
             .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
+            $('.fadeOverlay, .spinner').toggleClass('toggleDisplay')
     }
     getJobData(){
         return new Promise( function(resolve, reject){
