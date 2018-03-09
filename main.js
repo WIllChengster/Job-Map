@@ -22,9 +22,10 @@ function attachEventHandlers(){
     $('.inner').click(makeMenuSpin);
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
+    /* This is still being worked on and will be added to a later feature set
     $('.aboutUs, .escape').click( ()=>{
         $('.aboutContainer').toggleClass('hideAbout');
-    });
+    }); */
     $('.modalEscape').click( () => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
