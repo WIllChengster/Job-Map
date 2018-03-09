@@ -41,7 +41,6 @@ function attachEventHandlers(){
  * @calls newSearch, createInitialMapCenter, LandingHide
  */
 function landingSearch() {
-    console.log("This function is working");
     let title = $('#jTitle').val();
     let location = $('#jLocal').val();
     if (title === '')
@@ -107,22 +106,18 @@ class startSearch{
         this.getJobData().then(resultData => {
             this.jobData = resultData;
             if(findJobs.jobData.results.length === 0){
-                console.log('lenght is 0, is it really? ', findJobs);
                 $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
             } else {
-            console.log('jobData is: ', this.jobData)
             return cleanAndPopulateMarkers();
             }
         }).then(resultOfMarkers =>{
             mapPlacesToJobData();
             renderAllMarkers();
             populateJobDisplay();
-            console.log('After populateMarkers: no problems with markers', resultOfMarkers);
             $('#headerSearch').removeClass('noTouch');
             $('.spinner').toggleClass('toggleDisplay');
         })
         .catch(error => {
-            console.log('PROMISE CHAIN ERROR: ', error);
             $('#headerSearch').removeClass('noTouch');
             if(!($('.spinner').hasClass('toggleDisplay'))){
                 $('.spinner').toggleClass('toggleDisplay');
@@ -151,8 +146,6 @@ class startSearch{
                 },
                 error: function (result) {
                     reject(result);
-                    console.log('Error: had trouble getting data from server', result);
-
                 }
             }
             $.ajax(ajaxConfig);
