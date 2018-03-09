@@ -1,21 +1,10 @@
 //This is the JS file for Google Maps
 
-
-function createNewMarker(results){
-    
-    var marker = new google.maps.Marker({
-    position: {
-        lat: results.geometry.location.lat(),
-        lng: results.geometry.location.lng()
-    },
-    
-    map: map,
-    icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FF0000|000000',
-    scaledSize: new google.maps.Size(90, 90)
-    });
-}
-
-
+/***************************************************************************************************
+* createInitialMapCenter - finds the geolocation of the city searched and make it the center of the map that is shown initially
+* @param placesData {array} the array of businesses found in Google Places Search
+* @returns passes coordinates to the initialize function
+*/
 
 function createInitialMapCenter(){
     
@@ -39,6 +28,14 @@ function createInitialMapCenter(){
   var center = null;
   var indexesToBeSpliced = [];
   var markers = [];
+  
+
+/***************************************************************************************************
+* initialize() - takes the coordinates passed from createInitialMapCenter and creates the map
+* @param placesData coordinates from createInitialMapCenter
+* @returns passes coordinates to the initialize function
+*/
+  
   function initialize() {
 
       map = new google.maps.Map(document.getElementById('map'), {
@@ -186,6 +183,12 @@ function createInitialMapCenter(){
       });
   }
 
+/***************************************************************************************************
+* searchCompany - retrieves company names from the placesData object
+* @param placesData {array} the array of businesses found in Google Places Search
+*
+*/
+
   function searchCompany(companyName, i) {
        return new Promise(function(resolve, reject) {
            var service;
@@ -218,6 +221,9 @@ function createInitialMapCenter(){
        });
   }
 
+/***************************************************************************************************
+* mapPlacesToJobData - takes the information from placesData and assigns their geometry and vicinty values to the jobData object
+*/
 
 function mapPlacesToJobData(){
     for(let i = 0; i < placesData.length; i++){
@@ -225,9 +231,14 @@ function mapPlacesToJobData(){
             findJobs.jobData.results[i].geometry = placesData[i].geometry;
             findJobs.jobData.results[i].address = placesData[i].vicinity;
             }
-     }
-
+    }
 }
+
+/***************************************************************************************************
+* renderAllMarkers - creates markers for each company in placesData object
+* @param placesData {placesData} 
+* @returns creates markers on map
+*/
 
 function renderAllMarkers(){
       var results = findJobs.jobData.results;
@@ -269,6 +280,12 @@ function renderAllMarkers(){
     }
 }
 
+/***************************************************************************************************
+* cleanAndPopulateMarkers - cleans the current markers on map and repopulates the map with different search results
+* @param placesData {array} the array of businesses found in Google Places Search
+* @returns passes coordinates to the initialize function
+*/
+
 function cleanAndPopulateMarkers(){
     return new Promise(function(resolve, reject) {
         var promiseArr = [];
@@ -287,12 +304,23 @@ function cleanAndPopulateMarkers(){
     });
     });
 }
+
+/***************************************************************************************************
+* spliceOutNoResults - loops through indexesToBeSpliced and finds data that isn't complete enough for creating a marker out of it
+* @param placesData {array} the array of businesses found in Google Places Search
+*/
+
 function spliceOutNoResults(){
       for(let i = 0; i < indexesToBeSpliced.length; i++){
           findJobs.jobData.results.splice(indexesToBeSpliced[i], 1);
           placesData.splice(indexesToBeSpliced[i], 1);
       }
 }
+
+/***************************************************************************************************
+* removeMarkers - removes all markers from the map 
+*/
+
 function removeMarkers(){
       for(var i = 0; i < markers.length; i++){
           markers[i].setMap(null);
