@@ -1,8 +1,21 @@
+
 $(document).ready(initializeApp);
+/***************************************************************************************************
+ * initializeApp - calls our event listener function
+ * @param none
+ * @returns {undefined} none
+ * @calls attachEventHandlers()
+ */
 function initializeApp(){
     attachEventHandlers();
 }
 
+/***************************************************************************************************
+ * attachEventHandlers - adds event hanlders
+ * @param none
+ * @returns {undefined} none
+ * @calls different functions on each click
+ */
 function attachEventHandlers(){
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
@@ -21,6 +34,12 @@ function attachEventHandlers(){
     $('.matt').on('mouseenter mouseleave', aboutMatt);
 }
 
+/***************************************************************************************************
+ * landingSearch - processes our landing page fields, and validates input
+ * @param none
+ * @returns {undefined} none
+ * @calls newSearch, createInitialMapCenter, LandingHide
+ */
 function landingSearch() {
     console.log("This function is working");
     let title = $('#jTitle').val();
@@ -36,7 +55,12 @@ function landingSearch() {
         setTimeout(landingHide, 500);
     }
 }
-
+/***************************************************************************************************
+ * headerSearch - processes our header search fields, and validates input
+ * @param none
+ * @returns {undefined} none
+ * @calls newSearch, createInitialMapCenter
+ */
 function headerSearch() {
     let title = $('#jTitleHeader').val();
     let location = $('#jLocalHeader').val();
