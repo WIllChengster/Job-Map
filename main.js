@@ -85,12 +85,12 @@ class startSearch{
             $('#headerSearch').removeClass('noTouch');
             $('.spinner').toggleClass('toggleDisplay');
         })
-        .catch(error => console.log('PROMISE CHAIN ERROR: ', error));
-            // $('.spinner').toggleClass('toggleDisplay');
-        if($('.spinner').hasClass('toggleDisplay')){
-            $('.spinner').toggleClass('toggleDisplay');
-        }
-
+        .catch(error => {
+            console.log('PROMISE CHAIN ERROR: ', error)
+            if(!($('.spinner').hasClass('toggleDisplay'))){
+                $('.spinner').toggleClass('toggleDisplay');
+            }
+        });
          }
     getJobData(){
         return new Promise( function(resolve, reject){
