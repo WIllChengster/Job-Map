@@ -78,13 +78,25 @@ function headerSearch() {
 
 var placesData = [];
 var findJobs = null;
-
+/***************************************************************************************************
+ * newSearch - initializes our start search instance
+ * @param title, location    ---these get passed to the start search constructor
+ * @returns {undefined} none
+ * @calls startSearch, initializeSearch
+ */
 function newSearch(title, location){
     findJobs = new startSearch(title, location);
     $('.spinner').toggleClass('toggleDisplay');
     findJobs.initializeSearch();
 }
-
+/***************************************************************************************************
+ * StartSearch - hold our api calls and promises
+ * @constructor -- (title, location)
+ * @param title, location    ---these get passed to the start search constructor
+ * @returns {undefined} none
+ * @properties startSearch, initializeSearch
+ *
+ */
 class startSearch{
     constructor(title, location) {
         this.title = title;
