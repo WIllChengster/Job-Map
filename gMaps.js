@@ -41,7 +41,7 @@ function createInitialMapCenter(){
 
       map = new google.maps.Map(document.getElementById('map'), {
           center: center,
-          zoom: 12,
+          zoom: 11,
           styles:
           [
             {
