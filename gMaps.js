@@ -1,28 +1,18 @@
 //This is the JS file for Google Maps
 
-// var placesTotalLat = null;
-// var placesTotalLong = null;
-
-// function setMapCenter(){
-    
-//     for(i = 0; i < placesData.length; i++){
-//         placesTotalLat += placesData[i].geometry.location.lat();
-//         placesTotalLong += placesData[i].geometry.location.lng();
-//     }
-//     placesTotalLat = placesTotalLat/placesData.length;
-//     placesTotalLong = placesTotalLong/placesData.length;
-// }
-
-// setMapCenter();
+var map;
+var center = null;
+var indexesToBeSpliced = [];
+var markers = [];
 
 function createNewMarker(results){
-    
+
     var marker = new google.maps.Marker({
     position: {
         lat: results.geometry.location.lat(),
         lng: results.geometry.location.lng()
     },
-    
+
     map: map,
     title:'LOL',
     icon: {url: "Infos_5.png",
@@ -30,38 +20,29 @@ function createNewMarker(results){
     }})
 }
 
-
-
 function createInitialMapCenter(){
-    
+
     var geocoder = new google.maps.Geocoder();
         var address = findJobs.location;
 
         geocoder.geocode({ 'address': address }, function (results, status) {
 
             if (status == google.maps.GeocoderStatus.OK) {
-                var initLatitude = results[0].geometry.location.lat();
-                var initLongitude = results[0].geometry.location.lng();
+                var initLatitude = results[0].geometry.location.lat() || 33.6845673
+                ;
+                var initLongitude = results[0].geometry.location.lng() || -117.82650490000003;
                 center = new google.maps.LatLng(initLatitude, initLongitude);
                 initialize();
             }
         });
 }
 
-
-  var map;
-  var initLatitude = null;
-  var initLongitude = null;
-
-  var center = null;
-  var indexesToBeSpliced = [];
-  var markers = [];
   function initialize() {
 
       map = new google.maps.Map(document.getElementById('map'), {
           center: center,
           zoom: 12,
-          styles: 
+          styles:
           [
             {
                 "elementType": "geometry",
@@ -203,14 +184,12 @@ function createInitialMapCenter(){
       });
   }
 
-//   google.maps.event.addDomListener(window, 'load', initialize);
-
   function searchCompany(companyName, i) {
        return new Promise(function(resolve, reject) {
            var service;
            var request = {
                location: center,
-               radius: '50000',
+               radius: '15000',
                name: companyName
            };
 
@@ -225,12 +204,13 @@ function createInitialMapCenter(){
                    }
                    else {
                        console.log('search did not have data on results at i', i);
-                       console.log('sample results ', results, status)
+                       console.log('sample results ', results, status);
                        resolve(status);
                    }
                }
                else {
                    indexesToBeSpliced.push(i);
+                   console.log('result was: ', results, 'status is: ', status);
                    resolve('no results for ' + i);
                }
            }
@@ -240,14 +220,13 @@ function createInitialMapCenter(){
 
 function mapPlacesToJobData(){
     for(let i = 0; i < placesData.length; i++){
-        // if(placesData[i] !== undefined){
+        if(placesData[i] !== undefined) {
             findJobs.jobData.results[i].geometry = placesData[i].geometry;
             findJobs.jobData.results[i].address = placesData[i].vicinity;
-            if(placesData[i].photos !== undefined){
+            if (placesData[i].photos !== undefined) {
                 findJobs.jobData.results[i].photo = placesData[i].photos[0];
-
             }
-        // }
+        }
     }
 }
 
@@ -266,8 +245,8 @@ function renderAllMarkers(){
                   map: map,
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
-          }
-          else{
+
+          }else{
               var marker = new google.maps.Marker({
                   position: {
                       lat: results[i].geometry.location.lat(),
@@ -278,11 +257,12 @@ function renderAllMarkers(){
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
           }
+
           google.maps.event.addListener(marker, 'click', function() {
                 expandJobDescription(i);
                 if ($('#map').hasClass('mapWithoutInfo') === true){
                     jobStatsMenuToggle();
-                }    
+                }
                 console.log('marker click, ', i);
           });
           markerCounter++;
@@ -294,7 +274,7 @@ function renderAllMarkers(){
 function cleanAndPopulateMarkers(){
     return new Promise(function(resolve, reject) {
         var promiseArr = [];
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < 9 && i < findJobs.jobData.results.length; i++) {
             promiseArr.push(searchCompany(findJobs.jobData.results[i].company.display_name, i));
         }
         console.log('promises array is: ', promiseArr);
@@ -310,10 +290,13 @@ function cleanAndPopulateMarkers(){
     });
 }
 function spliceOutNoResults(){
-      for(let i = 0; i < indexesToBeSpliced.length; i++){
+      indexesToBeSpliced.sort();
+      console.log(indexesToBeSpliced);
+      for(let i = indexesToBeSpliced.length - 1; i >= 0; i--){
           findJobs.jobData.results.splice(indexesToBeSpliced[i], 1);
           placesData.splice(indexesToBeSpliced[i], 1);
       }
+      indexesToBeSpliced = [];
 }
 function removeMarkers(){
       for(var i = 0; i < markers.length; i++){
