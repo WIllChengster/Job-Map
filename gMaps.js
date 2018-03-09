@@ -1,48 +1,50 @@
 //This is the JS file for Google Maps
 
-var map;
-var center = null;
-var indexesToBeSpliced = [];
-var markers = [];
 
 function createNewMarker(results){
-
+    
     var marker = new google.maps.Marker({
     position: {
         lat: results.geometry.location.lat(),
         lng: results.geometry.location.lng()
     },
-
+    
     map: map,
-    title:'LOL',
-    icon: {url: "Infos_5.png",
-    scaledSize: new google.maps.Size(64, 64)
-    }})
+    icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FF0000|000000',
+    scaledSize: new google.maps.Size(90, 90)
+    });
 }
 
-function createInitialMapCenter(){
 
+
+function createInitialMapCenter(){
+    
     var geocoder = new google.maps.Geocoder();
         var address = findJobs.location;
 
         geocoder.geocode({ 'address': address }, function (results, status) {
 
             if (status == google.maps.GeocoderStatus.OK) {
-                var initLatitude = results[0].geometry.location.lat() || 33.6845673
-                ;
-                var initLongitude = results[0].geometry.location.lng() || -117.82650490000003;
+                var initLatitude = results[0].geometry.location.lat();
+                var initLongitude = results[0].geometry.location.lng();
                 center = new google.maps.LatLng(initLatitude, initLongitude);
                 initialize();
             }
         });
 }
+  var map;
+  var initLatitude = null;
+  var initLongitude = null;
 
+  var center = null;
+  var indexesToBeSpliced = [];
+  var markers = [];
   function initialize() {
 
       map = new google.maps.Map(document.getElementById('map'), {
           center: center,
           zoom: 11,
-          styles:
+          styles: 
           [
             {
                 "elementType": "geometry",
@@ -189,7 +191,7 @@ function createInitialMapCenter(){
            var service;
            var request = {
                location: center,
-               radius: '15000',
+               radius: '50000',
                name: companyName
            };
 
@@ -204,13 +206,12 @@ function createInitialMapCenter(){
                    }
                    else {
                        console.log('search did not have data on results at i', i);
-                       console.log('sample results ', results, status);
+                       console.log('sample results ', results, status)
                        resolve(status);
                    }
                }
                else {
                    indexesToBeSpliced.push(i);
-                   console.log('result was: ', results, 'status is: ', status);
                    resolve('no results for ' + i);
                }
            }
@@ -220,11 +221,12 @@ function createInitialMapCenter(){
 
 function mapPlacesToJobData(){
     for(let i = 0; i < placesData.length; i++){
-        if(placesData[i] !== undefined) {
+         if(placesData[i] !== undefined){
             findJobs.jobData.results[i].geometry = placesData[i].geometry;
             findJobs.jobData.results[i].address = placesData[i].vicinity;
-        }
-    }
+            }
+     }
+
 }
 
 function renderAllMarkers(){
@@ -242,8 +244,8 @@ function renderAllMarkers(){
                   map: map,
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
-
-          }else{
+          }
+          else{
               var marker = new google.maps.Marker({
                   position: {
                       lat: results[i].geometry.location.lat(),
@@ -254,12 +256,11 @@ function renderAllMarkers(){
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
           }
-
           google.maps.event.addListener(marker, 'click', function() {
                 expandJobDescription(i);
                 if ($('#map').hasClass('mapWithoutInfo') === true){
                     jobStatsMenuToggle();
-                }
+                }    
                 console.log('marker click, ', i);
           });
           markerCounter++;
@@ -271,7 +272,7 @@ function renderAllMarkers(){
 function cleanAndPopulateMarkers(){
     return new Promise(function(resolve, reject) {
         var promiseArr = [];
-        for (var i = 0; i < 9 && i < findJobs.jobData.results.length; i++) {
+        for (var i = 0; i < 9; i++) {
             promiseArr.push(searchCompany(findJobs.jobData.results[i].company.display_name, i));
         }
         console.log('promises array is: ', promiseArr);
@@ -287,13 +288,10 @@ function cleanAndPopulateMarkers(){
     });
 }
 function spliceOutNoResults(){
-      indexesToBeSpliced.sort();
-      console.log(indexesToBeSpliced);
-      for(let i = indexesToBeSpliced.length - 1; i >= 0; i--){
+      for(let i = 0; i < indexesToBeSpliced.length; i++){
           findJobs.jobData.results.splice(indexesToBeSpliced[i], 1);
           placesData.splice(indexesToBeSpliced[i], 1);
       }
-      indexesToBeSpliced = [];
 }
 function removeMarkers(){
       for(var i = 0; i < markers.length; i++){
