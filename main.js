@@ -78,6 +78,7 @@ class startSearch{
             return cleanAndPopulateMarkers();
             }
         }).then(resultOfMarkers =>{
+            debugger;
             mapPlacesToJobData();
             renderAllMarkers();
             populateJobDisplay();

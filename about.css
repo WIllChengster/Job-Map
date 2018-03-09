@@ -115,8 +115,10 @@
     background-color: inherit;
     transform: rotate(-90deg);
 }
-.aboutItem:hover h4{
+.aboutItem h4{
     text-align:center;
+}
+.aboutItem:hover h4{
     color:white;
     text-shadow: 0px 0px 1vh black;
     text-decoration-style: double
