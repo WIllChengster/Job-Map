@@ -92,17 +92,7 @@ h4:hover{
     border-radius:10%;
     transition:1s;
 }
-/* .headerJobLocationTooltip::after{
-    content: '';
-    position: absolute;
-    margin: auto;
-    top: -.5vh;
-    left: 27%;
-    height: 1vh;
-    width: 1vh;
-    background-color: inherit;
-    transform: rotate(45deg);
-} */
+
 .gm-style-mtc {
     display: none;
   }
