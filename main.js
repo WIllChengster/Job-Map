@@ -1,8 +1,21 @@
+
 $(document).ready(initializeApp);
+/***************************************************************************************************
+ * initializeApp - calls our event listener function
+ * @param none
+ * @returns {undefined} none
+ * @calls attachEventHandlers()
+ */
 function initializeApp(){
     attachEventHandlers();
 }
 
+/***************************************************************************************************
+ * attachEventHandlers - adds event hanlders
+ * @param none
+ * @returns {undefined} none
+ * @calls different functions on each click
+ */
 function attachEventHandlers(){
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
@@ -21,8 +34,13 @@ function attachEventHandlers(){
     $('.matt').on('mouseenter mouseleave', aboutMatt);
 }
 
+/***************************************************************************************************
+ * landingSearch - processes our landing page fields, and validates input
+ * @param none
+ * @returns {undefined} none
+ * @calls newSearch, createInitialMapCenter, LandingHide
+ */
 function landingSearch() {
-    console.log("This function is working");
     let title = $('#jTitle').val();
     let location = $('#jLocal').val();
     if (title === '')
@@ -36,7 +54,12 @@ function landingSearch() {
         setTimeout(landingHide, 500);
     }
 }
-
+/***************************************************************************************************
+ * headerSearch - processes our header search fields, and validates input
+ * @param none
+ * @returns {undefined} none
+ * @calls newSearch, createInitialMapCenter
+ */
 function headerSearch() {
     let title = $('#jTitleHeader').val();
     let location = $('#jLocalHeader').val();
@@ -54,13 +77,25 @@ function headerSearch() {
 
 var placesData = [];
 var findJobs = null;
-
+/***************************************************************************************************
+ * newSearch - initializes our start search instance
+ * @param title, location    ---these get passed to the start search constructor
+ * @returns {undefined} none
+ * @calls startSearch, initializeSearch
+ */
 function newSearch(title, location){
     findJobs = new startSearch(title, location);
     $('.spinner').toggleClass('toggleDisplay');
     findJobs.initializeSearch();
 }
-
+/***************************************************************************************************
+ * StartSearch - hold our api calls and promises
+ * @constructor -- (title, location)
+ * @param title, location    ---these get passed to the start search constructor
+ * @returns {undefined} none
+ * @properties startSearch, initializeSearch
+ *
+ */
 class startSearch{
     constructor(title, location) {
         this.title = title;
@@ -71,10 +106,8 @@ class startSearch{
         this.getJobData().then(resultData => {
             this.jobData = resultData;
             if(findJobs.jobData.results.length === 0){
-                console.log('lenght is 0, is it really? ', findJobs);
                 $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
             } else {
-            console.log('jobData is: ', this.jobData)
             return cleanAndPopulateMarkers();
             }
         }).then(resultOfMarkers =>{
@@ -82,12 +115,10 @@ class startSearch{
             mapPlacesToJobData();
             renderAllMarkers();
             populateJobDisplay();
-            console.log('After populateMarkers: no problems with markers', resultOfMarkers);
             $('#headerSearch').removeClass('noTouch');
             $('.spinner').toggleClass('toggleDisplay');
         })
         .catch(error => {
-            console.log('PROMISE CHAIN ERROR: ', error);
             $('#headerSearch').removeClass('noTouch');
             if(!($('.spinner').hasClass('toggleDisplay'))){
                 $('.spinner').toggleClass('toggleDisplay');
@@ -116,8 +147,6 @@ class startSearch{
                 },
                 error: function (result) {
                     reject(result);
-                    console.log('Error: had trouble getting data from server', result);
-
                 }
             }
             $.ajax(ajaxConfig);
