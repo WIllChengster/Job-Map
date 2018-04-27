@@ -7,30 +7,27 @@
 */
 
 var map;
-var initLatitude = null;
-var initLongitude = null;
 var markers = [];
 var center = null;
 var indexesToBeSpliced = [];
 
-
-
-function createInitialMapCenter(){
+function createInitialMapCenter(location){
     
     var geocoder = new google.maps.Geocoder();
-    var address = findJobs.location;
+        var address = location;
 
-    geocoder.geocode({ 'address': address }, function (results, status, markers) {
-
-        if (status == google.maps.GeocoderStatus.OK) {
-
-            var initLatitude = results[0].geometry.location.lat();
-            var initLongitude = results[0].geometry.location.lng();
-            center = new google.maps.LatLng(initLatitude, initLongitude);
-
-            initialize();
-        }
-    });
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            let initLatitude = 33.6845673;
+            let initLongitude = -117.82650490000003;
+            if(status === google.maps.GeocoderStatus.OK) {
+                initLatitude = results[0].geometry.location.lat();
+                initLongitude = results[0].geometry.location.lng();
+            }
+                center = new google.maps.LatLng(initLatitude, initLongitude);
+                initialize();
+           
+           
+        });
 }
 
 
