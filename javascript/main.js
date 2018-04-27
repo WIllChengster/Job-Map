@@ -120,8 +120,7 @@ class startSearch {
             console.log('getJobdata resolved', resultData);
             this.jobData = resultData;
             if (findJobs.jobData.results.length === 0) {
-                $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
-
+                throw "no results for job search";
             } else {
                 return cleanAndPopulateMarkers();
             }
@@ -134,7 +133,8 @@ class startSearch {
             $('.spinner').toggleClass('toggleDisplay');
         })
             .catch(error => {
-            console.log("error in then chain, probably getJob", error);
+            console.log("error in then chain, error is: ", error);
+            $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
             $('#headerSearch').removeClass('noTouch');
             if (!($('.spinner').hasClass('toggleDisplay'))) {
                 $('.spinner').toggleClass('toggleDisplay');
