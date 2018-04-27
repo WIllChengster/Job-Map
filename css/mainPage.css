@@ -10,7 +10,7 @@ h4{
     font-family: 'Libre Baskerville', serif;
 }
 h4:hover{
-    color:white;
+    color:lightslategray;
     text-shadow: 0px 0px 1vh black;
     text-decoration-style: double
 }
@@ -204,6 +204,7 @@ a{
     color: lightslategray;
     background-color:black;
     box-shadow:1px 0px 5px 0px black ;
+    color:white;
     transition:ease-in-out .5s;
 }
 .jobStats{
@@ -212,7 +213,7 @@ a{
     grid-column:9/11;
     grid-row:2/11;
     z-index:18;
-    color: lightslategray;
+    color: white;
     border:2px solid black;
     background-color:black;
     box-shadow:-1px 0px 5px 0px black ;
