@@ -17,6 +17,7 @@ function initializeApp(){
  * @calls different functions on each click
  */
 function attachEventHandlers(){
+    $("#dev").click(devSearch)
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
     $('.inner').click(makeMenuSpin);
@@ -35,7 +36,18 @@ function attachEventHandlers(){
     $('.matt').on('mouseenter mouseleave', aboutMatt);
 }
 
-/***************************************************************************************************
+
+/****************************************************************************************************
+ * devSearch - for developmental purposes. doesn't spam google api, but hides landing.
+ * @params none
+ * @returns {undefined} none
+ * 
+  */
+function devSearch(){
+    landingHide()
+}
+
+ /***************************************************************************************************
  * landingSearch - processes our landing page fields, and validates input
  * @param none
  * @returns {undefined} none
