@@ -6,31 +6,33 @@
 * @returns passes coordinates to the initialize function
 */
 
+var map;
+var initLatitude = null;
+var initLongitude = null;
+var markers = [];
+var center = null;
+var indexesToBeSpliced = [];
+
+
+
 function createInitialMapCenter(){
     
     var geocoder = new google.maps.Geocoder();
-        var address = findJobs.location;
+    var address = findJobs.location;
 
-        geocoder.geocode({ 'address': address }, function (results, status) {
+    geocoder.geocode({ 'address': address }, function (results, status, markers) {
 
-            console.log('results:', results)
+        if (status == google.maps.GeocoderStatus.OK) {
 
-            if (status == google.maps.GeocoderStatus.OK) {
-                var initLatitude = results[0].geometry.location.lat();
-                var initLongitude = results[0].geometry.location.lng();
-                center = new google.maps.LatLng(initLatitude, initLongitude);
-                initialize();
-            }
-        });
+            var initLatitude = results[0].geometry.location.lat();
+            var initLongitude = results[0].geometry.location.lng();
+            center = new google.maps.LatLng(initLatitude, initLongitude);
+
+            initialize();
+        }
+    });
 }
-  var map;
-  var initLatitude = null;
-  var initLongitude = null;
 
-  var center = null;
-  var indexesToBeSpliced = [];
-  var markers = [];
-  
 
 /***************************************************************************************************
 * initialize() - takes the coordinates passed from createInitialMapCenter and creates the map
@@ -185,6 +187,7 @@ function createInitialMapCenter(){
       });
   }
 
+
 /***************************************************************************************************
 * searchCompany - retrieves company names from the placesData object
 * @param placesData {array} the array of businesses found in Google Places Search
@@ -196,7 +199,7 @@ function createInitialMapCenter(){
            var service;
            var request = {
                location: center,
-               radius: '50000',
+               radius: '25000',
                name: companyName
            };
 
@@ -277,6 +280,19 @@ function renderAllMarkers(){
           markers.push(marker);
           previousName = placesData[i].name;
     }
+
+    recenterMap();
+}
+
+function recenterMap(){
+    console.log(markers);
+    var bounds = new google.maps.LatLngBounds();
+
+    for (var i = 0; i < markers.length; i++) {
+    bounds.extend(markers[i].getPosition());
+    }
+
+    map.fitBounds(bounds);
 }
 
 /***************************************************************************************************
