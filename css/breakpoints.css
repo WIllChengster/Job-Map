@@ -1,0 +1,24 @@
+@media only screen and (max-width: 1000px){
+    .heroText {
+        font-size:7vw
+    }
+}
+@media(max-width:575.98px){
+    /* div.tooSmall{
+        z-index:999;
+        grid-column:1/11;
+        grid-row:1/11;
+        display:block;
+        background-color:#a5fff7;
+        text-align:center;
+    } */
+    .sidebar{
+        grid-column: 1/11;
+    }
+    .jobStats{
+        grid-column: 1/11;
+    }
+    .fa-arrow-left{
+        color:white;
+    }
+}

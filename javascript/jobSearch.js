@@ -6,7 +6,7 @@ let listingClicked;
 // *@returns none
 // *@calls expandJobDescription, jobStatsMenuToggle
 function populateJobDisplay(){
-    $('#leftSideBar').empty();
+    $('.jobSideBar').remove();
     for(let i = 0; i < placesData.length; i++) {
         var jobSideBar = $('<div>', {
             'class': 'jobSideBar'
