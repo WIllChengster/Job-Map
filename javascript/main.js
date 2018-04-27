@@ -50,10 +50,13 @@ function landingSearch() {
         tooltipShow('.jobLocationTooltip');
     if (title !== '' && location !== ''){
         newSearch(title, location);
+        $('#jTitleHeader').val(title);
+        $('#jLocalHeader').val(location);
         $('#jSearch').addClass('noTouch');
         createInitialMapCenter();
         setTimeout(landingHide, 500);
     }
+
 }
 /***************************************************************************************************
  * headerSearch - processes our header search fields, and validates input
@@ -73,6 +76,15 @@ function headerSearch() {
         newSearch(title, location);
         createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
+        if($('#leftSideBar').hasClass('sidebarHide')){
+            jobListMenuToggle();
+        }
+        if($('.jobStats').children().length > 0){
+            $('.expandedInfo').remove();
+        }
+        if(!$('.jobStats').hasClass('jobStatsHide')){
+            jobStatsMenuToggle();
+        }
     }
 }
 
