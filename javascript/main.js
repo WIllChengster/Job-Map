@@ -6,7 +6,7 @@ $(document).ready(initializeApp);
  * @returns {undefined} none
  * @calls attachEventHandlers()
  */
-function initializeApp(){
+function initializeApp() {
     attachEventHandlers();
 }
 
@@ -16,7 +16,7 @@ function initializeApp(){
  * @returns {undefined} none
  * @calls different functions on each click
  */
-function attachEventHandlers(){
+function attachEventHandlers() {
     $("#dev").click(devSearch)
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
@@ -27,7 +27,7 @@ function attachEventHandlers(){
     $('.aboutUs, .escape').click( ()=>{
         $('.aboutContainer').toggleClass('hideAbout');
     }); */
-    $('.modalEscape').click( () => {
+    $('.modalEscape').click(() => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
     $('.brian').on('mouseenter mouseleave', aboutBrian);
@@ -43,16 +43,16 @@ function attachEventHandlers(){
  * @returns {undefined} none
  * 
   */
-function devSearch(){
+function devSearch() {
     landingHide()
 }
 
- /***************************************************************************************************
- * landingSearch - processes our landing page fields, and validates input
- * @param none
- * @returns {undefined} none
- * @calls newSearch, createInitialMapCenter, LandingHide
- */
+/***************************************************************************************************
+* landingSearch - processes our landing page fields, and validates input
+* @param none
+* @returns {undefined} none
+* @calls newSearch, createInitialMapCenter, LandingHide
+*/
 function landingSearch() {
     let title = $('#jTitle').val();
     let location = $('#jLocal').val();
@@ -60,10 +60,9 @@ function landingSearch() {
         tooltipShow('.jobTitleTooltip');
     if (location === '')
         tooltipShow('.jobLocationTooltip');
-    if (title !== '' && location !== ''){
+    if (title !== '' && location !== '') {
         newSearch(title, location);
         $('#jSearch').addClass('noTouch');
-        createInitialMapCenter();
         setTimeout(landingHide, 500);
     }
 }
@@ -80,10 +79,9 @@ function headerSearch() {
         tooltipShow('.headerJobTitleTooltip')
     if (location === '')
         tooltipShow('.headerJobLocationTooltip')
-    if (title !== '' && location !== ''){
+    if (title !== '' && location !== '') {
         removeMarkers();
         newSearch(title, location);
-        createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
     }
 }
@@ -96,7 +94,7 @@ var findJobs = null;
  * @returns {undefined} none
  * @calls startSearch, initializeSearch
  */
-function newSearch(title, location){
+function newSearch(title, location) {
     findJobs = new startSearch(title, location);
 }
 /***************************************************************************************************
@@ -107,67 +105,70 @@ function newSearch(title, location){
  * @properties startSearch, initializeSearch
  *
  */
-class startSearch{
+class startSearch {
     constructor(title, location) {
         this.title = title;
         this.location = location;
         this.jobData = {};
         this.getJobData.bind(this);
+        createInitialMapCenter(this.location);
         this.initializeSearch.call(this);
     }
-    initializeSearch(){
+    initializeSearch() {
         $('.spinner').toggleClass('toggleDisplay');
         this.getJobData().then(resultData => {
-            console.log('getJobdata resolved');
+            console.log('getJobdata resolved', resultData);
             this.jobData = resultData;
-            if(findJobs.jobData.results.length === 0){
+            if (findJobs.jobData.results.length === 0) {
                 $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
+
             } else {
-            return cleanAndPopulateMarkers();
+                return cleanAndPopulateMarkers();
             }
-        }).then(resultOfMarkers =>{
+        }).then(resultOfMarkers => {
+            console.log("in second then ", resultOfMarkers);
             mapPlacesToJobData();
             renderAllMarkers();
             populateJobDisplay();
             $('#headerSearch').removeClass('noTouch');
             $('.spinner').toggleClass('toggleDisplay');
         })
-        .catch(error => {
+            .catch(error => {
             console.log("error in then chain, probably getJob", error);
             $('#headerSearch').removeClass('noTouch');
-            if(!($('.spinner').hasClass('toggleDisplay'))){
+            if (!($('.spinner').hasClass('toggleDisplay'))) {
                 $('.spinner').toggleClass('toggleDisplay');
             }
             indexesToBeSpliced = [];
-        });
-         }
-    getJobData(){
-        console.log('getJobData called');
-        return new Promise( function(resolve, reject){
-            // var where = findJobs.location; 
-            // var title = findJobs.title; 
-            console.log("title and location are: ", this.title, this.location);
-            debugger;
-            var ajaxConfig = {
-                dataType: 'json',
-                url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
-                data: {
-                    app_id: '087b8936',
-                    app_key: 'aa9f2f16c163aba979e6fb42412f734a',
-                    what: this.title, 
-                    where: this.location, 
-                    'content-type': 'application/json',
-                    results_per_page: 10
-                },
-                method: 'GET',
-                success: function (result) {
-                    resolve(result);
-                },
-                error: function (result) {
-                    reject(result);
-                }
-            }
-            $.ajax(ajaxConfig);
+        })
+            .catch(error => {
+            console.log('second catch statement. Error is: ', error);
         });
     }
-}
+        getJobData(){
+            const location = this.location;
+            const title = this.title;
+            return new Promise(function (resolve, reject) {
+                var ajaxConfig = {
+                    dataType: 'json',
+                    url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
+                    data: {
+                        app_id: '087b8936',
+                        app_key: 'aa9f2f16c163aba979e6fb42412f734a',
+                        what: title,
+                        where: location,
+                        'content-type': 'application/json',
+                        results_per_page: 10
+                    },
+                    method: 'GET',
+                    success: function (result) {
+                        resolve(result);
+                    },
+                    error: function (result) {
+                        reject(result);
+                    }
+                }
+                $.ajax(ajaxConfig);
+            });
+        }
+    }
