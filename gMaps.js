@@ -13,6 +13,8 @@ function createInitialMapCenter(){
 
         geocoder.geocode({ 'address': address }, function (results, status) {
 
+            console.log('results:', results)
+
             if (status == google.maps.GeocoderStatus.OK) {
                 var initLatitude = results[0].geometry.location.lat();
                 var initLongitude = results[0].geometry.location.lng();
