@@ -45,6 +45,7 @@ function attachEventHandlers() {
  */
 var landingSearchFlag = 0;
 function landingSearch() {
+    
     if (landingSearchFlag === 0) {
         let title = $('#jTitle').val();
         let location = $('#jLocal').val();
@@ -61,7 +62,8 @@ function landingSearch() {
             createInitialMapCenter();
             setTimeout(landingHide, 500);
         }
-
+    }
+}
 function devSearch() {
     landingHide()
 }
