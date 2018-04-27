@@ -10,7 +10,7 @@
 div.bg{
     grid-column: 1/11;
     grid-row: 1/11;
-    background-image: url(blueBG.jpg);
+    background-image: url(../assets/images/blueBG.jpg);
     -webkit-filter: blur(5px);
     filter:blur(5px);
     z-index:-1;
