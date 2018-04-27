@@ -6,7 +6,7 @@ $(document).ready(initializeApp);
  * @returns {undefined} none
  * @calls attachEventHandlers()
  */
-function initializeApp(){
+function initializeApp() {
     attachEventHandlers();
 }
 
@@ -16,7 +16,7 @@ function initializeApp(){
  * @returns {undefined} none
  * @calls different functions on each click
  */
-function attachEventHandlers(){
+function attachEventHandlers() {
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
     $('.inner').click(makeMenuSpin);
@@ -26,7 +26,7 @@ function attachEventHandlers(){
     $('.aboutUs, .escape').click( ()=>{
         $('.aboutContainer').toggleClass('hideAbout');
     }); */
-    $('.modalEscape').click( () => {
+    $('.modalEscape').click(() => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
     $('.brian').on('mouseenter mouseleave', aboutBrian);
@@ -41,22 +41,25 @@ function attachEventHandlers(){
  * @returns {undefined} none
  * @calls newSearch, createInitialMapCenter, LandingHide
  */
+var landingSearchFlag = 0;
 function landingSearch() {
-    let title = $('#jTitle').val();
-    let location = $('#jLocal').val();
-    if (title === '')
-        tooltipShow('.jobTitleTooltip');
-    if (location === '')
-        tooltipShow('.jobLocationTooltip');
-    if (title !== '' && location !== ''){
-        newSearch(title, location);
-        $('#jTitleHeader').val(title);
-        $('#jLocalHeader').val(location);
-        $('#jSearch').addClass('noTouch');
-        createInitialMapCenter();
-        setTimeout(landingHide, 500);
+    if (landingSearchFlag === 0) {
+        let title = $('#jTitle').val();
+        let location = $('#jLocal').val();
+        if (title === '')
+            tooltipShow('.jobTitleTooltip');
+        if (location === '')
+            tooltipShow('.jobLocationTooltip');
+        if (title !== '' && location !== '') {
+            newSearch(title, location);
+            $('#jTitleHeader').val(title);
+            $('#jLocalHeader').val(location);
+            $('#jSearch').addClass('noTouch');
+            landingSearchFlag = 1;
+            createInitialMapCenter();
+            setTimeout(landingHide, 500);
+        }
     }
-
 }
 /***************************************************************************************************
  * headerSearch - processes our header search fields, and validates input
@@ -71,18 +74,18 @@ function headerSearch() {
         tooltipShow('.headerJobTitleTooltip')
     if (location === '')
         tooltipShow('.headerJobLocationTooltip')
-    if (title !== '' && location !== ''){
+    if (title !== '' && location !== '') {
         removeMarkers();
         newSearch(title, location);
         createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
-        if($('#leftSideBar').hasClass('sidebarHide')){
+        if ($('#leftSideBar').hasClass('sidebarHide')) {
             jobListMenuToggle();
         }
-        if($('.jobStats').children().length > 0){
+        if ($('.jobStats').children().length > 0) {
             $('.expandedInfo').remove();
         }
-        if(!$('.jobStats').hasClass('jobStatsHide')){
+        if (!$('.jobStats').hasClass('jobStatsHide')) {
             jobStatsMenuToggle();
         }
     }
@@ -96,7 +99,7 @@ var findJobs = null;
  * @returns {undefined} none
  * @calls startSearch, initializeSearch
  */
-function newSearch(title, location){
+function newSearch(title, location) {
     findJobs = new startSearch(title, location);
     $('.spinner').toggleClass('toggleDisplay');
     findJobs.initializeSearch();
@@ -109,37 +112,37 @@ function newSearch(title, location){
  * @properties startSearch, initializeSearch
  *
  */
-class startSearch{
+class startSearch {
     constructor(title, location) {
         this.title = title;
         this.location = location;
         this.jobData = {};
     }
-    initializeSearch(){
+    initializeSearch() {
         this.getJobData().then(resultData => {
             this.jobData = resultData;
-            if(findJobs.jobData.results.length === 0){
+            if (findJobs.jobData.results.length === 0) {
                 $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
             } else {
-            return cleanAndPopulateMarkers();
+                return cleanAndPopulateMarkers();
             }
-        }).then(resultOfMarkers =>{
+        }).then(resultOfMarkers => {
             mapPlacesToJobData();
             renderAllMarkers();
             populateJobDisplay();
             $('#headerSearch').removeClass('noTouch');
             $('.spinner').toggleClass('toggleDisplay');
         })
-        .catch(error => {
-            $('#headerSearch').removeClass('noTouch');
-            if(!($('.spinner').hasClass('toggleDisplay'))){
-                $('.spinner').toggleClass('toggleDisplay');
-            }
-            indexesToBeSpliced = [];
-        });
-         }
-    getJobData(){
-        return new Promise( function(resolve, reject){
+            .catch(error => {
+                $('#headerSearch').removeClass('noTouch');
+                if (!($('.spinner').hasClass('toggleDisplay'))) {
+                    $('.spinner').toggleClass('toggleDisplay');
+                }
+                indexesToBeSpliced = [];
+            });
+    }
+    getJobData() {
+        return new Promise(function (resolve, reject) {
             var where = findJobs.location; //Placeholders, Will be changed later.
             var what = findJobs.title; //Placeholders, Will be changed later.
             var ajaxConfig = {

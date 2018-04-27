@@ -217,6 +217,7 @@ a{
     background: rgba(0, 0, 0, 0.9);
     box-shadow:-1px 0px 5px 0px black ;
     transition:ease-in-out .5s;
+    font-size: 1.2em;
 }
 .expandedInfo{
     margin-left: 1.5vh;
