@@ -6,6 +6,11 @@
 * @returns passes coordinates to the initialize function
 */
 
+var map;
+var markers = [];
+var center = null;
+var indexesToBeSpliced = [];
+
 function createInitialMapCenter(location){
     
     var geocoder = new google.maps.Geocoder();
@@ -24,14 +29,7 @@ function createInitialMapCenter(location){
            
         });
 }
-  var map;
-  var initLatitude = null;
-  var initLongitude = null;
 
-  var center = null;
-  var indexesToBeSpliced = [];
-  var markers = [];
-  
 
 /***************************************************************************************************
 * initialize() - takes the coordinates passed from createInitialMapCenter and creates the map
@@ -186,6 +184,7 @@ function createInitialMapCenter(location){
       });
   }
 
+
 /***************************************************************************************************
 * searchCompany - retrieves company names from the placesData object
 * @param placesData {array} the array of businesses found in Google Places Search
@@ -197,7 +196,7 @@ function createInitialMapCenter(location){
            var service;
            var request = {
                location: center,
-               radius: '50000',
+               radius: '25000',
                name: companyName
            };
 
@@ -278,6 +277,19 @@ function renderAllMarkers(){
           markers.push(marker);
           previousName = placesData[i].name;
     }
+
+    recenterMap();
+}
+
+function recenterMap(){
+    console.log(markers);
+    var bounds = new google.maps.LatLngBounds();
+
+    for (var i = 0; i < markers.length; i++) {
+    bounds.extend(markers[i].getPosition());
+    }
+
+    map.fitBounds(bounds);
 }
 
 /***************************************************************************************************
