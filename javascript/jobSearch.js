@@ -48,10 +48,10 @@ function expandJobDescription(indexOfSelection){
     var expandedInfo = $('<div>', {
         'class': 'expandedInfo',
     });
-    var eInfoJobTitle = $('<h4>', {
+    var eInfoJobTitle = $('<h2>', {
         html: findJobs.jobData.results[indexOfSelection].title
     });
-    var jobCompany = $('<h7>', {
+    var jobCompany = $('<h3>', {
         text: findJobs.jobData.results[indexOfSelection].company.display_name
     });
     var jobDescription = $('<p>', {

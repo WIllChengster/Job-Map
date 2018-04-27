@@ -41,8 +41,27 @@ function attachEventHandlers() {
  * devSearch - for developmental purposes. doesn't spam google api, but hides landing.
  * @params none
  * @returns {undefined} none
- * 
-  */
+ * @calls newSearch, createInitialMapCenter, LandingHide
+ */
+var landingSearchFlag = 0;
+function landingSearch() {
+    if (landingSearchFlag === 0) {
+        let title = $('#jTitle').val();
+        let location = $('#jLocal').val();
+        if (title === '')
+            tooltipShow('.jobTitleTooltip');
+        if (location === '')
+            tooltipShow('.jobLocationTooltip');
+        if (title !== '' && location !== '') {
+            newSearch(title, location);
+            $('#jTitleHeader').val(title);
+            $('#jLocalHeader').val(location);
+            $('#jSearch').addClass('noTouch');
+            landingSearchFlag = 1;
+            createInitialMapCenter();
+            setTimeout(landingHide, 500);
+        }
+
 function devSearch() {
     landingHide()
 }
@@ -67,7 +86,6 @@ function landingSearch() {
         $('#jSearch').addClass('noTouch');
         setTimeout(landingHide, 500);
     }
-
 }
 /***************************************************************************************************
  * headerSearch - processes our header search fields, and validates input
@@ -86,13 +104,13 @@ function headerSearch() {
         removeMarkers();
         newSearch(title, location);
         $('#headerSearch').addClass('noTouch');
-        if($('#leftSideBar').hasClass('sidebarHide')){
+        if ($('#leftSideBar').hasClass('sidebarHide')) {
             jobListMenuToggle();
         }
-        if($('.jobStats').children().length > 0){
+        if ($('.jobStats').children().length > 0) {
             $('.expandedInfo').remove();
         }
-        if(!$('.jobStats').hasClass('jobStatsHide')){
+        if (!$('.jobStats').hasClass('jobStatsHide')) {
             jobStatsMenuToggle();
         }
     }
@@ -132,6 +150,7 @@ class startSearch {
             console.log('getJobdata resolved', resultData);
             this.jobData = resultData;
             if (findJobs.jobData.results.length === 0) {
+
                 throw "no results for job search";
             } else {
                 return cleanAndPopulateMarkers();
