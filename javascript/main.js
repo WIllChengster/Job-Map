@@ -86,8 +86,6 @@ var findJobs = null;
  */
 function newSearch(title, location){
     findJobs = new startSearch(title, location);
-    $('.spinner').toggleClass('toggleDisplay');
-    findJobs.initializeSearch();
 }
 /***************************************************************************************************
  * StartSearch - hold our api calls and promises
@@ -102,9 +100,13 @@ class startSearch{
         this.title = title;
         this.location = location;
         this.jobData = {};
+        this.getJobData.bind(this);
+        this.initializeSearch.call(this);
     }
     initializeSearch(){
+        $('.spinner').toggleClass('toggleDisplay');
         this.getJobData().then(resultData => {
+            console.log('getJobdata resolved');
             this.jobData = resultData;
             if(findJobs.jobData.results.length === 0){
                 $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
@@ -119,6 +121,7 @@ class startSearch{
             $('.spinner').toggleClass('toggleDisplay');
         })
         .catch(error => {
+            console.log("error in then chain, probably getJob", error);
             $('#headerSearch').removeClass('noTouch');
             if(!($('.spinner').hasClass('toggleDisplay'))){
                 $('.spinner').toggleClass('toggleDisplay');
@@ -127,17 +130,20 @@ class startSearch{
         });
          }
     getJobData(){
+        console.log('getJobData called');
         return new Promise( function(resolve, reject){
-            var where = findJobs.location; //Placeholders, Will be changed later.
-            var what = findJobs.title; //Placeholders, Will be changed later.
+            // var where = findJobs.location; 
+            // var title = findJobs.title; 
+            console.log("title and location are: ", this.title, this.location);
+            debugger;
             var ajaxConfig = {
                 dataType: 'json',
                 url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
                 data: {
                     app_id: '087b8936',
                     app_key: 'aa9f2f16c163aba979e6fb42412f734a',
-                    what: what, //Placeholders, Will be changed later.
-                    where: where, //Placeholders, Will be changed later.
+                    what: this.title, 
+                    where: this.location, 
                     'content-type': 'application/json',
                     results_per_page: 10
                 },
