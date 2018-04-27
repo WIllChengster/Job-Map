@@ -38,7 +38,7 @@ div.bg{
         font-size:7vw
     }
 }
-@media only screen and (max-width:500px){
+@media(max-width:500px){
     div.tooSmall{
         z-index:999;
         grid-column:1/11;

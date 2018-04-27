@@ -10,7 +10,7 @@ h4{
     font-family: 'Libre Baskerville', serif;
 }
 h4:hover{
-    color:white;
+    color:lightslategray;
     text-shadow: 0px 0px 1vh black;
     text-decoration-style: double
 }
@@ -201,7 +201,7 @@ a{
     grid-row: 2/11;
     border: 2px solid black;
     z-index:11;
-    color: lightslategray;
+    color: white;
     background: rgba(0, 0, 0, 0.9);
     box-shadow:1px 0px 5px 0px black ;
     transition:ease-in-out .5s;
@@ -212,7 +212,7 @@ a{
     grid-column:9/11;
     grid-row:2/11;
     z-index:11;
-    color: lightslategray;
+    color: white;
     border:2px solid black;
     background: rgba(0, 0, 0, 0.9);
     box-shadow:-1px 0px 5px 0px black ;

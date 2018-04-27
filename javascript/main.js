@@ -17,6 +17,7 @@ function initializeApp() {
  * @calls different functions on each click
  */
 function attachEventHandlers() {
+    $("#dev").click(devSearch)
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
     $('.inner').click(makeMenuSpin);
@@ -35,9 +36,10 @@ function attachEventHandlers() {
     $('.matt').on('mouseenter mouseleave', aboutMatt);
 }
 
-/***************************************************************************************************
- * landingSearch - processes our landing page fields, and validates input
- * @param none
+
+/****************************************************************************************************
+ * devSearch - for developmental purposes. doesn't spam google api, but hides landing.
+ * @params none
  * @returns {undefined} none
  * @calls newSearch, createInitialMapCenter, LandingHide
  */
@@ -59,6 +61,30 @@ function landingSearch() {
             createInitialMapCenter();
             setTimeout(landingHide, 500);
         }
+
+function devSearch() {
+    landingHide()
+}
+
+/***************************************************************************************************
+* landingSearch - processes our landing page fields, and validates input
+* @param none
+* @returns {undefined} none
+* @calls newSearch, createInitialMapCenter, LandingHide
+*/
+function landingSearch() {
+    let title = $('#jTitle').val();
+    let location = $('#jLocal').val();
+    if (title === '')
+        tooltipShow('.jobTitleTooltip');
+    if (location === '')
+        tooltipShow('.jobLocationTooltip');
+    if (title !== '' && location !== '') {
+        newSearch(title, location);
+        $('#jTitleHeader').val(title);
+        $('#jLocalHeader').val(location);
+        $('#jSearch').addClass('noTouch');
+        setTimeout(landingHide, 500);
     }
 }
 /***************************************************************************************************
@@ -77,7 +103,6 @@ function headerSearch() {
     if (title !== '' && location !== '') {
         removeMarkers();
         newSearch(title, location);
-        createInitialMapCenter();
         $('#headerSearch').addClass('noTouch');
         if ($('#leftSideBar').hasClass('sidebarHide')) {
             jobListMenuToggle();
@@ -101,8 +126,6 @@ var findJobs = null;
  */
 function newSearch(title, location) {
     findJobs = new startSearch(title, location);
-    $('.spinner').toggleClass('toggleDisplay');
-    findJobs.initializeSearch();
 }
 /***************************************************************************************************
  * StartSearch - hold our api calls and promises
@@ -117,16 +140,23 @@ class startSearch {
         this.title = title;
         this.location = location;
         this.jobData = {};
+        this.getJobData.bind(this);
+        createInitialMapCenter(this.location);
+        this.initializeSearch.call(this);
     }
     initializeSearch() {
+        $('.spinner').toggleClass('toggleDisplay');
         this.getJobData().then(resultData => {
+            console.log('getJobdata resolved', resultData);
             this.jobData = resultData;
             if (findJobs.jobData.results.length === 0) {
-                $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
+
+                throw "no results for job search";
             } else {
                 return cleanAndPopulateMarkers();
             }
         }).then(resultOfMarkers => {
+            console.log("in second then ", resultOfMarkers);
             mapPlacesToJobData();
             renderAllMarkers();
             populateJobDisplay();
@@ -134,37 +164,42 @@ class startSearch {
             $('.spinner').toggleClass('toggleDisplay');
         })
             .catch(error => {
-                $('#headerSearch').removeClass('noTouch');
-                if (!($('.spinner').hasClass('toggleDisplay'))) {
-                    $('.spinner').toggleClass('toggleDisplay');
-                }
-                indexesToBeSpliced = [];
-            });
-    }
-    getJobData() {
-        return new Promise(function (resolve, reject) {
-            var where = findJobs.location; //Placeholders, Will be changed later.
-            var what = findJobs.title; //Placeholders, Will be changed later.
-            var ajaxConfig = {
-                dataType: 'json',
-                url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
-                data: {
-                    app_id: '087b8936',
-                    app_key: 'aa9f2f16c163aba979e6fb42412f734a',
-                    what: what, //Placeholders, Will be changed later.
-                    where: where, //Placeholders, Will be changed later.
-                    'content-type': 'application/json',
-                    results_per_page: 10
-                },
-                method: 'GET',
-                success: function (result) {
-                    resolve(result);
-                },
-                error: function (result) {
-                    reject(result);
-                }
+            console.log("error in then chain, error is: ", error);
+            $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
+            $('#headerSearch').removeClass('noTouch');
+            if (!($('.spinner').hasClass('toggleDisplay'))) {
+                $('.spinner').toggleClass('toggleDisplay');
             }
-            $.ajax(ajaxConfig);
+            indexesToBeSpliced = [];
+        })
+            .catch(error => {
+            console.log('second catch statement. Error is: ', error);
         });
     }
-}
+        getJobData(){
+            const location = this.location;
+            const title = this.title;
+            return new Promise(function (resolve, reject) {
+                var ajaxConfig = {
+                    dataType: 'json',
+                    url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
+                    data: {
+                        app_id: '087b8936',
+                        app_key: 'aa9f2f16c163aba979e6fb42412f734a',
+                        what: title,
+                        where: location,
+                        'content-type': 'application/json',
+                        results_per_page: 10
+                    },
+                    method: 'GET',
+                    success: function (result) {
+                        resolve(result);
+                    },
+                    error: function (result) {
+                        reject(result);
+                    }
+                }
+                $.ajax(ajaxConfig);
+            });
+        }
+    }
