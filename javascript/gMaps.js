@@ -199,7 +199,7 @@ function createInitialMapCenter(location){
 *
 */
 
-  async function searchCompany(companyName, i) {
+  function searchCompany(companyName, i) {
        return new Promise(function(resolve, reject) {
            var service;
            var request = {
