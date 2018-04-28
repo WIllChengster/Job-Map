@@ -6,11 +6,17 @@
 * @returns passes coordinates to the initialize function
 */
 
-function createInitialMapCenter(location){
-    
-    var geocoder = new google.maps.Geocoder();
-        var address = location;
+var map;
+var markers = [];
+var center = null;
+var indexesToBeSpliced = [];
 
+function createInitialMapCenter(location){
+    return new Promise(function (resolve, reject){
+        
+        var geocoder = new google.maps.Geocoder();
+        var address = location;
+        
         geocoder.geocode({ 'address': address }, function (results, status) {
             let initLatitude = 33.6845673;
             let initLongitude = -117.82650490000003;
@@ -18,20 +24,18 @@ function createInitialMapCenter(location){
                 initLatitude = results[0].geometry.location.lat();
                 initLongitude = results[0].geometry.location.lng();
             }
-                center = new google.maps.LatLng(initLatitude, initLongitude);
-                initialize();
-           
-           
+            center = new google.maps.LatLng(initLatitude, initLongitude);
+            
         });
+        if( initialize()){
+            resolve('map created');
+        }
+        else{
+        reject('map failed');
+        }
+    });
 }
-  var map;
-  var initLatitude = null;
-  var initLongitude = null;
 
-  var center = null;
-  var indexesToBeSpliced = [];
-  var markers = [];
-  
 
 /***************************************************************************************************
 * initialize() - takes the coordinates passed from createInitialMapCenter and creates the map
@@ -42,8 +46,9 @@ function createInitialMapCenter(location){
   function initialize() {
 
       map = new google.maps.Map(document.getElementById('map'), {
+          maxZoom: 16,
           center: center,
-          zoom: 11,
+          zoom: 10,
           styles: 
           [
             {
@@ -184,7 +189,9 @@ function createInitialMapCenter(location){
             }
         ]
       });
+      return true;
   }
+
 
 /***************************************************************************************************
 * searchCompany - retrieves company names from the placesData object
@@ -197,20 +204,24 @@ function createInitialMapCenter(location){
            var service;
            var request = {
                location: center,
-               radius: '50000',
+               radius: '25000',
                name: companyName
            };
-
+           if(map === 'undefined'){
+               
+           }
            service = new google.maps.places.PlacesService(map);
            service.nearbySearch(request, addToPlacesData);
-
+           
            function addToPlacesData(results, status) {
                if (status !== undefined && status !== 'ZERO_RESULTS') {
                    if (status == google.maps.places.PlacesServiceStatus.OK) {
-                       placesData[i] = results[0];
+                    //    placesData[i] = results[0];
+                       placesData.push({result:results[0], index:i});
                        resolve('successfully added place data')
                    }
                    else {
+
                        resolve(status);
                    }
                }
@@ -228,11 +239,13 @@ function createInitialMapCenter(location){
 
 function mapPlacesToJobData(){
     for(let i = 0; i < placesData.length; i++){
-         if(placesData[i] !== undefined){
-            findJobs.jobData.results[i].geometry = placesData[i].geometry;
-            findJobs.jobData.results[i].address = placesData[i].vicinity;
+        if(placesData[i] !== undefined){
+            let index = placesData[i].index;
+            findJobs.jobData.results[index].geometry = placesData[i].result.geometry;
+            findJobs.jobData.results[index].address = placesData[i].result.vicinity;
             }
     }
+
 }
 
 /***************************************************************************************************
@@ -246,7 +259,7 @@ function renderAllMarkers(){
       var markerCounter = 1;
       var previousName = '';
       for(let i = 0; i < placesData.length; i++){
-          if(placesData[i].name === previousName){
+          if(placesData[i].result.name === previousName){
               var marker = new google.maps.Marker({
                   position: {
                       lat: results[i].geometry.location.lat() + 0.00002,
@@ -276,8 +289,20 @@ function renderAllMarkers(){
           });
           markerCounter++;
           markers.push(marker);
-          previousName = placesData[i].name;
+          previousName = placesData[i].result.name;
     }
+
+    recenterMap();
+}
+
+function recenterMap(){
+    var bounds = new google.maps.LatLngBounds();
+
+    for (var i = 0; i < markers.length; i++) {
+    bounds.extend(markers[i].getPosition());
+    }
+
+    map.fitBounds(bounds);
 }
 
 /***************************************************************************************************
@@ -289,14 +314,14 @@ function renderAllMarkers(){
 function cleanAndPopulateMarkers(){
     return new Promise(function(resolve, reject) {
         var promiseArr = [];
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < findJobs.jobData.results.length; i++) {
             promiseArr.push(searchCompany(findJobs.jobData.results[i].company.display_name, i));
         }
         Promise.all(promiseArr)
     .then(values => {
-        spliceOutNoResults();
-        resolve('successfully spliced data');
+        resolve('resolved company coordinates lookup');
     }).catch(reason => {
+        console.log('error catch for markers');
             reject('uncaught promise' + reason);
     });
     });
@@ -308,9 +333,10 @@ function cleanAndPopulateMarkers(){
 */
 
 function spliceOutNoResults(){
+    indexesToBeSpliced.sort().reverse();
       for(let i = 0; i < indexesToBeSpliced.length; i++){
           findJobs.jobData.results.splice(indexesToBeSpliced[i], 1);
-          placesData.splice(indexesToBeSpliced[i], 1);
+        //   placesData.splice(indexesToBeSpliced[i], 1);
       }
 }
 

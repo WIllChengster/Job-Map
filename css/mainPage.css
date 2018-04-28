@@ -147,16 +147,6 @@ h4:hover{
     
 }
 
-.aboutUsContainer{
-    z-index:11;
-    /* margin-left:3vh; */
-}
-
-.helpContainer{
-    z-index:11;
-    margin-right: 10vh;
-}
-
 a{
     text-decoration: none;
     color:white;
@@ -169,6 +159,12 @@ a{
     margin-top: 1.5vh;
     margin-left:1.5vh;
     align-self: flex-start;
+}
+
+.businessIcon {
+    width: 6%;
+    margin-top: 5%;
+    margin-right: 3%;
 }
 
 /* width */
@@ -218,6 +214,7 @@ a{
     background-color:black;
     box-shadow:-1px 0px 5px 0px black ;
     transition:ease-in-out .5s;
+    font-size: 1.2em;
 }
 .expandedInfo{
     margin-left: 1.5vh;
