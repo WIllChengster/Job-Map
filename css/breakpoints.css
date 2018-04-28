@@ -19,7 +19,13 @@
         grid-column: 1/11;
     }
     .listReturn{
+        cursor:pointer;
         color:white;
         display:block;
+    }
+    .listReturn:hover{
+        color:lightslategray;
+        text-shadow: 0px 0px 1vh black;
+        text-decoration-style: double
     }
 }
