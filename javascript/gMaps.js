@@ -204,7 +204,7 @@ function createInitialMapCenter(location){
            var service;
            var request = {
                location: center,
-               radius: '25000',
+               radius: '8000',
                name: companyName
            };
            if(map === 'undefined'){
