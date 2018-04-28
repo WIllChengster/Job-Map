@@ -139,17 +139,22 @@ function newSearch(title, location) {
  */
 class startSearch {
     constructor(title, location) {
+        placesData = [];
+        indexesToBeSpliced = [];
         this.title = title;
         this.location = location;
         this.jobData = {};
         this.getJobData.bind(this);
-        createInitialMapCenter(this.location);
-        this.initializeSearch.call(this);
+        createInitialMapCenter(this.location).then(result =>{
+            this.initializeSearch.call(this);
+        })
+        .catch(err =>{
+        console.log("map error: ", err);
+        });
     }
     initializeSearch() {
         $('.spinner').toggleClass('toggleDisplay');
         this.getJobData().then(resultData => {
-            console.log('getJobdata resolved', resultData);
             this.jobData = resultData;
             if (findJobs.jobData.results.length === 0) {
 
@@ -158,50 +163,50 @@ class startSearch {
                 return cleanAndPopulateMarkers();
             }
         }).then(resultOfMarkers => {
-            console.log("in second then ", resultOfMarkers);
             mapPlacesToJobData();
+            spliceOutNoResults();
             renderAllMarkers();
             populateJobDisplay();
             $('#headerSearch').removeClass('noTouch');
             $('.spinner').toggleClass('toggleDisplay');
         })
             .catch(error => {
-            console.log("error in then chain, error is: ", error);
-            $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
-            $('#headerSearch').removeClass('noTouch');
-            if (!($('.spinner').hasClass('toggleDisplay'))) {
-                $('.spinner').toggleClass('toggleDisplay');
+                console.log("error in promise chain, error is: ", error);
+                $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
+                $('#headerSearch').removeClass('noTouch');
+                if (!($('.spinner').hasClass('toggleDisplay'))) {
+                    $('.spinner').toggleClass('toggleDisplay');
+                }
+                indexesToBeSpliced = [];
+            });
+    }
+    getJobData() {
+        const location = this.location;
+        const title = this.title;
+        return new Promise(function (resolve, reject) {
+            var ajaxConfig = {
+                dataType: 'json',
+                url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
+                data: {
+                    app_id: '087b8936',
+                    app_key: 'aa9f2f16c163aba979e6fb42412f734a',
+                    what: title,
+                    where: location,
+                    'content-type': 'application/json',
+                    results_per_page: 10
+                },
+                method: 'GET',
+                success: function (result) {
+                    resolve(result);
+                },
+                error: function (result) {
+                    reject(result);
+                }
             }
-            indexesToBeSpliced = [];
-        })
-            .catch(error => {
-            console.log('second catch statement. Error is: ', error);
+            $.ajax(ajaxConfig);
         });
     }
-        getJobData(){
-            const location = this.location;
-            const title = this.title;
-            return new Promise(function (resolve, reject) {
-                var ajaxConfig = {
-                    dataType: 'json',
-                    url: 'https://api.adzuna.com/v1/api/jobs/us/search/1',
-                    data: {
-                        app_id: '087b8936',
-                        app_key: 'aa9f2f16c163aba979e6fb42412f734a',
-                        what: title,
-                        where: location,
-                        'content-type': 'application/json',
-                        results_per_page: 10
-                    },
-                    method: 'GET',
-                    success: function (result) {
-                        resolve(result);
-                    },
-                    error: function (result) {
-                        reject(result);
-                    }
-                }
-                $.ajax(ajaxConfig);
-            });
-        }
-    }
+
+}
+
+       
