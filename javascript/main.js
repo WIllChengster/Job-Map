@@ -69,27 +69,6 @@ function devSearch() {
 }
 
 /***************************************************************************************************
-* landingSearch - processes our landing page fields, and validates input
-* @param none
-* @returns {undefined} none
-* @calls newSearch, createInitialMapCenter, LandingHide
-*/
-function landingSearch() {
-    let title = $('#jTitle').val();
-    let location = $('#jLocal').val();
-    if (title === '')
-        tooltipShow('.jobTitleTooltip');
-    if (location === '')
-        tooltipShow('.jobLocationTooltip');
-    if (title !== '' && location !== '') {
-        newSearch(title, location);
-        $('#jTitleHeader').val(title);
-        $('#jLocalHeader').val(location);
-        $('#jSearch').addClass('noTouch');
-        setTimeout(landingHide, 500);
-    }
-}
-/***************************************************************************************************
  * headerSearch - processes our header search fields, and validates input
  * @param none
  * @returns {undefined} none
@@ -105,6 +84,7 @@ function headerSearch() {
     if (title !== '' && location !== '') {
         removeMarkers();
         newSearch(title, location);
+        $('#leftSideBar').children().remove();
         $('#headerSearch').addClass('noTouch');
         if ($('#leftSideBar').hasClass('sidebarHide')) {
             jobListMenuToggle();
