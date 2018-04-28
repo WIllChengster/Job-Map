@@ -6,13 +6,9 @@ let listingClicked;
 // *@returns none
 // *@calls expandJobDescription, jobStatsMenuToggle
 function populateJobDisplay(){
-<<<<<<< HEAD
-    $('.jobSideBar').remove();
-=======
 
     
     $('#leftSideBar').empty();
->>>>>>> 35c373664bd3ddfcfc4565eb8f3fc892675c37a2
     for(let i = 0; i < placesData.length; i++) {
 
         var elem = document.createElement("img");
@@ -61,7 +57,7 @@ function populateJobDisplay(){
 // *@returns none
 // *@calls none
 function expandJobDescription(indexOfSelection){
-    $('.jobStats').empty();
+    $('.expandedInfo').remove();
     var expandedInfo = $('<div>', {
         'class': 'expandedInfo',
     });

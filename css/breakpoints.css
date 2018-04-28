@@ -18,7 +18,8 @@
     .jobStats{
         grid-column: 1/11;
     }
-    .fa-arrow-left{
+    .listReturn{
         color:white;
+        display:block;
     }
 }

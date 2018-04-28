@@ -205,7 +205,7 @@ a{
 }
 .jobStats{
     overflow:auto;
-    display:flex;
+    /* display:flex; */
     grid-column:9/11;
     grid-row:2/11;
     z-index:18;
@@ -216,6 +216,11 @@ a{
     transition:ease-in-out .5s;
     font-size: 1.2em;
 }
+
+.listReturn{
+    display:none;
+}
+
 .expandedInfo{
     margin-left: 1.5vh;
 }
