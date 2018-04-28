@@ -41,7 +41,7 @@ function createInitialMapCenter(location){
 
     //   map.setOptions({ minZoom: 5, maxZoom: 10 });
       map = new google.maps.Map(document.getElementById('map'), {
-          maxZoom: 15,
+          maxZoom: 16,
           center: center,
           zoom: 10,
           styles: 

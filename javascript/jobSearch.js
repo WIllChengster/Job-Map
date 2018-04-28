@@ -6,11 +6,20 @@ let listingClicked;
 // *@returns none
 // *@calls expandJobDescription, jobStatsMenuToggle
 function populateJobDisplay(){
+
+    
     $('#leftSideBar').empty();
     for(let i = 0; i < placesData.length; i++) {
+
+        var elem = document.createElement("img");
+          elem.setAttribute("src", "assets/images/buildings.png");
+          elem.setAttribute("width", "4%");
+          elem.className += 'businessIcon';
+
         var jobSideBar = $('<div>', {
             'class': 'jobSideBar'
         });
+
         var jobTitle = $('<h4>', {
             html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
             'class': 'jobName',
@@ -27,15 +36,19 @@ function populateJobDisplay(){
                 }
             }
         });
+        
         var jobCompany = $('<h7>', {
-            text: 'company: ' + findJobs.jobData.results[i].company.display_name,
+            image: `${elem}`,
+            text: findJobs.jobData.results[i].company.display_name,
             'class': 'companyName',
             css:{
                 'margin': 0
             }
         });
+        
         jobSideBar.append(jobTitle, jobCompany);
         $('.sidebar').append(jobSideBar);
+        jobCompany.prepend(elem);
     }
 }
 // *************************************************************************************************
