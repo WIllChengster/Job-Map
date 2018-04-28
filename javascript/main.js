@@ -23,6 +23,7 @@ function attachEventHandlers() {
     $('.inner').click(makeMenuSpin);
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
+    $('.listReturn').click(jobStatsMenuToggle)
     /* This is still being worked on and will be added to a later feature set
     $('.aboutUs, .escape').click( ()=>{
         $('.aboutContainer').toggleClass('hideAbout');
@@ -30,10 +31,10 @@ function attachEventHandlers() {
     $('.modalEscape').click(() => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
-    $('.brian').on('mouseenter mouseleave', aboutBrian);
-    $('.will').on('mouseenter mouseleave', aboutWill);
-    $('.evan').on('mouseenter mouseleave', aboutEvan);
-    $('.matt').on('mouseenter mouseleave', aboutMatt);
+    // $('.brian').on('mouseenter mouseleave', aboutBrian);
+    // $('.will').on('mouseenter mouseleave', aboutWill);
+    // $('.evan').on('mouseenter mouseleave', aboutEvan);
+    // $('.matt').on('mouseenter mouseleave', aboutMatt);
 }
 
 

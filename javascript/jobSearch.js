@@ -57,7 +57,7 @@ function populateJobDisplay(){
 // *@returns none
 // *@calls none
 function expandJobDescription(indexOfSelection){
-    $('.jobStats').empty();
+    $('.expandedInfo').remove();
     var expandedInfo = $('<div>', {
         'class': 'expandedInfo',
     });
