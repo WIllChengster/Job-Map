@@ -45,8 +45,8 @@ function attachEventHandlers() {
  * @calls newSearch, createInitialMapCenter, LandingHide
  */
 var landingSearchFlag = 0;
-function landingSearch() {
-    
+function landingSearch(event) {
+    event.preventDefault()
     if (landingSearchFlag === 0) {
         let title = $('#jTitle').val();
         let location = $('#jLocal').val();
@@ -75,7 +75,8 @@ function devSearch() {
  * @returns {undefined} none
  * @calls newSearch, createInitialMapCenter
  */
-function headerSearch() {
+function headerSearch(event) {
+    event.preventDefault()
     let title = $('#jTitleHeader').val();
     let location = $('#jLocalHeader').val();
     if (title === '')
