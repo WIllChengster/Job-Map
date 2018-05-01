@@ -17,29 +17,21 @@ function initializeApp() {
  * @calls different functions on each click
  */
 function attachEventHandlers() {
-    $("#dev").click(devSearch)
     $('#jSearch').click(landingSearch);
     $('#headerSearch').click(headerSearch);
     $('.inner').click(makeMenuSpin);
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
     $('.listReturn').click(jobStatsMenuToggle)
-    /* This is still being worked on and will be added to a later feature set
-    $('.aboutUs, .escape').click( ()=>{
-        $('.aboutContainer').toggleClass('hideAbout');
-    }); */
     $('.modalEscape').click(() => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
-    // $('.brian').on('mouseenter mouseleave', aboutBrian);
-    // $('.will').on('mouseenter mouseleave', aboutWill);
-    // $('.evan').on('mouseenter mouseleave', aboutEvan);
-    // $('.matt').on('mouseenter mouseleave', aboutMatt);
+    
 }
 
 
 /****************************************************************************************************
- * devSearch - for developmental purposes. doesn't spam google api, but hides landing.
+ * landingSearch - our initial search from the landing page.
  * @params none
  * @returns {undefined} none
  * @calls newSearch, createInitialMapCenter, LandingHide
@@ -65,9 +57,7 @@ function landingSearch(event) {
         }
     }
 }
-function devSearch() {
-    landingHide()
-}
+
 
 /***************************************************************************************************
  * headerSearch - processes our header search fields, and validates input
