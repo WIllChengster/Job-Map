@@ -36,8 +36,12 @@
         width: 25vw;
         height: 100%;
         box-sizing:border-box;
+        grid-column: 1/11;
     }
     .brand{
         display:none;
-    }    
+    }  
+    .headerForms{
+        grid-column: 1/11;
+    }  
 }
