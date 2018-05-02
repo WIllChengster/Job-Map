@@ -297,6 +297,13 @@ function renderAllMarkers(){
                   map: map,
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
+              marker.addListener('click', function() {
+                setIcon(i);
+                expandJobDescription(i);
+                    if ($('#map').hasClass('mapWithoutInfo') === true){
+                        jobStatsMenuToggle();
+                    }
+            });
           }
           else{
               var marker = new google.maps.Marker({
@@ -308,19 +315,16 @@ function renderAllMarkers(){
                   map: map,
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
-          }
-        //   google.maps.event.addListener(marker, 'click', function(event) {
-        //         event.Ia.target.style.backgroundColor = 'blue';
-        //   })
-            google.maps.event.addListener(marker, 'click', function() {
-                marker.setIcon("../assets/images/selectedIcon.png");                                    
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                    expandJobDescription(i);
+              marker.addListener('click', function() {
+                // marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+                setIcon(i);
+                expandJobDescription(i);
                     if ($('#map').hasClass('mapWithoutInfo') === true){
                         jobStatsMenuToggle();
                     }
             });
+          }
+            
           markerCounter++;
           markers.push(marker);
           previousName = placesData[i].result.name;
@@ -337,6 +341,16 @@ function recenterMap(){
     }
 
     map.fitBounds(bounds);
+}
+
+function setIcon(indexOfMarker){
+    var markerCounter = 1;
+
+    for(i = 0; i < markers.length; i++){
+        markers[i].setIcon(`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`)
+        markerCounter++
+    }
+    markers[indexOfMarker].setIcon('https://www.google.com/mapfiles/marker_green.png')
 }
 
 /***************************************************************************************************
