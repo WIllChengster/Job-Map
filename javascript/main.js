@@ -23,7 +23,7 @@ function attachEventHandlers() {
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
     $('.listReturn').click(jobStatsMenuToggle)
-    $('.modalEscape').click(() => {
+    $('.noResultModal').click(() => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
     
