@@ -17,15 +17,7 @@ function populateJobDisplay(){
           elem.className += 'businessIcon';
 
         var jobSideBar = $('<div>', {
-            'class': 'jobSideBar'
-        });
-
-        var jobTitle = $('<h4>', {
-            html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
-            'class': 'jobName',
-            css:{
-                'margin-bottom': 0
-            },
+            'class': 'jobSideBar',
             on:{
                 click: () => {
                     expandJobDescription(i);
@@ -34,6 +26,14 @@ function populateJobDisplay(){
                     }
                     listingClicked=this
                 }
+            }
+        });
+
+        var jobTitle = $('<h4>', {
+            html: (i + 1) + '. ' + findJobs.jobData.results[i].title,
+            'class': 'jobName',
+            css:{
+                'margin-bottom': 0
             }
         });
         
@@ -84,9 +84,10 @@ function expandJobDescription(indexOfSelection){
     });
 
     var jobLink = $('<a>', {
+        'class': 'linkToJob',
         href: findJobs.jobData.results[indexOfSelection].redirect_url,
         target: "_blank",
-        text: "Link to Listing"
+        text: "Link to Listing"  
     });
     if( findJobs.jobData.results[indexOfSelection].salary_min != undefined && findJobs.jobData.results[indexOfSelection].salary_max != undefined){
         var minMaxSalary = $('<p>', {
