@@ -45,6 +45,16 @@ function createInitialMapCenter(location){
   
   function initialize() {
 
+    var myStyles =[
+        {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [
+                  { visibility: "off" }
+            ]
+        }
+    ];
+
       map = new google.maps.Map(document.getElementById('map'), {
           maxZoom: 16,
           center: center,
@@ -67,6 +77,24 @@ function createInitialMapCenter(location){
                         "gamma": 0.72
                     }
                 ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "labels",
+                "stylers": [
+                      { "visibility": "off" }
+                ]
+            },
+            {
+                "featureType": "transit.station.airport",
+                "elementType": "labels",
+                "stylers": [
+                    { "visibility": "off" }
+              ]
+            },
+            {
+                "featureType": "transit.station.bus",
+                "stylers": [{ "visibility": "off" }]
             },
             {
                 "featureType": "road",
@@ -281,12 +309,18 @@ function renderAllMarkers(){
                   icon: `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`
               });
           }
-          google.maps.event.addListener(marker, 'click', function() {
-                expandJobDescription(i);
-                if ($('#map').hasClass('mapWithoutInfo') === true){
-                    jobStatsMenuToggle();
-                }    
-          });
+        //   google.maps.event.addListener(marker, 'click', function(event) {
+        //         event.Ia.target.style.backgroundColor = 'blue';
+        //   })
+            google.maps.event.addListener(marker, 'click', function() {
+                marker.setIcon("../assets/images/selectedIcon.png");                                    
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                    expandJobDescription(i);
+                    if ($('#map').hasClass('mapWithoutInfo') === true){
+                        jobStatsMenuToggle();
+                    }
+            });
           markerCounter++;
           markers.push(marker);
           previousName = placesData[i].result.name;
