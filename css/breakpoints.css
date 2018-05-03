@@ -25,11 +25,43 @@
         background-color:#a5fff7;
         text-align:center;
     } */
+    .mobileList{
+        display:block;
+        width: 100vw;
+        height: 50px;
+        z-index: 10;
+        position: absolute;
+        background-color: white;
+        bottom: 0;
+        box-shadow: 20px 0 0 0 black;
+    }
+    .menuSpinner{
+        display:none;
+    }
+    .mobileList p{
+        text-align:center;
+    }
+    .sidebarHide{
+        transform:translateY(100%)
+    }
+    .mapWithoutList{
+        transform:translateX(0);
+        width:100vw;
+    }
+    .mapWithoutInfo{
+        transform:translateX(0);
+        width:100vw;
+    }
     .sidebar{
         grid-column: 1/11;
     }
     .jobStats{
         grid-column: 1/11;
+    }
+    .hideList{
+        cursor:pointer;
+        color:white;
+        display:block;
     }
     .listReturn{
         cursor:pointer;
@@ -55,7 +87,8 @@
     }  
     .headerForms{
         grid-column: 3/11;
-    }  
+    }
+
 }
 @media only screen and (max-width: 450px){
     .heroText {

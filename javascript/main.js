@@ -23,10 +23,12 @@ function attachEventHandlers() {
     $('.item1').click(jobListMenuToggle);
     $('.item4').click(jobStatsMenuToggle);
     $('.listReturn').click(jobStatsMenuToggle)
+    $('.hideList').click(jobListMenuToggle)
     $('.noResultModal').click(() => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
-    
+    $('.mobileList').click(jobListMenuToggle);
+        
 }
 
 

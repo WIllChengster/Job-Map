@@ -218,6 +218,9 @@ a{
     transition:ease-in-out .5s;
     font-size: 1.2em;
 }
+.hideList{
+    display:none;
+}
 
 .listReturn{
     display:none;
@@ -257,7 +260,9 @@ a{
 #showMoreResults{
     position:absolute;
 }
-
+.mobileList{
+    display:none;
+}
 
 
 .spinner{
