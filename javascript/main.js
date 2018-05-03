@@ -78,7 +78,7 @@ function headerSearch(event) {
     if (title !== '' && location !== '') {
         removeMarkers();
         newSearch(title, location);
-        $('#leftSideBar').children().remove();
+        $('.jobSideBar').remove();
         $('#headerSearch').addClass('noTouch');
         if ($('#leftSideBar').hasClass('sidebarHide')) {
             jobListMenuToggle();
