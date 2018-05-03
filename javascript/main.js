@@ -26,6 +26,7 @@ function attachEventHandlers() {
     $('.noResultModal').click(() => {
         $('.fadeOverlay, .noResultModal').toggleClass('toggleDisplay');
     });
+    $('.mobileList').click(jobListMenuToggle);
     
 }
 

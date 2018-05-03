@@ -25,6 +25,29 @@
         background-color:#a5fff7;
         text-align:center;
     } */
+    .mobileList{
+        width: 100vw;
+        height: 50px;
+        z-index: 10;
+        position: absolute;
+        background-color: white;
+        bottom: 0;
+        box-shadow: 20px 0 0 0 black;
+    }
+    .mobileList p{
+        text-align:center;
+    }
+    .sidebarHide{
+        transform:translateY(100%)
+    }
+    .mapWithoutList{
+        transform:translateX(0);
+        width:100vw;
+    }
+    .mapWithoutInfo{
+        transform:translateX(0);
+        width:100vw;
+    }
     .sidebar{
         grid-column: 1/11;
     }
@@ -55,7 +78,8 @@
     }  
     .headerForms{
         grid-column: 3/11;
-    }  
+    }
+
 }
 @media only screen and (max-width: 450px){
     .heroText {
