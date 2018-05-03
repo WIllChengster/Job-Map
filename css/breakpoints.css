@@ -26,6 +26,7 @@
         text-align:center;
     } */
     .mobileList{
+        display:block;
         width: 100vw;
         height: 50px;
         z-index: 10;
@@ -33,6 +34,9 @@
         background-color: white;
         bottom: 0;
         box-shadow: 20px 0 0 0 black;
+    }
+    .menuSpinner{
+        display:none;
     }
     .mobileList p{
         text-align:center;
