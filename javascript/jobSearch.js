@@ -8,7 +8,7 @@ let listingClicked;
 function populateJobDisplay(){
 
     
-    $('#leftSideBar').empty();
+    $('.jobSideBar').remove();
     for(let i = 0; i < placesData.length; i++) {
 
         var elem = document.createElement("img");
