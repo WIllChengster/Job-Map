@@ -3,6 +3,18 @@
         font-size:10vw;
         /* margin: 15% auto; */
     }
+    .headerForms{
+        grid-column: 4/10;
+    }  
+}
+@media only screen and (max-width: 700px){
+    .heroText {
+        font-size:10vw;
+        /* margin: 15% auto; */
+    }
+    .headerForms{
+        grid-column: 3/10;
+    }  
 }
 @media(max-width:575.98px){
     /* div.tooSmall{
@@ -32,16 +44,34 @@
     .heroText {
         font-size:12vw
     }
-    .headerJobTitleInput, .headerJobLocationInput{
+    /* .headerJobTitleInput, .headerJobLocationInput{
         width: 25vw;
         height: 100%;
         box-sizing:border-box;
         grid-column: 1/11;
-    }
+    } */
     .brand{
         display:none;
     }  
     .headerForms{
-        grid-column: 1/11;
+        grid-column: 3/11;
+    }  
+}
+@media only screen and (max-width: 450px){
+    .heroText {
+        font-size:10vw;
+        /* margin: 15% auto; */
+    }
+    .headerForms{
+        grid-column: 2/10;
+    }  
+}
+@media only screen and (max-width: 380px){
+    .heroText {
+        font-size:10vw;
+        /* margin: 15% auto; */
+    }
+    .headerForms{
+        grid-column: 1/10;
     }  
 }
