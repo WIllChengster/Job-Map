@@ -1,13 +1,12 @@
 let listingClicked;
 
 // *************************************************************************************************
-// *populateJobDisplay - function populates the the foudn jobs that display on the right side bar of the main page
+// *populateJobDisplay - function populates the the found jobs that display on the right side bar of the main page
 // *@parms none
 // *@returns none
 // *@calls expandJobDescription, jobStatsMenuToggle
 function populateJobDisplay(){
 
-    
     $('.jobSideBar').remove();
     for(let i = 0; i < placesData.length; i++) {
 
@@ -21,6 +20,7 @@ function populateJobDisplay(){
             on:{
                 click: () => {
                     expandJobDescription(i);
+                    highlightMarker(i);
                     if ($('#map').hasClass('mapWithoutInfo') === true){
                         jobStatsMenuToggle();
                     }
@@ -51,6 +51,16 @@ function populateJobDisplay(){
         jobCompany.prepend(elem);
     }
 }
+
+function highlightMarker(indexOfMarker){
+    let markerCounter = 1;
+    for(i = 0; i < markers.length; i++){
+        markers[i].setIcon(`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${markerCounter}|FF0000|000000`)
+        markerCounter++
+    }
+    markers[indexOfMarker].setIcon('https://www.google.com/mapfiles/marker_green.png')
+}
+
 // *************************************************************************************************
 // *expandJobDescription - This function populates the sidebar with the appropriate selected job.
 // *@parms It takes an index of the item that it is being referred to.
