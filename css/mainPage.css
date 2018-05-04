@@ -230,9 +230,11 @@ a{
 .hideList{
     display:none;
     font-size:1.2em;
+    margin-left:1.5vh;
 }
 
 .listReturn{
+    margin-left:1.5vh;
     cursor: pointer;
     color: #a2ffff;
     display: block;
