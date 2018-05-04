@@ -56,6 +56,8 @@ a.linkToJob {
     grid-row: 2/4;
     color: white;
     font-size:3vw;
+    font-family: 'Lobster', cursive;
+    text-shadow: 0px 0px 2vh white;
   
 }
 .headerForms{
@@ -236,7 +238,7 @@ a{
     display: block;
     font-weight: bold;
 }
-.listReturn:hover{
+.listReturn:hover, .hideList:hover{
     color:lightslategray;
     text-shadow: 0px 0px 1vh black;
     text-decoration-style: double

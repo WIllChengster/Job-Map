@@ -53,6 +53,9 @@
     }
 }
 @media(max-width:575.98px){
+    .spinner{
+        color:gray;
+    }
     .modalBox{
     z-index:999;
     grid-column: 2/10;
