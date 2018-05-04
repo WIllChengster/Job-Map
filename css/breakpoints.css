@@ -1,20 +1,56 @@
 @media only screen and (max-width: 1000px){
     .heroText {
         font-size:10vw;
+        margin-bottom: 28%;
         /* margin: 15% auto; */
     }
     .headerForms{
         grid-column: 4/10;
-    }  
+    }
+    .forms {
+        grid-column: 3/9;
+        grid-row: 5/9;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    .jobTitle {
+        grid-column: 1/8;
+        grid-row: 2/4;
+        border: 2px solid black;
+    }
+    .jobLocation {
+        grid-column: 1/8;
+        grid-row: 5/7;
+    }
+    .submitSearch{
+        grid-row: 8/8;
+    }
 }
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 900px){
     .heroText {
         font-size:10vw;
+        margin-bottom: 33%;
         /* margin: 15% auto; */
     }
     .headerForms{
-        grid-column: 3/10;
-    }  
+        grid-column: 4/10;
+    }
+}
+@media only screen and (max-width: 800px){
+    .heroText {
+        font-size:10vw;
+        margin-bottom: 46%;
+        /* margin: 15% auto; */
+    }
+    .headerForms{
+        grid-column: 4/10;
+    }
+}
+@media only screen and (max-width: 700px){
+    .heroText {
+        font-size:15vw;
+        margin-bottom: 55%;
+        /* margin: 15% auto; */
+    }
 }
 @media(max-width:575.98px){
     /* div.tooSmall{
@@ -74,7 +110,8 @@
         text-decoration-style: double
     }
     .heroText {
-        font-size:12vw
+        font-size:12vw;
+        margin-bottom: 58%;
     }
     /* .headerJobTitleInput, .headerJobLocationInput{
         width: 25vw;
@@ -90,9 +127,26 @@
     }
 
 }
+@media only screen and (max-width: 500px){
+    .heroText {
+        font-size:15vw;
+        margin-bottom: 72%;
+        /* margin: 15% auto; */
+    }
+    .jobTitle {
+        grid-row: 1/3;
+    }
+    .jobLocation {
+        grid-row: 4/6;
+    }
+    .headerForms{
+        grid-column: 2/10;
+    }  
+}
 @media only screen and (max-width: 450px){
     .heroText {
-        font-size:10vw;
+        font-size:15vw;
+        margin-bottom: 87%;
         /* margin: 15% auto; */
     }
     .headerForms{
@@ -101,7 +155,8 @@
 }
 @media only screen and (max-width: 380px){
     .heroText {
-        font-size:10vw;
+        margin-bottom: 105%;
+        font-size:15vw;
         /* margin: 15% auto; */
     }
     .headerForms{
