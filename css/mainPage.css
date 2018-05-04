@@ -49,6 +49,8 @@ h4{
     grid-row: 2/4;
     color: white;
     font-size:3vw;
+    font-family: 'Lobster', cursive;
+    text-shadow: 0px 0px 2vh white;
   
 }
 .headerForms{
