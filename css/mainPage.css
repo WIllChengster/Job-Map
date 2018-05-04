@@ -220,12 +220,19 @@ a{
 }
 .hideList{
     display:none;
+    font-size:1.2em;
 }
 
 .listReturn{
-    display:none;
+    cursor:pointer;
+    color:white;
+    display:block;
 }
-
+.listReturn:hover{
+    color:lightslategray;
+    text-shadow: 0px 0px 1vh black;
+    text-decoration-style: double
+}
 .expandedInfo{
     margin-left: 1.5vh;
 }
@@ -262,6 +269,17 @@ a{
 }
 .mobileList{
     display:none;
+    width: 100vw;
+        height: 50px;
+        z-index: 10;
+        position: absolute;
+        background-color: black;
+        bottom: 0;
+        box-shadow: 20px 0 0 0 black;
+        cursor:pointer;
+}
+.mobileList p{
+    color:white;
 }
 
 

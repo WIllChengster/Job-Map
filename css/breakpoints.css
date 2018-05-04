@@ -53,23 +53,13 @@
     }
 }
 @media(max-width:575.98px){
-    /* div.tooSmall{
-        z-index:999;
-        grid-column:1/11;
-        grid-row:1/11;
-        display:block;
-        background-color:#a5fff7;
-        text-align:center;
-    } */
+    .modalBox{
+    z-index:999;
+    grid-column: 2/10;
+    }
     .mobileList{
         display:block;
-        width: 100vw;
-        height: 50px;
-        z-index: 10;
-        position: absolute;
-        background-color: white;
-        bottom: 0;
-        box-shadow: 20px 0 0 0 black;
+        
     }
     .menuSpinner{
         display:none;
@@ -99,16 +89,7 @@
         color:white;
         display:block;
     }
-    .listReturn{
-        cursor:pointer;
-        color:white;
-        display:block;
-    }
-    .listReturn:hover{
-        color:lightslategray;
-        text-shadow: 0px 0px 1vh black;
-        text-decoration-style: double
-    }
+  
     .heroText {
         font-size:12vw;
         margin-bottom: 58%;
