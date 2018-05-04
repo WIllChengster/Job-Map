@@ -85,9 +85,10 @@
         grid-column: 1/11;
     }
     .hideList{
-        cursor:pointer;
-        color:white;
-        display:block;
+        cursor: pointer;
+        color: #a2ffff;
+        display: block;
+        font-weight: bold;
     }
   
     .heroText {

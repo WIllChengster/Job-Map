@@ -13,6 +13,13 @@ h4{
     cursor: pointer;
 }
 
+a.linkToJob {
+    cursor: pointer;
+    color: #a2ffff;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
 .jobSideBar:hover, .linkToJob:hover{
     color:lightslategray;
     text-shadow: 0px 0px 1vh black;
@@ -224,9 +231,10 @@ a{
 }
 
 .listReturn{
-    cursor:pointer;
-    color:white;
-    display:block;
+    cursor: pointer;
+    color: #a2ffff;
+    display: block;
+    font-weight: bold;
 }
 .listReturn:hover{
     color:lightslategray;
