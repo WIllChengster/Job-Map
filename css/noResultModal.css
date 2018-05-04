@@ -40,10 +40,10 @@
     grid-column: 10/11;
     background-color: white;
     grid-row: 1/2;
-    height: 5vw;
+    height: 6vh;
     max-height: 40px;
     max-width: 8px;
-    width: 1vw;
+    width: 1vh;
     transform: rotate(45deg);
     cursor:pointer;
     position: relative;
