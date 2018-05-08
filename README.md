@@ -1,4 +1,4 @@
-<img src = "./assets/screenshot.png">
+<img src = "./assets/images/screenshot.png">
 
 # Job Map
 
