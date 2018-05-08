@@ -1,49 +1,34 @@
-# C1.18_hackathon2
+## Job Map
 
-Hackathon project involving the combination of different data sources into an application or game
+Job Map is an app used to find jobs in a specified area combined with a Map, to give the user a visual layout of their search.
 
-### Requirements
-- Combine at least 3 **external** resources via AJAX requests and present their information in an application
-- Must be documented loosely on JSDOC standards
-- Must be issue-managed via meistertask 
-  - share the meistertask with daniel.paschal@learningfuze.com
-  - name your project 1.18 Team [your team number] Hackathon
+## Motivation
 
+On most job search sites, the user is given results matching their search but nothing more accurate than what city it is in. Job Map aims to show the user exactly where their potential future employers are on a map.
 
-### Judging Criteria
-- **Appeal** : is it visually appealing / well put together
-- **Code Quality** : is the code properly formatted, are variables and functions well defined and documented
-- **Presentation** : How well is it presented during the unveiling session
-- **Task / Issue Management** : How well was the development process documented / controlled.  Were there well-defined issues, milestones, and project management
-- **Innovative / Transformative** : Did the project do something new and exciting?  Was it bold and tried to do things that haven't been done much.  Did it combine the data sources together in a way that was more useful than either source by itself
-- **Ease of Use / Understanding** : Was it easy to use the application / game, or if it was more complex, was the application or game able to provide you with tutorials or instructions that made understanding it a breeze.
+## Usage
 
+Given a job title and city to search in, Job Map will show the user their search results.
 
-### Teams
-- Team 1
-  - Hanran 
-  - Sasha
-  - Jeffrei
-  - Keaton
-  
-- Team 2
-  - Alejandro
-  - Nolan
-  - Li
-  - Duy
-  - Parker
+### Project
 
-- Team 3
-  - Brian
-  - Matthew
-  - William
-  - Evan
+View this project live [HERE](www.google.com)
 
-- Team 4
-  - Ryan
-  - Jean Paul
-  - David
-  - Harrison
-  
-### Deadline: 
-- 6:00pm Thursday, March 8, 2017
+## Features
+
+- [x] API calls from multiple sources to find jobs in the given area
+- [x] Integration of Google Maps API to give the visual element of the search
+- [x] Easy access to the application process of each job listing provided by Adzuna API
+- [x] Design made for Desktop and Mobile use
+
+## Technologies Used
+
+- [JavaScript](https://www.javascript.com/)
+- [Google Maps API](https://cloud.google.com/maps-platform/)
+
+## Contributors
+
+[Eeps30](https://github.com/Eeps30) |
+[Briantmorr](https://github.com/Briantmorr) |
+[burninggun](https://github.com/burninggun) |
+[KaneMJ](https://github.com/KaneMJ)
