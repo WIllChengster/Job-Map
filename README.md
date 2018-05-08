@@ -1,3 +1,5 @@
+<img src = "./assets/screenshot.png">
+
 # Job Map
 
 Job Map is an application used to find jobs in a specified area combined with a Map, to give the user a visual layout of their search.
@@ -33,3 +35,6 @@ View this project live [HERE](www.google.com)
 [Briantmorr](https://github.com/Briantmorr) |
 [burninggun](https://github.com/burninggun) |
 [KaneMJ](https://github.com/KaneMJ)
+
+## License
+This project is licensed under the MIT License © [User](www.google.com)
