@@ -1,4 +1,4 @@
-#### Job Map
+# Job Map
 
 Job Map is an app used to find jobs in a specified area combined with a Map, to give the user a visual layout of their search.
 
@@ -10,7 +10,7 @@ On most job search sites, the user is given results matching their search but no
 
 Given a job title and city to search in, Job Map will show the user their search results.
 
-### Project
+## Project
 
 View this project live [HERE](www.google.com)
 
