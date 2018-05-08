@@ -1,4 +1,4 @@
-<img src = "./assets/images/screenshot.png">
+![Job Map](./assets/images/screenshot.png =250x)
 
 # Job Map
 
