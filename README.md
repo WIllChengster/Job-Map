@@ -37,4 +37,4 @@ View this project live [HERE](https://evanippolito.online/Job-Map-Official/)
 [KaneMJ](https://github.com/KaneMJ)
 
 ## License
-This project is licensed under the MIT License © [User](Evan Ippolito)
+This project is licensed under the MIT License © Evan Ippolito
