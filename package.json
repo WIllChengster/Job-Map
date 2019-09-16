@@ -1,0 +1,23 @@
+{
+  "name": "job-map-official",
+  "version": "1.0.0",
+  "description": "<img src = \"./assets/images/screenshot.png\" style=\"width: 400px\">",
+  "main": "\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bapp\u001b[3~\u001b[3~\u001b[C\u001b[C\u001b[C\u001b",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eeps30/Job-Map-Official.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eeps30/Job-Map-Official/issues"
+  },
+  "homepage": "https://github.com/Eeps30/Job-Map-Official#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
