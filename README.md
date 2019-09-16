@@ -1,4 +1,4 @@
-<img src = "./assets/images/screenshot.png">
+<img src = "./assets/images/screenshot.png" style="width: 400px">
 
 # Job Map
 
@@ -14,7 +14,7 @@ Given a job title and city to search in, Job Map will show the user their search
 
 ## Project
 
-View this project live [HERE](www.google.com)
+View this project live [HERE](https://evanippolito.online/Job-Map-Official/)
 
 ## Features
 
@@ -37,4 +37,4 @@ View this project live [HERE](www.google.com)
 [KaneMJ](https://github.com/KaneMJ)
 
 ## License
-This project is licensed under the MIT License © [User](www.google.com)
+This project is licensed under the MIT License © Evan Ippolito
