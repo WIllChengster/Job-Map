@@ -14,7 +14,7 @@ Given a job title and city to search in, Job Map will show the user their search
 
 ## Project
 
-View this project live [HERE](https://evanippolito.online/Job-Map-Official/)
+View this project live [HERE](https://job-map.williamleecheng.com)
 
 ## Features
 
